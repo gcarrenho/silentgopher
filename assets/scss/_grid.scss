@@ -1,0 +1,9 @@
+/* --- CONTENIDO PRINCIPAL Y GRID --- */
+.content-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}

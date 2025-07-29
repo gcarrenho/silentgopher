@@ -1,0 +1,85 @@
+/* ====== Estilos para la firma ====== */
+.author-signature {
+    position: absolute;
+    top: 80%;
+    left: 30%;
+    transform: translateX(-50%);
+    font-family: 'Fira Code', monospace;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--accent);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: rotate(5deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(5deg) translateY(-5px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .author-signature {
+        font-size: 1.1rem;
+        right: 60px;
+        top: 15px;
+    }
+}
+
+.author-signature::before,
+.author-signature::after {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+    margin: 0 15px;
+    vertical-align: middle;
+    opacity: 0.6;
+}
+
+/* Solo para mobile */
+@media (max-width: 768px) {
+
+    .author-signature::before,
+    .author-signature::after {
+        width: 20px;
+        margin: 0 10px;
+    }
+}
+
+/* ====== Branding de Autor ====== */
+.author-branding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.author-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent);
+    margin-bottom: 1rem;
+}
+
+.author-info h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--fg);
+}

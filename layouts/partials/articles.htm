@@ -1,0 +1,26 @@
+{{ range .Pages }}
+<div class="blog-card {{ if modBool .Weight 2 }}alt{{ end }}">
+  <div class="meta">
+    <div class="photo" style="background-image: url('{{ with .Params.featured_image }}{{ . }}{{ else }}/images/default.jpg{{ end }}')"></div>
+    <ul class="details">
+      <li class="author"><a href="#">{{ .Params.author }}</a></li>
+      <li class="date">{{ .Date.Format "Jan. 2, 2006" }}</li>
+      <li class="tags">
+        <ul>
+          {{ range .Params.tags }}
+            <li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+          {{ end }}
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="description">
+    <h1>{{ .Title }}</h1>
+    <h2>{{ .Params.subtitle }}</h2>
+    <p>{{ .Summary }}</p>
+    <p class="read-more">
+      <a href="{{ .RelPermalink }}">Read More</a>
+    </p>
+  </div>
+</div>
+{{ end }}

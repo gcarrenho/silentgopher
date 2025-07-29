@@ -1,0 +1,59 @@
+<!-- layouts/_default/list.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ .Title }}</title>
+  {{ $sass := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $sass.RelPermalink }}" integrity="{{ $sass.Data.Integrity }}">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="articles-header ">
+    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+  </header>
+
+<nav style="text-align:center; margin-top:1rem;">
+  <a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a>
+  <a href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a> |
+  <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
+</nav>
+
+  <h1 style="text-align:center;">Artículos</h1>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Buscar artículos...">
+  </div>
+
+  <div class="articles-list" id="articlesList">
+    {{ $pages := where .Pages "Lang" .Site.Language.Lang }}
+    {{ range $pages }}
+      <div class="article-card" data-title="{{ .Title | lower }}">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        {{ with .Params.subtitle }}<p>{{ . }}</p>{{ end }}
+        <small>{{ .Date.Format "2 Jan, 2006" }}</small>
+      </div>
+    {{ end }}
+  </div>
+
+ <!--  mi card seria quitar lo de arriba pero ojooo que el buscar no funciona y tiene 
+   otro orden en vertical. {{ range $index, $page := .Pages }}
+  {{ partial "card.html" (dict "page" $page "index" $index) }}
+{{ end }}-->
+  {{ partial "theme-script.html" . }}
+  <script>
+    const input = document.getElementById('searchInput');
+    const articles = document.querySelectorAll('.article-card');
+
+    input.addEventListener('input', () => {
+      const filter = input.value.toLowerCase();
+      articles.forEach(card => {
+        const title = card.dataset.title;
+        card.style.display = title.includes(filter) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

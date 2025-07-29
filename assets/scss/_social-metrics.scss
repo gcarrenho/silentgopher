@@ -1,0 +1,45 @@
+/* ====== Social Metrics ====== */
+.article-metrics {
+  display: flex;
+  gap: 1.5rem;
+  margin: 2rem 0 3rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  color: var(--meta);
+  font-size: 0.9rem;
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.metric-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--meta);
+  transition: all 0.2s;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.like-button:hover {
+  color: var(--accent);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.like-button.liked {
+  color: #ef4444;
+}

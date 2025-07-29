@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Clean Architecture on Silent Gopher</title>
+    <link>http://localhost:1313/en/tags/clean-architecture/</link>
+    <description>Recent content in Clean Architecture on Silent Gopher</description>
+    <generator>Hugo -- 0.148.2</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/en/tags/clean-architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Part 2: Applying Component-Based Clean Architecture in Go</title>
+      <link>http://localhost:1313/en/posts/package-by-component/</link>
+      <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/package-by-component/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;💡 WARNING: If you&amp;rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
+This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;h2 id=&#34;-the-project-that-nearly-burned-my-eyeballs&#34;&gt;🚧 The Project That Nearly Burned My Eyeballs&lt;/h2&gt;
+&lt;p&gt;Several months ago, I inherited a Go monolith where:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;users&lt;/code&gt; and &lt;code&gt;orders&lt;/code&gt; shared structs like drunken confessions.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A change in &lt;code&gt;User.Email&lt;/code&gt; broke 3 different services.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The tests were as fragile as Murano glass.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Part 1: Understanding Clean Architecture Beyond the Diagram</title>
+      <link>http://localhost:1313/en/posts/clean-architecture/</link>
+      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/clean-architecture/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint.
+I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).&lt;/p&gt;&lt;/blockquote&gt;</description>
+    </item>
+  </channel>
+</rss>

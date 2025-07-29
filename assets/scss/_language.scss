@@ -1,0 +1,50 @@
+.language-switcher {
+    position: absolute;
+    top: 18px;
+    right: 70px;
+    border-radius: 2rem; // Borde redondeado exterior
+    border: 1px solid var(--border-color);
+    padding: 0.3rem;
+    background: var(--bg-secondary);
+    display: inline-flex; // Cambiado a flex para mejor alineación
+    overflow: hidden; // ¡Clave para que los bordes internos no sobresalgan!
+
+    a,
+    span {
+        padding: 0.4rem 0.8rem; // Aumenté el padding para mejor proporción
+        border-radius: 1rem; // Redondeado igual que el contenedor
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .active {
+        background: var(--primary-color);
+        color: white;
+        font-weight: 600;
+        position: relative; // Añade esto
+        z-index: 1; // Opcional: para superposición
+
+        // Reemplaza los márgenes negativos con esto:
+        padding: calc(0.5rem + 0.3rem) calc(1rem + 0.3rem) !important;
+        margin: -0.3rem; // Ajuste fino si es necesario
+
+        // Para los bordes:
+        &:first-child {
+            border-top-left-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+        }
+
+        &:last-child {
+            border-top-right-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+        }
+    }
+
+    // Efecto hover para items no activos
+    a:not(.active):hover {
+        background: rgba(0, 0, 0, 0.05);
+
+    }
+}

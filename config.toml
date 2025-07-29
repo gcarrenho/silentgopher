@@ -1,0 +1,68 @@
+baseURL = "https://silentgopher.dev/"
+languageCode = "es"
+defaultContentLanguage = "es"
+title = "Silent Gopher"
+theme = "papermod"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+
+[languages]
+  [languages.es]
+    languageName = "Es"
+    weight = 1
+    contentDir = "content/es"
+    
+    [languages.es.params]
+      homeInfoParams = { Title = "Hola, soy Silent Gopher", Content = "Blog sobre desarrollo backend y tecnología." }
+
+  [languages.en]
+    languageName = "En"
+    weight = 2
+    contentDir = "content/en"
+    
+    [languages.en.params]
+      homeInfoParams = { Title = "Hi, I'm Silent Gopher", Content = "Backend development blog." }
+
+[params]
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = true
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  disableScrollToTop = false
+  mainSections = ["posts"]
+  enableSearch = true
+  author = "@SilentGopher"
+  googleAnalytics = "G-XXXXXXXXXX" # Tu ID de medición
+  summaryLength = 300  # Longitud por defecto para resúmenes
+
+  [params.homeInfoParams]
+    Title = "SILENT GOPHER"
+    Content = "Blog personal sobre desarrollo backend y tecnología."
+
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Artículos"
+    url = "/posts/"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "about"
+    # name = "Sobre mí"
+    url = "/about/"
+    weight = 2
+
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

@@ -1,0 +1,34 @@
+/* --- FOOTER --- */
+.main-footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 2rem;
+    color: #888;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Estilos para iconos */
+.icon {
+    vertical-align: middle;
+    margin-right: 6px;
+    display: inline-block;
+    opacity: 0.8;
+}
+
+/* Ajustes específicos para tarjetas */
+.blog-card .details .icon {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+}
+
+.blog-card .read-more .icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s;
+}
+
+.blog-card .read-more:hover .icon {
+    transform: translateX(3px);
+}

@@ -1,0 +1,54 @@
+{{ define "main" }}
+<header class="main-header">
+      <!-- Imagen de fondo -->
+    <img src="{{ "/images/gophers.png" | relURL }}" alt="Gopher Silent" class="header-gopher">
+    
+    <!-- Controles flotantes -->
+    <div class="header-controls-container">
+        <button class="theme-toggle" aria-label="Cambiar tema">
+            <span class="theme-icon">🌙</span>
+        </button>
+        
+          <div class="language-switcher">
+            {{ range .Site.Languages }}
+                {{ if eq .Lang $.Site.Language.Lang }}
+                    <span class="active">{{ .LanguageName | truncate 2 }}</span>
+                {{ else }}
+                    <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+                {{ end }}
+            {{ end }}
+        </div> 
+    </div>
+
+    <!-- Contenido central -->
+    <div class="header-content">
+        <div class="author-signature">@SilentGopher</div>
+    </div>
+</header>
+
+<div class="profile-container">
+    <img src="{{ "/images/gopherProfile.png" | relURL }}" alt="{{ i18n " profilePhotoAlt" }}" class="profile-pic">
+</div>
+
+<main class="content-grid">
+    <section class="articles-section">
+        <div class="blog-wrapper">
+            {{ $posts := where .Site.RegularPages "Section" "posts" }}
+            {{ if gt (len $posts) 0 }}
+            {{ $paginator := .Paginate $posts }}
+            {{ range $i, $page := $paginator.Pages }}
+            {{ partial "card.html" (dict "page" $page "index" $i) }}
+            {{ end }}
+            {{ else }}
+            <p>{{ i18n "noPostsMessage" }}</p>
+            {{ end }}
+        </div>
+    </section>
+
+    <aside class="sidebar">
+        {{ partial "sidebar.html" . }}
+    </aside>
+</main>
+
+{{ partial "theme-script.html" . }}
+{{ end }}

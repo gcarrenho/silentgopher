@@ -1,0 +1,14 @@
+/* --- ESTILOS GENERALES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    line-height: 1.2;
+    transition: background-color 0.3s, color 0.3s;
+}

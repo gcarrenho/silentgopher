@@ -1,0 +1,97 @@
+/* --- HEADER Y PERFIL --- */
+.main-header {
+    background-color: var(--card-bg);
+    height: 350px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.articles-header {
+    // background-color: var(--card-bg);
+    height: 80px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.header-gopher {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    opacity: 0.5;
+    display: block; // 👌 Elimina espacio extra (img es inline por defecto)
+    object-fit: cover; // Opcional: recorta para cubrir todo si hay altura fija
+
+}
+
+.profile-container {
+    text-align: center;
+    margin-top: -75px;
+    /* Tira la imagen hacia arriba */
+    position: relative;
+    z-index: 10;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--bg-color);
+    object-fit: cover;
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .header-controls-container {
+        top: 15px;
+        right: 15px;
+        gap: 0.8rem;
+    }
+
+    .language-switcher a,
+    .language-switcher span {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+    }
+
+    .theme-toggle {
+        width: 35px;
+        height: 35px;
+    }
+}

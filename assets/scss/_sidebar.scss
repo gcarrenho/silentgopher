@@ -1,0 +1,119 @@
+/* Manteniendo tu estilo original */
+.sidebar-widget {
+    margin-bottom: 2rem;
+    background: var(--code-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+.widget-title {
+    font-size: 1rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.widget-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.widget-list li {
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed var(--border);
+    display: flex;
+    flex-direction: column;
+}
+
+.widget-list li:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.widget-list a {
+    color: var(--fg);
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.widget-list a:hover {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* Estilo para las fechas */
+.post-date {
+    font-size: 0.75rem;
+    color: var(--meta);
+    font-family: 'Fira Code', monospace;
+    margin-top: 0.25rem;
+    opacity: 0.8;
+}
+
+.icon {
+    vertical-align: middle;
+    margin-right: 0.3rem;
+    display: inline-block;
+}
+
+/* Estilos para los metadatos del post */
+.post-meta {
+    display: flex;
+    gap: 10px;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 3px;
+}
+
+.post-claps,
+.post-date {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.icon {
+    width: 12px;
+    height: 12px;
+}
+
+.post-date,
+.post-claps,
+.post-comments {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+}
+
+post-meta {
+    display: flex;
+    gap: 12px;
+    /* Espacio general */
+    align-items: center;
+}
+
+/* Ajustes específicos para íconos */
+.post-date::after,
+.post-claps::after {
+    content: "•";
+    margin-left: 12px;
+    color: #d1d5db;
+    /* Color sutil */
+    font-weight: 300;
+}
+
+.post-comments::after {
+    content: none;
+    /* Elimina el separador del último elemento */
+}

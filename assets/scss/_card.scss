@@ -1,0 +1,131 @@
+/* --- CARDS DE ARTÍCULOS --- */
+.articles-grid {
+    //display: grid;
+    //grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card-modern {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.card-modern:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+}
+
+.card-link {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-image-wrapper {
+    overflow: hidden;
+    height: 140px;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.card-modern:hover .card-image {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.3rem 1.6rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 0 0 0.6rem 0;
+    color: #222;
+}
+
+.card-description {
+    flex-grow: 1;
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0 0 1rem 0;
+}
+
+.card-date {
+    font-size: 0.85rem;
+    color: #999;
+    font-style: italic;
+    align-self: flex-start;
+}
+
+/* Contenedor principal de tags */
+.tags-container {
+    display: flex;
+    align-items: flex-start;
+    /* Alinea al inicio del contenedor */
+    gap: 6px;
+}
+
+/* Ajuste fino para el icono */
+.tag-icon {
+    margin-top: 1px;
+    /* Compensa la altura de la primera línea */
+    flex-shrink: 0;
+    /* Evita que se reduzca */
+}
+
+/* Lista de tags mejorada */
+/*.tag-list {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+*/
+/*
+.tag-list li {
+    margin: 0;
+    line-height: 1.4;
+}
+*/
+/*.tag-list a {
+    font-size: 0.5em;
+    padding: 1px 3px;
+    background: var(--code-bg);
+    border-radius: 4px;
+    transition: all 0.2s;
+    display: inline-block;
+}*/
+/*
+.details li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.details .icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+    /* Ajuste fino de alineación vertical 
+}*/

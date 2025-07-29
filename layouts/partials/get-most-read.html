@@ -1,0 +1,27 @@
+<!-- layouts/partials/get-most-read.html -->
+{{ $allPosts := where .Site.Pages "Type" "posts" }}
+{{ $views := dict }}
+<script>
+  // Pasamos datos de localStorage a Hugo
+  const postViews = JSON.parse(localStorage.getItem('postViews') || '{}');
+  document.write(`<div id="post-views-data" data-views='${JSON.stringify(postViews)}'></div>`);
+</script>
+{{ if .Site.IsServer }}
+  {{ $views = dict "post1" 42 "post2" 35 }} <!-- Datos de ejemplo en desarrollo -->
+{{ else }}
+  {{ with index .Page.Scratch.Get "postViews" }}
+    {{ $views = . }}
+  {{ end }}
+{{ end }}
+
+{{ $mostRead := slice }}
+{{ range $allPosts }}
+    {{ $postViews := index $views .File.BaseFileName | default 0 }}
+    {{ $mostRead = $mostRead | append (dict 
+        "url" .RelPermalink
+        "title" .Title
+        "views" $postViews
+    )}}
+{{ end }}
+
+{{ return sort $mostRead "views" "desc" | first 5 }}
