@@ -2,8 +2,8 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 export async function setupComments() {
     // Configuración inicial
-    const SUPABASE_URL = 'https://hnshpzakudamqqauqqqe.supabase.co';
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhuc2hwemFrdWRhbXFxYXVxcXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NTEwOTgsImV4cCI6MjA2ODMyNzA5OH0.3P9rwWs8hbXBCpvX0ddfMH6p0GzVVrjfOCx-xTaMgd8';
+    const SUPABASE_URL = process.env.SUPABASE_URL;
+    const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
     const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
     const postId = document.body.dataset.postId;
@@ -261,7 +261,6 @@ export async function setupComments() {
             const currentCount = parseInt(el.textContent) || 0;
             el.textContent = isReacting ? currentCount + 1 : currentCount - 1;
 
-            console.log(el.textContent)
             // Obtener el conteo real de la base de datos
             const { count, error } = await supabase
                 .from('comment_reactions')
