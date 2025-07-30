@@ -7,8 +7,6 @@ export async function setupComments() {
         window.PUBLIC_SUPABASE_KEY
     );
 
-
-    //const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const postId = document.body.dataset.postId;
     let currentUser = null;
 
