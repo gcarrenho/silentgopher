@@ -35,7 +35,12 @@ jobs:
 
       # Build del sitio con minificación
       - name: Build site
-        run: hugo --minify
+        run: hugo
+
+      - name: Auto-create CNAME
+        run: |
+          echo "www.tudominio.com" > public/CNAME
+        if: ${{ github.event_name == 'push' }}
 
       # Despliegue en GitHub Pages
       - name: Deploy to GitHub Pages
@@ -43,3 +48,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          keep_files: true
