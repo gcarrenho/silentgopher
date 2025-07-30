@@ -1,1 +1,36 @@
+# Archivos generados por Hugo
+/public/
+/resources/_gen/
+/hugo_stats.json
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+# Archivos de respaldo o swap
+*~
+*.swp
+*.swo
+
+# Archivos del editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Archivos de entorno local
 .env
+.env.*
+
+# Node modules (si usás npm para SCSS, etc.)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Archivos de salida de Netlify o Vercel (opcional)
+.netlify/
+.vercel/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

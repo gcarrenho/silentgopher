@@ -1,0 +1,9 @@
+<script>
+     // Debug: Verifica que las variables existen
+  console.log('PUBLIC_SUPABASE_URL:', '{{ getenv "PUBLIC_SUPABASE_URL" }}');
+  console.log('PUBLIC_SUPABASE_ANON_KEY:', '{{ getenv "PUBLIC_SUPABASE_ANON_KEY" }}');
+
+    window.PUBLIC_SUPABASE_URL = '{{ getenv "PUBLIC_SUPABASE_URL"}}';
+    window.PUBLIC_SUPABASE_ANON_KEY = '{{ getenv "PUBLIC_SUPABASE_ANON_KEY" }}';
+
+</script>

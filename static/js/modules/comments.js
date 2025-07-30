@@ -2,10 +2,12 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 export async function setupComments() {
     // Configuración inicial
-    const SUPABASE_URL = process.env.SUPABASE_URL;
-    const SUPABASE_KEY = process.env.SUPABASE_KEY;
+    const supabase = createClient(
+        window.PUBLIC_SUPABASE_URL,
+        window.PUBLIC_SUPABASE_ANON_KEY
+    );
 
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+    //const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const postId = document.body.dataset.postId;
     let currentUser = null;
 

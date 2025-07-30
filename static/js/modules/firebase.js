@@ -3,13 +3,13 @@ import { getDatabase, ref, get, set, update } from 'https://www.gstatic.com/fire
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDFVrxDNPuvyGB2mIFVPKSF8L0sUnSiud0",
+    apiKey: '{{ getenv "PUBLIC_FIREBASE_API_KEY" }}',
     authDomain: "silent-gopher.firebaseapp.com",
     databaseURL: "https://silent-gopher-default-rtdb.firebaseio.com",
     projectId: "silent-gopher",
     storageBucket: "silent-gopher.appspot.com",
-    messagingSenderId: "486923700459",
-    appId: "1:486923700459:web:558987e78420a8051796ae",
+    messagingSenderId: '{{ getenv "PUBLIC_FIREBASE_MESSAGING_SENDER_ID" }}',
+    appId: '{{ getenv "PUBLIC_FIREBASE_APP_ID" }}',
     measurementId: "G-QS0YKFLE3G"
 };
 

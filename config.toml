@@ -44,6 +44,17 @@ enableRobotsTXT = true
     Title = "SILENT GOPHER"
     Content = "Blog personal sobre desarrollo backend y tecnología."
 
+[params.supabase]
+url = "" # Vacío para usar ENV
+anonKey = "" # Vacío para usar ENV
+
+[params.firebase]
+apiKey = ""
+authDomain = ""
+projectId = ""
+messagingSenderId = ""
+appId = ""
+
 [menu]
   [[menu.main]]
     identifier = "posts"
@@ -66,3 +77,17 @@ enableRobotsTXT = true
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[security]
+  enableInlineShortcodes = false
+  
+  [security.exec]
+    allow = ['^go$', '^npx$', '^postcss$']
+  
+  [security.funcs]
+    getenv = ['^PUBLIC_', '^HUGO_']
+    # Permite cualquier variable que comience con PUBLIC_
+  
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
