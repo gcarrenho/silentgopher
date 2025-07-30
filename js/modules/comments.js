@@ -4,8 +4,9 @@ export async function setupComments() {
     // Configuración inicial
     const supabase = createClient(
         window.PUBLIC_SUPABASE_URL,
-        window.PUBLIC_SUPABASE_ANON_KEY
+        window.PUBLIC_SUPABASE_KEY
     );
+
 
     //const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const postId = document.body.dataset.postId;
