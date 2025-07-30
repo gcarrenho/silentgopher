@@ -21,3 +21,6 @@
 
 - id: articles
   translation: "Articles"
+
+- id: home
+  translation: "Home"
