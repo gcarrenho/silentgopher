@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Silent Gopher</title><link>https://silentgopher.dev/en/posts/</link><description>Recent content in Posts on Silent Gopher</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://silentgopher.dev/en/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Part 2: Applying Component-Based Clean Architecture in Go</title><link>https://silentgopher.dev/en/posts/package-by-component/</link><pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate><guid>https://silentgopher.dev/en/posts/package-by-component/</guid><description>&lt;blockquote>
+&lt;p>💡 WARNING: If you&amp;rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
+This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.&lt;/p>&lt;/blockquote>
+&lt;h2 id="-the-project-that-nearly-burned-my-eyeballs">🚧 The Project That Nearly Burned My Eyeballs&lt;/h2>
+&lt;p>Several months ago, I inherited a Go monolith where:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>users&lt;/code> and &lt;code>orders&lt;/code> shared structs like drunken confessions.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>A change in &lt;code>User.Email&lt;/code> broke 3 different services.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>The tests were as fragile as Murano glass.&lt;/p></description></item><item><title>Part 1: Understanding Clean Architecture Beyond the Diagram</title><link>https://silentgopher.dev/en/posts/clean-architecture/</link><pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate><guid>https://silentgopher.dev/en/posts/clean-architecture/</guid><description>&lt;blockquote>
+&lt;p>⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint.
+I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).&lt;/p>&lt;/blockquote></description></item></channel></rss>

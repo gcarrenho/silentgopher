@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Package by Components on Silent Gopher</title><link>https://silentgopher.dev/tags/package-by-components/</link><description>Recent content in Package by Components on Silent Gopher</description><generator>Hugo</generator><language>es</language><lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate><atom:link href="https://silentgopher.dev/tags/package-by-components/index.xml" rel="self" type="application/rss+xml"/><item><title>Parte 2: Aplicando Component-Based Clean Architecture en Go</title><link>https://silentgopher.dev/posts/package-by-component/</link><pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate><guid>https://silentgopher.dev/posts/package-by-component/</guid><description>&lt;blockquote>
+&lt;p>💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
+Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.&lt;/p>&lt;/blockquote>
+&lt;h2 id="-el-proyecto-que-casi-me-quema-los-párpados">🚧 El Proyecto que casi me Quema los Párpados&lt;/h2>
+&lt;p>Hace varios meses, heredé un monolito en Go donde:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>users&lt;/code> y &lt;code>orders&lt;/code> compartían structs como si fueran confesiones de borrachos.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Un cambio en &lt;code>User.Email&lt;/code> rompía 3 servicios distintos.&lt;/p></description></item></channel></rss>
