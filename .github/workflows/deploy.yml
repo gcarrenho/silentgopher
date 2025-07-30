@@ -16,8 +16,6 @@ jobs:
       # Checkout el repositorio
       - name: Checkout repo
         uses: actions/checkout@v4  # Usamos la última versión
-        with:
-          submodules: true  #
 
       # Configura las variables de entorno
       - name: Set environment variables
