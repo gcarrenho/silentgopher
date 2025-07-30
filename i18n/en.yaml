@@ -1,0 +1,23 @@
+- id: read_more
+  translation: "read more"
+
+- id: unknown_author
+  translation: "Unknown Author"
+
+- id: latest
+  translation: "Latest"
+
+- id: most_read
+  translation: "Most Read"
+
+- id: by
+  translation: "by"
+
+- id: home
+  translation: "Home"
+
+- id: about_me
+  translation: "About me"
+
+- id: articles
+  translation: "Articles"
