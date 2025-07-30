@@ -13,7 +13,7 @@ jobs:
         shell: bash
 
     steps:
-      # Checkout el repositorio (solo una vez, versión actualizada)
+      # Checkout el repositorio
       - name: Checkout repo
         uses: actions/checkout@v4  # Usamos la última versión
 
