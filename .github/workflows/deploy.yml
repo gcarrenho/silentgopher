@@ -37,7 +37,7 @@ jobs:
 
       # Build del sitio con minificación
       - name: Build site
-        run: hugo
+        run: hugo --minify
 
       - name: Auto-create CNAME
         run: |
