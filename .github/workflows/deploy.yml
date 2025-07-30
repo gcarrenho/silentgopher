@@ -24,7 +24,8 @@ jobs:
           echo "PUBLIC_SUPABASE_KEY=${{ secrets.PUBLIC_SUPABASE_KEY }}" >> $GITHUB_ENV
           echo "PUBLIC_FIREBASE_API_KEY=${{ secrets.PUBLIC_FIREBASE_API_KEY }}" >> $GITHUB_ENV
           echo "PUBLIC_FIREBASE_APP_ID=${{ secrets.PUBLIC_FIREBASE_APP_ID }}" >> $GITHUB_ENV
-          echo "PUBLIC_FIREBASE_MESSAGINGSENDERID=${{ secrets.PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}" >> $GITHUB_ENV
+          echo "PUBLIC_FIREBASE_MESSAGING_SENDER_ID=${{ secrets.PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}" >> $GITHUB_ENV
+        shell: bash
 
       # Instala Hugo
       - name: Setup Hugo
