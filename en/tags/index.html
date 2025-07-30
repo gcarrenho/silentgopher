@@ -1,114 +1,56 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en" data-theme="light">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Tags</title>
-  
-    <link rel="stylesheet" href="/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css" integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU=">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-</head>
-<body>
-<header class="articles-header ">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
-  </header>
+    <script>
+    window.PUBLIC_SUPABASE_URL = 'https:\/\/hnshpzakudamqqauqqqe.supabase.co';
+    window.PUBLIC_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhuc2hwemFrdWRhbXFxYXVxcXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NTEwOTgsImV4cCI6MjA2ODMyNzA5OH0.3P9rwWs8hbXBCpvX0ddfMH6p0GzVVrjfOCx-xTaMgd8';
 
-<nav style="text-align:center; margin-top:1rem;">
-  <a href="/en/"></a>
-  <a href="/en/posts"></a> |
-  <a href="/en/about"></a>
-</nav>
-
-  <h1 style="text-align:center;">Artículos</h1>
-
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Buscar artículos...">
-  </div>
-
-  <div class="articles-list" id="articlesList">
-    
-    
-      <div class="article-card" data-title="clean architecture">
-        <h2><a href="/en/tags/clean-architecture/">Clean Architecture</a></h2>
-        
-        <small>14 Jun, 2025</small>
-      </div>
-    
-      <div class="article-card" data-title="go">
-        <h2><a href="/en/tags/go/">Go</a></h2>
-        
-        <small>14 Jun, 2025</small>
-      </div>
-    
-      <div class="article-card" data-title="package by components">
-        <h2><a href="/en/tags/package-by-components/">Package by Components</a></h2>
-        
-        <small>14 Jun, 2025</small>
-      </div>
-    
-  </div>
-
- 
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-    
-    const themeToggles = document.querySelectorAll('.theme-toggle');
-    
-    
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const currentTheme = localStorage.getItem('theme');
-
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
-
-    
-    themeToggles.forEach(button => {
-        button.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            if (current === 'light') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggles.forEach(btn => btn.textContent = '☀️');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeToggles.forEach(btn => btn.textContent = '🌙');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    });
-
-    
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            themeToggles.forEach(btn => btn.textContent = newTheme === 'dark' ? '☀️' : '🌙');
-        }
-    });
-});
 </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tags | Silent Gopher</title>
+    
+    <link rel="stylesheet" href="/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+     
+    
+    
+    <script type="module">
+        import { trackPageView } from '/js/modules/analytics.js';
+        
+        document.addEventListener('DOMContentLoaded', trackPageView);
+    </script>
+
+    
+<header class="page-header">
+    <h1>Tags</h1>
+</header>
+
+<ul class="terms-tags">
+    <li>
+        <a href="https://silentgopher.dev/en/tags/clean-architecture/">Clean Architecture <sup><strong><sup>2</sup></strong></sup> </a>
+    </li>
+    <li>
+        <a href="https://silentgopher.dev/en/tags/go/">Go <sup><strong><sup>2</sup></strong></sup> </a>
+    </li>
+    <li>
+        <a href="https://silentgopher.dev/en/tags/package-by-components/">Package by Components <sup><strong><sup>1</sup></strong></sup> </a>
+    </li>
+</ul>
 
 
+    <footer class="main-footer">
+        <p>&copy; 2025 @SilentGopher. Todos los derechos reservados.</p>
+    </footer>
 
-  <script>
-    const input = document.getElementById('searchInput');
-    const articles = document.querySelectorAll('.article-card');
+    <script type="module" src="/js/main.js"></script>
 
-    input.addEventListener('input', () => {
-      const filter = input.value.toLowerCase();
-      articles.forEach(card => {
-        const title = card.dataset.title;
-        card.style.display = title.includes(filter) ? '' : 'none';
-      });
-    });
-  </script>
 </body>
+
 </html>
