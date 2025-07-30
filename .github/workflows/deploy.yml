@@ -39,7 +39,7 @@ jobs:
 
       - name: Auto-create CNAME
         run: |
-          echo "www.tudominio.com" > public/CNAME
+          echo "www.silentgopher.dev" > public/CNAME
         if: ${{ github.event_name == 'push' }}
 
       # Despliegue en GitHub Pages
