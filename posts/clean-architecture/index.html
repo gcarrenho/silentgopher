@@ -1,387 +1,68 @@
-<!DOCTYPE html>
-<html lang="es" data-theme="">
-<head>
-  <meta charset="UTF-8">
-  <title>Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</title>
-  
-  <link rel="stylesheet" href="/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css" integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU=">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-</head>
-  <body data-post-id="clean-architecture" class="post-page">
-  <header class="main-header">
-    <img src="/images/posts/clean-architecture.jpg" 
-       alt="Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama" 
-       class="header-gopher">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
-  </header>
-
-  <nav style="text-align:center; margin-top:1rem;">
-    <a href="/">Inicio</a> |
-    <a href="/posts"></a> |
-    <a href="/about"></a>
-  </nav>
-
-  <main class="medium-article ">
-    <article>
-      <h1>Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</h1>
-      
-        <h2 class="subtitle">Clean Architecture</h2>
-      
-
-      
-      <div class="engagement-stats">
-        <span class="stat-item">
-          ⏱️ <span class="minutes">6</span> min
-        </span>
-        •
-        <span class="stat-item">
-          👁️ <span id="view-count">0</span>
-        </span>
-        •
-        <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
-          👏 <span id="clap-count">0</span>
-        </button>
-        •
-        <button id="comment-btn" class="comment-button" aria-label="Comentar este artículo">
-          💬 <span id="comment-count">0</span>
-        </button>
-      </div>
-
-  </div> 
-        <p class="meta-info">
-          June 13, 2025 —  @SilentGopher
-        </p>
-      
-      <div class="content">
-        <blockquote>
-<p>⚠️ <strong>Advertencia</strong>: Esto no es otro artículo teórico con diagramas bonitos que solo funcionan en PowerPoint.
-Hablaré de fracasos, de cómo <strong>mis primeros intentos con Clean Architecture fueron un desastre</strong>, y de la solución que finalmente funcionó en proyectos reales (con deadlines, jefes impacientes y requirements que cambian cada martes).</p></blockquote>
-<h2 id="-por-qué-escribo-esto">🚀 ¿Por qué escribo esto?</h2>
-<p>Hace ya unos años, en mi primer proyecto &ldquo;serio&rdquo; con Go, cometí todos los errores posibles:</p>
-<ol>
-<li>
-<p><strong>Ceguera arquitectónica</strong>: Creí que poner todo en /internal automáticamente hacía mi código &ldquo;limpio&rdquo;. Spoiler: No.</p>
-</li>
-<li>
-<p><strong>Overengineering</strong>: Implementé una estructura Hexagonal tan &ldquo;pura&rdquo; que hasta el HelloWorld necesitaba 7 archivos.</p>
-</li>
-<li>
-<p><strong>Acoplamiento disfrazado</strong>: Mis interfaces eran tan grandes que parecían clases de Java.</p>
-</li>
-</ol>
-<p><strong>Este artículo es el que me hubiera gustado leer antes de quemar 3 meses en refactors infinitos.</strong></p>
-<h2 id="-clean-architecture-la-teoría-vs-mi-realidad">🔪 Clean Architecture: La teoría vs. Mi realidad</h2>
-<p>La teoría dice:</p>
-<blockquote>
-<p>&ldquo;Separa el dominio, usa interfaces, blah blah&rdquo;.</p></blockquote>
-<p>Mi realidad fue:</p>
-<blockquote>
-<p>&ldquo;¿Por qué mi UserService sabe cómo se persiste un PDF en S3? ¿Quién escribió este código?… Ah, fui yo. 💀&rdquo;</p></blockquote>
-<h3 id="los-3-enfoques-que-probé"><strong>Los 3 enfoques que probé</strong></h3>
-<h3 id="1-package-by-layer-el-clásico">1. <strong>Package by Layer: El clásico &ldquo;cementerio de capas&rdquo;</strong></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">handlers</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Aquí</span> <span style="color:#a6e22e">vive</span> <span style="color:#a6e22e">el</span> <span style="color:#a6e22e">caos</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">services</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Aquí</span> <span style="color:#a6e22e">el</span> <span style="color:#e6db74">&#34;domain&#34;</span> <span style="color:#a6e22e">se</span> <span style="color:#a6e22e">mezcla</span> <span style="color:#a6e22e">con</span> <span style="color:#a6e22e">lógica</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">HTTP</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">repositories</span><span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#960050;background-color:#1e0010">¿</span><span style="color:#a6e22e">Por</span> <span style="color:#a6e22e">qué</span> <span style="color:#a6e22e">este</span> <span style="color:#a6e22e">método</span> <span style="color:#a6e22e">tiene</span> <span style="color:#ae81ff">20</span> <span style="color:#a6e22e">parámetros</span><span style="color:#960050;background-color:#1e0010">?</span>
-</span></span></code></pre></div><p><strong>Lo bueno</strong>:</p>
-<ul>
-<li>
-<p>Todos lo entienden (al principio).</p>
-</li>
-<li>
-<p>Ideal si tu equipo viene de Java/Spring.</p>
-</li>
-</ul>
-<p><strong>Lo malo</strong>:</p>
-<ul>
-<li>
-<p>En 6 meses, tu UserService termina con 3000 líneas y dependencias ocultas.</p>
-</li>
-<li>
-<p>Experiencia real: Una vez pasé 2 días debuggeando un nil pointer porque un handler llamaba directamente a un repository saltándose 3 capas.</p>
-</li>
-</ul>
-<h3 id="2-package-by-feature-el">2. <strong>Package by Feature: El &ldquo;sálvese quien pueda&rdquo;</strong></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">payments</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">reports</span><span style="color:#f92672">/</span>  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Aquí</span> <span style="color:#a6e22e">hay</span> <span style="color:#a6e22e">un</span> <span style="color:#a6e22e">God</span> <span style="color:#a6e22e">Object</span> <span style="color:#a6e22e">que</span> <span style="color:#a6e22e">hace</span> <span style="color:#a6e22e">TODO</span>
-</span></span></code></pre></div><p><strong>Lo bueno:</strong></p>
-<ul>
-<li>
-<p>Parece ordenado al principio.</p>
-</li>
-<li>
-<p>Los equipos pueden trabajar en &ldquo;features&rdquo; separadas.</p>
-</li>
-</ul>
-<p><strong>Lo malo:</strong></p>
-<ul>
-<li>
-<p><strong>El infierno de la duplicación</strong>: En un proyecto, teníamos 5 implementaciones distintas de SendEmail() porque cada feature tenía su propia lógica.</p>
-</li>
-<li>
-<p><strong>Dependencias vampiro</strong>: El módulo payments importaba internamente users.Model, y cuando cambiamos la DB, todo explotó.</p>
-</li>
-</ul>
-<p>(Pro tip: Si ves import &ldquo;../users&rdquo; en tu código, prende una vela. Ya es tarde.)</p>
-<h2 id="3-hexagonal-architecture-cuando-la-teoría-choca-con-la-práctica">3. <strong>Hexagonal Architecture: Cuando la teoría choca con la práctica</strong></h2>
-<p>La teoría prometía:</p>
-<blockquote>
-<p>&ldquo;Dominio puro, adaptadores intercambiables, felicidad eterna&rdquo;.</p></blockquote>
-<p>Mi implementación fue:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">core</span><span style="color:#f92672">/</span>       <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Aquí</span> <span style="color:#a6e22e">iba</span> <span style="color:#a6e22e">el</span> <span style="color:#e6db74">&#34;dominio&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">domain</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Terminó</span> <span style="color:#a6e22e">con</span> <span style="color:#ae81ff">50</span> <span style="color:#e6db74">&#34;entities&#34;</span> <span style="color:#a6e22e">acopladas</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">ports</span><span style="color:#f92672">/</span>    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Interfaces</span> <span style="color:#a6e22e">de</span> <span style="color:#ae81ff">100</span> <span style="color:#a6e22e">métodos</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">services</span><span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Lógica</span> <span style="color:#a6e22e">mezclada</span> <span style="color:#a6e22e">con</span> <span style="color:#a6e22e">infra</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">adapters</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Aquí</span> <span style="color:#a6e22e">el</span> <span style="color:#a6e22e">ORM</span> <span style="color:#a6e22e">se</span> <span style="color:#a6e22e">coló</span> <span style="color:#a6e22e">al</span> <span style="color:#a6e22e">dominio</span>
-</span></span></code></pre></div><p><strong>¿Qué salió mal?</strong></p>
-<ul>
-<li>
-<p><strong>El equipo no lo entendió</strong>: Los nuevos devs llamaban al repository desde el handler porque &ldquo;era más rápido&rdquo;.</p>
-</li>
-<li>
-<p><strong>Los tests eran imposibles</strong>: Mockear 10 interfaces para un caso de uso simple.</p>
-</li>
-<li>
-<p><strong>Resultado</strong>: Una &ldquo;Clean Architecture&rdquo; que en realidad era un monolito con capas de abstracción innecesarias.</p>
-</li>
-</ul>
-<h2 id="-el-día-que-rompimos-la-arquitectura-sin-querer">💥 El día que rompimos la arquitectura (sin querer)</h2>
-<p>O: &ldquo;Por qué Juan del equipo me odia después de ese PR&rdquo;
-Contexto: Hace unos meses, en un sprint normal, un compañero nuevo (llamémosle Juan) recibió esta tarea:</p>
-<blockquote>
-<p>&ldquo;Necesitamos un endpoint <code>/orders/user/{id}</code> que devuelva las órdenes. ¡Es urgente para el cliente!&rdquo;</p></blockquote>
-<p>Juan, siendo eficiente, vio que ya existía un <code>OrderRepository</code> con el método perfecto:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">FindByUserID</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) ([]<span style="color:#a6e22e">Order</span>, <span style="color:#66d9ef">error</span>)
-</span></span></code></pre></div><p>Y escribió esto en el handler:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">OrderHandler</span>) <span style="color:#a6e22e">GetOrdersByUser</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">userID</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">chi</span>.<span style="color:#a6e22e">URLParam</span>(<span style="color:#a6e22e">r</span>, <span style="color:#e6db74">&#34;id&#34;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">orders</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">orderRepo</span>.<span style="color:#a6e22e">FindByUserID</span>(<span style="color:#a6e22e">userID</span>) <span style="color:#75715e">// &lt;- ¡Acceso directo!</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... (manejo de errores y respuesta)</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Parecía inocente&hellip; hasta que empezaron los problemas</strong>:</p>
-<p>🤯 ¿Qué salió mal?</p>
-<ol>
-<li>
-<p><strong>Reglas de negocio olvidadas</strong>:
-Las órdenes debían filtrarse por status != &ldquo;canceled&rdquo;, pero como fue directo al repo, el cliente vio datos inconsistentes.</p>
-</li>
-<li>
-<p><strong>El gran acoplamiento oculto</strong>:
-El handler ahora dependía de:</p>
-<ul>
-<li>La firma del repositorio.</li>
-<li>La estructura Order de la DB (que incluía campos internos como internal_notes).</li>
-</ul>
-</li>
-<li>
-<p><strong>El test fue una pesadilla</strong>:
-Tuvo que mockear la DB&hellip; para probar un handler.</p>
-</li>
-</ol>
-<h2 id="-diagnóstico-violamos-la-hexagonal-architecture">🔍 Diagnóstico: Violamos la Hexagonal Architecture</h2>
-<p>(Sin darnos cuenta)</p>
-<p>El diagrama teórico decía:</p>
-<blockquote>
-<p>&ldquo;Los handlers (adapters) deben hablar con el dominio (services), NO con la infraestructura (repositories).&rdquo;</p></blockquote>
-<p>Pero en la práctica:</p>
-<ul>
-<li>
-<p><strong>El repo se coló en el handler</strong> como un atajo.</p>
-</li>
-<li>
-<p><strong>El dominio quedó fuera de la conversación</strong> (nadie usó el OrderService).</p>
-</li>
-</ul>
-<h2 id="-la-solución-contratos-no-acoplamentos">💡 La solución: Contratos, no acoplamentos</h2>
-<p>🚫 Error común (que todos cometemos):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// payments/module.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Payment</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">User</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">UserEntity</span> <span style="color:#75715e">// &lt;- ¡Acoplamiento directo a la entidad de users!</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Problema</strong>: Si UserEntity cambia, payments se rompe.</p>
-<p>✅ Fix real (que implementamos):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserDTO</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ID</span>    <span style="color:#66d9ef">string</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">string</span> <span style="color:#75715e">// Solo lo que necesitamos</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// payments/module.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Payment</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">User</span> <span style="color:#a6e22e">contracts</span>.<span style="color:#a6e22e">UserDTO</span> <span style="color:#75715e">// &lt;- ¡Acoplamiento a CONTRATO!</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Regla simple</strong>:</p>
-<blockquote>
-<p>&ldquo;Si un módulo A usa algo de B, B debe exponerlo explícitamente en su contrato.
-Como una API pública: si no está documentado, no existe.&rdquo;</p></blockquote>
-<h2 id="-la-solución-que-me-funcionó-componentes--contratos">💡 La solución que me funcionó: Componentes + Contratos</h2>
-<p>Después de quemarme, aprendí que:</p>
-<p>✅ Cada componente debe ser un &ldquo;mini-proyecto&rdquo; (con su dominio, lógica y adaptadores).<br>
-✅ Los contratos son sagrados (si cambias uno, rompes todo… como un API pública).<br>
-✅ Go es simple, tu arquitectura también debería serlo.</p>
-<p>Estructura final que usamos (y sigue viva):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">adapters</span><span style="color:#f92672">/</span>     <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Implementacion</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">contratos</span>.
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">models</span><span style="color:#f92672">/</span>      <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Solo</span> <span style="color:#a6e22e">structs</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">users_component</span>.<span style="color:#66d9ef">go</span>     <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Interface</span> <span style="color:#a6e22e">lógica</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">negocio</span> <span style="color:#a6e22e">PURA</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">users_component_impl</span>.<span style="color:#66d9ef">go</span>  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Implementacion</span> <span style="color:#a6e22e">lógica</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">negocio</span> <span style="color:#a6e22e">PURA</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">users_repository</span>.<span style="color:#66d9ef">go</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Interface</span> <span style="color:#a6e22e">privada</span> <span style="color:#a6e22e">persistencia</span> 
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">users_repository_impl</span>.<span style="color:#66d9ef">go</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Implementacion</span> <span style="color:#a6e22e">privada</span> <span style="color:#a6e22e">persistencia</span> <span style="color:#a6e22e">en</span> <span style="color:#a6e22e">db</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">contracts</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>         <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Lo</span> <span style="color:#a6e22e">que</span> <span style="color:#a6e22e">OTROS</span> <span style="color:#a6e22e">componentes</span> <span style="color:#a6e22e">pueden</span> <span style="color:#a6e22e">usar</span> (<span style="color:#a6e22e">necesitan</span>)
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">service</span>.<span style="color:#66d9ef">go</span>    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Interfaz</span> <span style="color:#a6e22e">con</span> <span style="color:#ae81ff">3</span> <span style="color:#a6e22e">métodos</span>, <span style="color:#a6e22e">no</span> <span style="color:#ae81ff">20.</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">web</span><span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">punto</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">entrada</span> <span style="color:#a6e22e">controllers</span><span style="color:#f92672">/</span><span style="color:#a6e22e">handlers</span> <span style="color:#a6e22e">que</span> <span style="color:#a6e22e">solamente</span> <span style="color:#a6e22e">se</span> <span style="color:#a6e22e">comunican</span> <span style="color:#a6e22e">con</span> <span style="color:#a6e22e">el</span> <span style="color:#a6e22e">servicio</span> <span style="color:#a6e22e">de</span> <span style="color:#a6e22e">cada</span> <span style="color:#a6e22e">component</span>.
-</span></span></code></pre></div><p>Regla de oro:</p>
-<blockquote>
-<p>&ldquo;Si un componente necesita algo de otro, no le preguntes cómo lo hace. Pídelo en el contrato y sigue con tu vida.&rdquo;</p></blockquote>
-<p>(Ejemplo real: Cuando tuvimos que migrar de MySQL a PostgreSQL, solamente implementamos la interface y swicheamos. El dominio ni se enteró.)</p>
-<h2 id="-conclusión-clean-architecture-no-es-religión">🎤 Conclusión: Clean Architecture no es religión</h2>
-<ul>
-<li>
-<p><strong>No la uses si</strong>: Tu proyecto es un MVP o tienes un equipo junior.</p>
-</li>
-<li>
-<p><strong>Úsala bien si</strong>: Necesitas escalar, mantener y dormir por las noches.</p>
-</li>
-<li>
-<p><strong>Mi error más grande</strong>: Pensar que &ldquo;seguir el diagrama al pie&rdquo; era suficiente. La clave está en definir contratos claros y hacer cumplir los límites.</p>
-</li>
-</ul>
-<blockquote>
-<p>&ldquo;La arquitectura limpia no se trata de carpetas perfectas, sino de poder cambiar de idea sin miedo a que todo explote.&rdquo;</p></blockquote>
-<p>🚀 En la Parte 2: Te mostraré el código REAL (con los errores incluidos) de cómo implementamos esto en un proyecto con 100k líneas de Go.</p>
-<p>(Y sí, habrá ejemplos de cómo nuestro &ldquo;maravilloso&rdquo; contrato de PaymentService tuvo que cambiar 3 veces… y cómo lo manejamos sin morir en el intento).</p>
-<p>📢 ¿Tú también has luchado con Clean Architecture?
-Déjame saber en los comentarios.</p>
-<h2 id="-referencias">📚 Referencias</h2>
-<ul>
-<li><a href="https://a.co/d/a3ALlXM">Clean Architecture - Robert C. Martin</a></li>
-</ul>
-      </div>
-      
-      
-     
-        
-         
-      </div>
-
-  
-
-<section class="all-comments">
-  <div class="comments-header">
-    <h3>Conversación</h3>
-    <div class="comment-count">
-      💬 <span id="comment-count-section">0</span> comentarios
-    </div>
-  </div>
-
-  
-  <div id="login-container" class="login-container" style="display: none;">
-    <p>Debes iniciar sesión con GitHub para comentar</p>
-    <button id="login-github-btn" class="login-github-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
-      </svg>
-      Iniciar sesión con GitHub
-    </button>
-  </div>
-
-  
-  <form id="main-comment-form" class="comment-form" style="display: none;">
-    <div class="avatar-placeholder">
-      <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
-    </div>
-    <div class="form-content">
-      <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
-      <div class="form-actions">
-        <button type="submit" class="submit-button">Publicar</button>
-      </div>
-    </div>
-    <input type="hidden" id="reply-to" value="">
-  </form>
-</section>
-
-    </article>
-  </main>
-
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-    
-    const themeToggles = document.querySelectorAll('.theme-toggle');
-    
-    
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const currentTheme = localStorage.getItem('theme');
-
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
-
-    
-    themeToggles.forEach(button => {
-        button.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            if (current === 'light') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggles.forEach(btn => btn.textContent = '☀️');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeToggles.forEach(btn => btn.textContent = '🌙');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    });
-
-    
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            themeToggles.forEach(btn => btn.textContent = newTheme === 'dark' ? '☀️' : '🌙');
-        }
-    });
-});
-</script>
-
-
-<script>
-  const postId = "posts\/clean-architecture.md"; 
-  const countKey = `claps-${postId}`;
-  const countDisplay = document.getElementById("clap-count");
-  const button = document.getElementById("clap-button");
-
-  const saved = localStorage.getItem(countKey);
-  let count = saved ? parseInt(saved) : 0;
-  if (countDisplay) countDisplay.textContent = count;
-
-  if (button) {
-    button.addEventListener("click", () => {
-      count += 1;
-      countDisplay.textContent = count;
-      localStorage.setItem(countKey, count);
-    });
-  }
-</script>
-
-
-  <script>
-    window.PUBLIC_SUPABASE_URL = 'https:\/\/hnshpzakudamqqauqqqe.supabase.co';
-    window.PUBLIC_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhuc2hwemFrdWRhbXFxYXVxcXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NTEwOTgsImV4cCI6MjA2ODMyNzA5OH0.3P9rwWs8hbXBCpvX0ddfMH6p0GzVVrjfOCx-xTaMgd8';
-
-</script>
-
-  <script type="module" src="/js/main.js"></script>
-</body>
-</html>
+<!doctype html><html lang=es data-theme><head><meta charset=UTF-8><title>Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</title><link rel=stylesheet href=/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU="><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel=stylesheet></head><body data-post-id=clean-architecture class=post-page><header class=main-header><img src=/images/posts/clean-architecture.jpg alt="Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama" class=header-gopher>
+<button class=theme-toggle aria-label="Cambiar tema">🌙</button></header><nav style=text-align:center;margin-top:1rem><a href=/>Inicio</a> |
+<a href=/posts></a>|
+<a href=/about></a></nav><main class=medium-article><article><h1>Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</h1><h2 class=subtitle>Clean Architecture</h2><div class=engagement-stats><span class=stat-item>⏱️ <span class=minutes>6</span> min
+</span>•
+<span class=stat-item>👁️ <span id=view-count>0</span>
+</span>•
+<button id=clap-btn class=clap-button aria-label="Aplaudir este artículo">
+👏 <span id=clap-count>0</span>
+</button>
+•
+<button id=comment-btn class=comment-button aria-label="Comentar este artículo">
+💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 13, 2025 — @SilentGopher</p><div class=content><blockquote><p>⚠️ <strong>Advertencia</strong>: Esto no es otro artículo teórico con diagramas bonitos que solo funcionan en PowerPoint.
+Hablaré de fracasos, de cómo <strong>mis primeros intentos con Clean Architecture fueron un desastre</strong>, y de la solución que finalmente funcionó en proyectos reales (con deadlines, jefes impacientes y requirements que cambian cada martes).</p></blockquote><h2 id=-por-qué-escribo-esto>🚀 ¿Por qué escribo esto?</h2><p>Hace ya unos años, en mi primer proyecto &ldquo;serio&rdquo; con Go, cometí todos los errores posibles:</p><ol><li><p><strong>Ceguera arquitectónica</strong>: Creí que poner todo en /internal automáticamente hacía mi código &ldquo;limpio&rdquo;. Spoiler: No.</p></li><li><p><strong>Overengineering</strong>: Implementé una estructura Hexagonal tan &ldquo;pura&rdquo; que hasta el HelloWorld necesitaba 7 archivos.</p></li><li><p><strong>Acoplamiento disfrazado</strong>: Mis interfaces eran tan grandes que parecían clases de Java.</p></li></ol><p><strong>Este artículo es el que me hubiera gustado leer antes de quemar 3 meses en refactors infinitos.</strong></p><h2 id=-clean-architecture-la-teoría-vs-mi-realidad>🔪 Clean Architecture: La teoría vs. Mi realidad</h2><p>La teoría dice:</p><blockquote><p>&ldquo;Separa el dominio, usa interfaces, blah blah&rdquo;.</p></blockquote><p>Mi realidad fue:</p><blockquote><p>&ldquo;¿Por qué mi UserService sabe cómo se persiste un PDF en S3? ¿Quién escribió este código?… Ah, fui yo. 💀&rdquo;</p></blockquote><h3 id=los-3-enfoques-que-probé><strong>Los 3 enfoques que probé</strong></h3><h3 id=1-package-by-layer-el-clásico>1. <strong>Package by Layer: El clásico &ldquo;cementerio de capas&rdquo;</strong></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>handlers</span><span style=color:#f92672>/</span>   <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Aquí</span> <span style=color:#a6e22e>vive</span> <span style=color:#a6e22e>el</span> <span style=color:#a6e22e>caos</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>services</span><span style=color:#f92672>/</span>   <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Aquí</span> <span style=color:#a6e22e>el</span> <span style=color:#e6db74>&#34;domain&#34;</span> <span style=color:#a6e22e>se</span> <span style=color:#a6e22e>mezcla</span> <span style=color:#a6e22e>con</span> <span style=color:#a6e22e>lógica</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>HTTP</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>repositories</span><span style=color:#f92672>/</span> <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#960050;background-color:#1e0010>¿</span><span style=color:#a6e22e>Por</span> <span style=color:#a6e22e>qué</span> <span style=color:#a6e22e>este</span> <span style=color:#a6e22e>método</span> <span style=color:#a6e22e>tiene</span> <span style=color:#ae81ff>20</span> <span style=color:#a6e22e>parámetros</span><span style=color:#960050;background-color:#1e0010>?</span>
+</span></span></code></pre></div><p><strong>Lo bueno</strong>:</p><ul><li><p>Todos lo entienden (al principio).</p></li><li><p>Ideal si tu equipo viene de Java/Spring.</p></li></ul><p><strong>Lo malo</strong>:</p><ul><li><p>En 6 meses, tu UserService termina con 3000 líneas y dependencias ocultas.</p></li><li><p>Experiencia real: Una vez pasé 2 días debuggeando un nil pointer porque un handler llamaba directamente a un repository saltándose 3 capas.</p></li></ul><h3 id=2-package-by-feature-el>2. <strong>Package by Feature: El &ldquo;sálvese quien pueda&rdquo;</strong></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>payments</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>reports</span><span style=color:#f92672>/</span>  <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Aquí</span> <span style=color:#a6e22e>hay</span> <span style=color:#a6e22e>un</span> <span style=color:#a6e22e>God</span> <span style=color:#a6e22e>Object</span> <span style=color:#a6e22e>que</span> <span style=color:#a6e22e>hace</span> <span style=color:#a6e22e>TODO</span>
+</span></span></code></pre></div><p><strong>Lo bueno:</strong></p><ul><li><p>Parece ordenado al principio.</p></li><li><p>Los equipos pueden trabajar en &ldquo;features&rdquo; separadas.</p></li></ul><p><strong>Lo malo:</strong></p><ul><li><p><strong>El infierno de la duplicación</strong>: En un proyecto, teníamos 5 implementaciones distintas de SendEmail() porque cada feature tenía su propia lógica.</p></li><li><p><strong>Dependencias vampiro</strong>: El módulo payments importaba internamente users.Model, y cuando cambiamos la DB, todo explotó.</p></li></ul><p>(Pro tip: Si ves import &ldquo;../users&rdquo; en tu código, prende una vela. Ya es tarde.)</p><h2 id=3-hexagonal-architecture-cuando-la-teoría-choca-con-la-práctica>3. <strong>Hexagonal Architecture: Cuando la teoría choca con la práctica</strong></h2><p>La teoría prometía:</p><blockquote><p>&ldquo;Dominio puro, adaptadores intercambiables, felicidad eterna&rdquo;.</p></blockquote><p>Mi implementación fue:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>internal</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>/</span><span style=color:#a6e22e>core</span><span style=color:#f92672>/</span>       <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Aquí</span> <span style=color:#a6e22e>iba</span> <span style=color:#a6e22e>el</span> <span style=color:#e6db74>&#34;dominio&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/</span><span style=color:#a6e22e>domain</span><span style=color:#f92672>/</span>   <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Terminó</span> <span style=color:#a6e22e>con</span> <span style=color:#ae81ff>50</span> <span style=color:#e6db74>&#34;entities&#34;</span> <span style=color:#a6e22e>acopladas</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/</span><span style=color:#a6e22e>ports</span><span style=color:#f92672>/</span>    <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Interfaces</span> <span style=color:#a6e22e>de</span> <span style=color:#ae81ff>100</span> <span style=color:#a6e22e>métodos</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/</span><span style=color:#a6e22e>services</span><span style=color:#f92672>/</span> <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Lógica</span> <span style=color:#a6e22e>mezclada</span> <span style=color:#a6e22e>con</span> <span style=color:#a6e22e>infra</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>/</span><span style=color:#a6e22e>adapters</span><span style=color:#f92672>/</span>   <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Aquí</span> <span style=color:#a6e22e>el</span> <span style=color:#a6e22e>ORM</span> <span style=color:#a6e22e>se</span> <span style=color:#a6e22e>coló</span> <span style=color:#a6e22e>al</span> <span style=color:#a6e22e>dominio</span>
+</span></span></code></pre></div><p><strong>¿Qué salió mal?</strong></p><ul><li><p><strong>El equipo no lo entendió</strong>: Los nuevos devs llamaban al repository desde el handler porque &ldquo;era más rápido&rdquo;.</p></li><li><p><strong>Los tests eran imposibles</strong>: Mockear 10 interfaces para un caso de uso simple.</p></li><li><p><strong>Resultado</strong>: Una &ldquo;Clean Architecture&rdquo; que en realidad era un monolito con capas de abstracción innecesarias.</p></li></ul><h2 id=-el-día-que-rompimos-la-arquitectura-sin-querer>💥 El día que rompimos la arquitectura (sin querer)</h2><p>O: &ldquo;Por qué Juan del equipo me odia después de ese PR&rdquo;
+Contexto: Hace unos meses, en un sprint normal, un compañero nuevo (llamémosle Juan) recibió esta tarea:</p><blockquote><p>&ldquo;Necesitamos un endpoint <code>/orders/user/{id}</code> que devuelva las órdenes. ¡Es urgente para el cliente!&rdquo;</p></blockquote><p>Juan, siendo eficiente, vio que ya existía un <code>OrderRepository</code> con el método perfecto:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#a6e22e>FindByUserID</span>(<span style=color:#a6e22e>userID</span> <span style=color:#66d9ef>string</span>) ([]<span style=color:#a6e22e>Order</span>, <span style=color:#66d9ef>error</span>)
+</span></span></code></pre></div><p>Y escribió esto en el handler:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>h</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>OrderHandler</span>) <span style=color:#a6e22e>GetOrdersByUser</span>(<span style=color:#a6e22e>w</span> <span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>ResponseWriter</span>, <span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>Request</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>userID</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>chi</span>.<span style=color:#a6e22e>URLParam</span>(<span style=color:#a6e22e>r</span>, <span style=color:#e6db74>&#34;id&#34;</span>)
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>orders</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>h</span>.<span style=color:#a6e22e>orderRepo</span>.<span style=color:#a6e22e>FindByUserID</span>(<span style=color:#a6e22e>userID</span>) <span style=color:#75715e>// &lt;- ¡Acceso directo!</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e>// ... (manejo de errores y respuesta)</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>Parecía inocente&mldr; hasta que empezaron los problemas</strong>:</p><p>🤯 ¿Qué salió mal?</p><ol><li><p><strong>Reglas de negocio olvidadas</strong>:
+Las órdenes debían filtrarse por status != &ldquo;canceled&rdquo;, pero como fue directo al repo, el cliente vio datos inconsistentes.</p></li><li><p><strong>El gran acoplamiento oculto</strong>:
+El handler ahora dependía de:</p><ul><li>La firma del repositorio.</li><li>La estructura Order de la DB (que incluía campos internos como internal_notes).</li></ul></li><li><p><strong>El test fue una pesadilla</strong>:
+Tuvo que mockear la DB&mldr; para probar un handler.</p></li></ol><h2 id=-diagnóstico-violamos-la-hexagonal-architecture>🔍 Diagnóstico: Violamos la Hexagonal Architecture</h2><p>(Sin darnos cuenta)</p><p>El diagrama teórico decía:</p><blockquote><p>&ldquo;Los handlers (adapters) deben hablar con el dominio (services), NO con la infraestructura (repositories).&rdquo;</p></blockquote><p>Pero en la práctica:</p><ul><li><p><strong>El repo se coló en el handler</strong> como un atajo.</p></li><li><p><strong>El dominio quedó fuera de la conversación</strong> (nadie usó el OrderService).</p></li></ul><h2 id=-la-solución-contratos-no-acoplamentos>💡 La solución: Contratos, no acoplamentos</h2><p>🚫 Error común (que todos cometemos):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// payments/module.go</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Payment</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>User</span> <span style=color:#a6e22e>users</span>.<span style=color:#a6e22e>UserEntity</span> <span style=color:#75715e>// &lt;- ¡Acoplamiento directo a la entidad de users!</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>Problema</strong>: Si UserEntity cambia, payments se rompe.</p><p>✅ Fix real (que implementamos):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// contracts/user.go</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserDTO</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>ID</span>    <span style=color:#66d9ef>string</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>Email</span> <span style=color:#66d9ef>string</span> <span style=color:#75715e>// Solo lo que necesitamos</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// payments/module.go</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Payment</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>User</span> <span style=color:#a6e22e>contracts</span>.<span style=color:#a6e22e>UserDTO</span> <span style=color:#75715e>// &lt;- ¡Acoplamiento a CONTRATO!</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>Regla simple</strong>:</p><blockquote><p>&ldquo;Si un módulo A usa algo de B, B debe exponerlo explícitamente en su contrato.
+Como una API pública: si no está documentado, no existe.&rdquo;</p></blockquote><h2 id=-la-solución-que-me-funcionó-componentes--contratos>💡 La solución que me funcionó: Componentes + Contratos</h2><p>Después de quemarme, aprendí que:</p><p>✅ Cada componente debe ser un &ldquo;mini-proyecto&rdquo; (con su dominio, lógica y adaptadores).<br>✅ Los contratos son sagrados (si cambias uno, rompes todo… como un API pública).<br>✅ Go es simple, tu arquitectura también debería serlo.</p><p>Estructura final que usamos (y sigue viva):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>cmd</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>internal</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>/</span><span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/</span><span style=color:#a6e22e>adapters</span><span style=color:#f92672>/</span>     <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Implementacion</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>contratos</span>.
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/</span><span style=color:#a6e22e>models</span><span style=color:#f92672>/</span>      <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Solo</span> <span style=color:#a6e22e>structs</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>users_component</span>.<span style=color:#66d9ef>go</span>     <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Interface</span> <span style=color:#a6e22e>lógica</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>negocio</span> <span style=color:#a6e22e>PURA</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>users_component_impl</span>.<span style=color:#66d9ef>go</span>  <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Implementacion</span> <span style=color:#a6e22e>lógica</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>negocio</span> <span style=color:#a6e22e>PURA</span>
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>users_repository</span>.<span style=color:#66d9ef>go</span> <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Interface</span> <span style=color:#a6e22e>privada</span> <span style=color:#a6e22e>persistencia</span> 
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>users_repository_impl</span>.<span style=color:#66d9ef>go</span> <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Implementacion</span> <span style=color:#a6e22e>privada</span> <span style=color:#a6e22e>persistencia</span> <span style=color:#a6e22e>en</span> <span style=color:#a6e22e>db</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>/</span><span style=color:#a6e22e>contracts</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>/</span><span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>         <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Lo</span> <span style=color:#a6e22e>que</span> <span style=color:#a6e22e>OTROS</span> <span style=color:#a6e22e>componentes</span> <span style=color:#a6e22e>pueden</span> <span style=color:#a6e22e>usar</span> (<span style=color:#a6e22e>necesitan</span>)
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>service</span>.<span style=color:#66d9ef>go</span>    <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>Interfaz</span> <span style=color:#a6e22e>con</span> <span style=color:#ae81ff>3</span> <span style=color:#a6e22e>métodos</span>, <span style=color:#a6e22e>no</span> <span style=color:#ae81ff>20.</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>/</span><span style=color:#a6e22e>web</span><span style=color:#f92672>/</span> <span style=color:#960050;background-color:#1e0010>#</span> <span style=color:#f92672>&lt;-</span> <span style=color:#a6e22e>punto</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>entrada</span> <span style=color:#a6e22e>controllers</span><span style=color:#f92672>/</span><span style=color:#a6e22e>handlers</span> <span style=color:#a6e22e>que</span> <span style=color:#a6e22e>solamente</span> <span style=color:#a6e22e>se</span> <span style=color:#a6e22e>comunican</span> <span style=color:#a6e22e>con</span> <span style=color:#a6e22e>el</span> <span style=color:#a6e22e>servicio</span> <span style=color:#a6e22e>de</span> <span style=color:#a6e22e>cada</span> <span style=color:#a6e22e>component</span>.
+</span></span></code></pre></div><p>Regla de oro:</p><blockquote><p>&ldquo;Si un componente necesita algo de otro, no le preguntes cómo lo hace. Pídelo en el contrato y sigue con tu vida.&rdquo;</p></blockquote><p>(Ejemplo real: Cuando tuvimos que migrar de MySQL a PostgreSQL, solamente implementamos la interface y swicheamos. El dominio ni se enteró.)</p><h2 id=-conclusión-clean-architecture-no-es-religión>🎤 Conclusión: Clean Architecture no es religión</h2><ul><li><p><strong>No la uses si</strong>: Tu proyecto es un MVP o tienes un equipo junior.</p></li><li><p><strong>Úsala bien si</strong>: Necesitas escalar, mantener y dormir por las noches.</p></li><li><p><strong>Mi error más grande</strong>: Pensar que &ldquo;seguir el diagrama al pie&rdquo; era suficiente. La clave está en definir contratos claros y hacer cumplir los límites.</p></li></ul><blockquote><p>&ldquo;La arquitectura limpia no se trata de carpetas perfectas, sino de poder cambiar de idea sin miedo a que todo explote.&rdquo;</p></blockquote><p>🚀 En la Parte 2: Te mostraré el código REAL (con los errores incluidos) de cómo implementamos esto en un proyecto con 100k líneas de Go.</p><p>(Y sí, habrá ejemplos de cómo nuestro &ldquo;maravilloso&rdquo; contrato de PaymentService tuvo que cambiar 3 veces… y cómo lo manejamos sin morir en el intento).</p><p>📢 ¿Tú también has luchado con Clean Architecture?
+Déjame saber en los comentarios.</p><h2 id=-referencias>📚 Referencias</h2><ul><li><a href=https://a.co/d/a3ALlXM>Clean Architecture - Robert C. Martin</a></li></ul></div></div><section class=all-comments><div class=comments-header><h3>Conversación</h3><div class=comment-count>💬 <span id=comment-count-section>0</span> comentarios</div></div><div id=login-container class=login-container style=display:none><p>Debes iniciar sesión con GitHub para comentar</p><button id=login-github-btn class=login-github-btn>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482.0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943.0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647.0.0.84-.269 2.75 1.025A9.578 9.578.0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683.0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852.0 1.336-.012 2.415-.012 2.743.0.267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+Iniciar sesión con GitHub</button></div><form id=main-comment-form class=comment-form style=display:none><div class=avatar-placeholder><img id=main-user-avatar-img src="https://www.gravatar.com/avatar/?d=mp&s=40" class=avatar-img></div><div class=form-content><textarea placeholder="Escribe tu comentario..." rows=3 required></textarea><div class=form-actions><button type=submit class=submit-button>Publicar</button></div></div><input type=hidden id=reply-to></form></section></article></main><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelectorAll(".theme-toggle"),n=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("theme");t==="dark"||!t&&n?(document.documentElement.setAttribute("data-theme","dark"),e.forEach(e=>e.textContent="☀️")):(document.documentElement.setAttribute("data-theme","light"),e.forEach(e=>e.textContent="🌙")),e.forEach(t=>{t.addEventListener("click",()=>{const t=document.documentElement.getAttribute("data-theme");t==="light"?(document.documentElement.setAttribute("data-theme","dark"),e.forEach(e=>e.textContent="☀️"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),e.forEach(e=>e.textContent="🌙"),localStorage.setItem("theme","light"))})}),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t=>{if(!localStorage.getItem("theme")){const n=t.matches?"dark":"light";document.documentElement.setAttribute("data-theme",n),e.forEach(e=>e.textContent=n==="dark"?"☀️":"🌙")}})})</script><script>const postId="posts/clean-architecture.md",countKey=`claps-${postId}`,countDisplay=document.getElementById("clap-count"),button=document.getElementById("clap-button"),saved=localStorage.getItem(countKey);let count=saved?parseInt(saved):0;countDisplay&&(countDisplay.textContent=count),button&&button.addEventListener("click",()=>{count+=1,countDisplay.textContent=count,localStorage.setItem(countKey,count)})</script><script>window.PUBLIC_SUPABASE_URL="https://hnshpzakudamqqauqqqe.supabase.co",window.PUBLIC_SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhuc2hwemFrdWRhbXFxYXVxcXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NTEwOTgsImV4cCI6MjA2ODMyNzA5OH0.3P9rwWs8hbXBCpvX0ddfMH6p0GzVVrjfOCx-xTaMgd8"</script><script type=module src=/js/main.js></script></body></html>

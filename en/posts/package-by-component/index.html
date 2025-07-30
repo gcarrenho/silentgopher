@@ -1,412 +1,167 @@
-<!DOCTYPE html>
-<html lang="es" data-theme="">
-<head>
-  <meta charset="UTF-8">
-  <title>Part 2: Applying Component-Based Clean Architecture in Go</title>
-  
-  <link rel="stylesheet" href="/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css" integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU=">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-</head>
-  <body data-post-id="package-by-component" class="post-page">
-  <header class="main-header">
-    <img src="/images/posts/package-by-component.png" 
-       alt="Part 2: Applying Component-Based Clean Architecture in Go" 
-       class="header-gopher">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
-  </header>
-
-  <nav style="text-align:center; margin-top:1rem;">
-    <a href="/">Home</a> |
-    <a href="/posts"></a> |
-    <a href="/about"></a>
-  </nav>
-
-  <main class="medium-article ">
-    <article>
-      <h1>Part 2: Applying Component-Based Clean Architecture in Go</h1>
-      
-        <h2 class="subtitle">Package by Components</h2>
-      
-
-      
-      <div class="engagement-stats">
-        <span class="stat-item">
-          ⏱️ <span class="minutes">4</span> min
-        </span>
-        •
-        <span class="stat-item">
-          👁️ <span id="view-count">0</span>
-        </span>
-        •
-        <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
-          👏 <span id="clap-count">0</span>
-        </button>
-        •
-        <button id="comment-btn" class="comment-button" aria-label="Comentar este artículo">
-          💬 <span id="comment-count">0</span>
-        </button>
-      </div>
-
-  </div> 
-        <p class="meta-info">
-          June 14, 2025 —  @SilentGopher
-        </p>
-      
-      <div class="content">
-        <blockquote>
-<p>💡 WARNING: If you&rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
-This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.</p></blockquote>
-<h2 id="-the-project-that-nearly-burned-my-eyeballs">🚧 The Project That Nearly Burned My Eyeballs</h2>
-<p>Several months ago, I inherited a Go monolith where:</p>
-<ul>
-<li>
-<p><code>users</code> and <code>orders</code> shared structs like drunken confessions.</p>
-</li>
-<li>
-<p>A change in <code>User.Email</code> broke 3 different services.</p>
-</li>
-<li>
-<p>The tests were as fragile as Murano glass.</p>
-</li>
-</ul>
-<p><strong>Today, I’ll show you how we turned it into this</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">payments</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">orders</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">contracts</span><span style="color:#f92672">/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">web</span><span style="color:#f92672">/</span>
-</span></span></code></pre></div><h2 id="-step-1-the-contract--our-technical-tinder">🔗 Step 1: The Contract – Our Technical &ldquo;Tinder&rdquo;</h2>
-<p>Instead of <code>payments</code> stalking <code>users</code>, we created an explicit contract:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/user_service.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">user</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Service</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>)  <span style="color:#75715e">// Just one method. Like a good microservice!</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserDTO</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ID</span>    <span style="color:#66d9ef">string</span>  <span style="color:#75715e">// Just what we need</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">string</span>  <span style="color:#75715e">// No &#34;PasswordHash&#34; here</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Why is this magical?</p>
-<ul>
-<li>
-<p><code>payments</code> declares: &ldquo;I need this.&rdquo;</p>
-</li>
-<li>
-<p><code>users</code> replies: &ldquo;I’ll give it to you, but don’t ask how.&rdquo;</p>
-</li>
-<li>
-<p><strong>Healthy decoupling</strong>: If tomorrow <code>users</code> switches from MySQL to CSV, nobody cares.</p>
-</li>
-</ul>
-<h2 id="-step-2-implementing-users-bugs-included">👷 Step 2: Implementing <code>users</code> (Bugs Included)</h2>
-<p>Here’s the actual code we used (with the bug that made it to prod):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/users/adapters/service.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">repo</span> <span style="color:#a6e22e">UserRepository</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">UserService</span>) <span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">repo</span>.<span style="color:#a6e22e">FindByID</span>(<span style="color:#a6e22e">id</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{}, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;couldn’t find user %s: %w&#34;</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">err</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 💥 Bug: We didn’t log the error. Lesson learned later.</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">ID</span>:    <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">ID</span>,
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Email</span>: <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">Email</span>,  <span style="color:#75715e">// &lt;- Is this valid? (Spoiler: Not always)</span>
-</span></span><span style="display:flex;"><span>	}, <span style="color:#66d9ef">nil</span>
-</span></span><span style="display:flex;"><span>}
+<!doctype html><html lang=es data-theme><head><meta charset=UTF-8><title>Part 2: Applying Component-Based Clean Architecture in Go</title><link rel=stylesheet href=/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU="><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel=stylesheet></head><body data-post-id=package-by-component class=post-page><header class=main-header><img src=/images/posts/package-by-component.png alt="Part 2: Applying Component-Based Clean Architecture in Go" class=header-gopher>
+<button class=theme-toggle aria-label="Cambiar tema">🌙</button></header><nav style=text-align:center;margin-top:1rem><a href=/>Home</a> |
+<a href=/posts></a>|
+<a href=/about></a></nav><main class=medium-article><article><h1>Part 2: Applying Component-Based Clean Architecture in Go</h1><h2 class=subtitle>Package by Components</h2><div class=engagement-stats><span class=stat-item>⏱️ <span class=minutes>4</span> min
+</span>•
+<span class=stat-item>👁️ <span id=view-count>0</span>
+</span>•
+<button id=clap-btn class=clap-button aria-label="Aplaudir este artículo">
+👏 <span id=clap-count>0</span>
+</button>
+•
+<button id=comment-btn class=comment-button aria-label="Comentar este artículo">
+💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 14, 2025 — @SilentGopher</p><div class=content><blockquote><p>💡 WARNING: If you&rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
+This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.</p></blockquote><h2 id=-the-project-that-nearly-burned-my-eyeballs>🚧 The Project That Nearly Burned My Eyeballs</h2><p>Several months ago, I inherited a Go monolith where:</p><ul><li><p><code>users</code> and <code>orders</code> shared structs like drunken confessions.</p></li><li><p>A change in <code>User.Email</code> broke 3 different services.</p></li><li><p>The tests were as fragile as Murano glass.</p></li></ul><p><strong>Today, I’ll show you how we turned it into this</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>cmd</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>internal</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>payments</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>orders</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>contracts</span><span style=color:#f92672>/</span>
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>web</span><span style=color:#f92672>/</span>
+</span></span></code></pre></div><h2 id=-step-1-the-contract--our-technical-tinder>🔗 Step 1: The Contract – Our Technical &ldquo;Tinder&rdquo;</h2><p>Instead of <code>payments</code> stalking <code>users</code>, we created an explicit contract:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// contracts/user/user_service.go</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>user</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Service</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>GetUserByID</span>(<span style=color:#a6e22e>id</span> <span style=color:#66d9ef>string</span>) (<span style=color:#a6e22e>UserDTO</span>, <span style=color:#66d9ef>error</span>)  <span style=color:#75715e>// Just one method. Like a good microservice!</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserDTO</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ID</span>    <span style=color:#66d9ef>string</span>  <span style=color:#75715e>// Just what we need</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Email</span> <span style=color:#66d9ef>string</span>  <span style=color:#75715e>// No &#34;PasswordHash&#34; here</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Why is this magical?</p><ul><li><p><code>payments</code> declares: &ldquo;I need this.&rdquo;</p></li><li><p><code>users</code> replies: &ldquo;I’ll give it to you, but don’t ask how.&rdquo;</p></li><li><p><strong>Healthy decoupling</strong>: If tomorrow <code>users</code> switches from MySQL to CSV, nobody cares.</p></li></ul><h2 id=-step-2-implementing-users-bugs-included>👷 Step 2: Implementing <code>users</code> (Bugs Included)</h2><p>Here’s the actual code we used (with the bug that made it to prod):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// internal/users/adapters/service.go</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>UserService</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>repo</span> <span style=color:#a6e22e>UserRepository</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>UserService</span>) <span style=color:#a6e22e>GetUserByID</span>(<span style=color:#a6e22e>id</span> <span style=color:#66d9ef>string</span>) (<span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>UserDTO</span>, <span style=color:#66d9ef>error</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>u</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>repo</span>.<span style=color:#a6e22e>FindByID</span>(<span style=color:#a6e22e>id</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>UserDTO</span>{}, <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;couldn’t find user %s: %w&#34;</span>, <span style=color:#a6e22e>id</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>		<span style=color:#75715e>// 💥 Bug: We didn’t log the error. Lesson learned later.</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>UserDTO</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>ID</span>:    <span style=color:#a6e22e>u</span>.<span style=color:#a6e22e>ID</span>,
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Email</span>: <span style=color:#a6e22e>u</span>.<span style=color:#a6e22e>Email</span>,  <span style=color:#75715e>// &lt;- Is this valid? (Spoiler: Not always)</span>
+</span></span><span style=display:flex><span>	}, <span style=color:#66d9ef>nil</span>
+</span></span><span style=display:flex><span>}
 </span></span></code></pre></div><p><strong>Lesson learned</strong>:
-Contracts don’t eliminate bugs, but they <strong>contain</strong> the damage. Even if <code>UserService</code> failed:</p>
-<ol>
-<li>
-<p><code>payments</code> had no idea about internal fields like <code>u.FailedLoginAttempts</code>.</p>
-</li>
-<li>
-<p>The error was clear and manageable.</p>
-</li>
-</ol>
-<h2 id="-step-3-payments--the-demanding-client">💸 Step 3: payments – The Demanding Client</h2>
-<p>Here’s how the contract is consumed (with a gotcha we missed):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// components/payments/payment_component_impl/service.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PaymentComponentImpl</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">userService</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">Service</span>  <span style="color:#75715e">// &lt;- Depends on the CONTRACT, not on users</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentComponentImpl</span>) <span style="color:#a6e22e">Charge</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">amount</span> <span style="color:#66d9ef">float64</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">userID</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;payment failed for %s: %w&#34;</span>, <span style="color:#a6e22e">userID</span>, <span style="color:#a6e22e">err</span>)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">Email</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {  <span style="color:#75715e">// 💡 Validation where it SHOULD be!</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;email required for payments&#34;</span>)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ... Stripe/PayPal logic</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>What happened in production?</strong></p>
-<p>We discovered that some users had <code>Email == &quot;&quot;</code> (bad initial validation).</p>
-<p><strong>Thanks to the contract</strong>: The bug was isolated in <code>users</code>; <code>payments</code> only saw invalid data, not corrupted fields.</p>
-<h2 id="-wiring-in-maingo--the-marriage-of-the-code">⚡ Wiring in main.go – The “Marriage” of the Code</h2>
-<p>This is where everything comes together (or blows up, if done wrong):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// cmd/main.go</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">wg</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">router</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Default</span>()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">container</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">NewAppContainer</span>() <span style="color:#75715e">// Creates all components, injecting respective databases</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">routes</span>.<span style="color:#a6e22e">Register</span>(<span style="color:#a6e22e">router</span>, <span style="color:#a6e22e">container</span>) <span style="color:#75715e">// Registers all routes</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">go</span> <span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">router</span>, <span style="color:#a6e22e">wg</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">sig</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">chan</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Signal</span>, <span style="color:#ae81ff">1</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">signal</span>.<span style="color:#a6e22e">Notify</span>(<span style="color:#a6e22e">sig</span>, <span style="color:#a6e22e">syscall</span>.<span style="color:#a6e22e">SIGINT</span>, <span style="color:#a6e22e">syscall</span>.<span style="color:#a6e22e">SIGTERM</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">sig</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">cancel</span>()
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">wg</span>.<span style="color:#a6e22e">Wait</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Orchestrates component initialization and dependency injection</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">app</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AppContainer</span> <span style="color:#66d9ef">struct</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">OrderComponent</span>   <span style="color:#a6e22e">orders</span>.<span style="color:#a6e22e">OrderComponent</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">PaymentComponent</span> <span style="color:#a6e22e">payments</span>.<span style="color:#a6e22e">PaymentComponent</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">UserComponent</span>    <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">UserComponent</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewAppContainer</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">AppContainer</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">AppContainer</span>{
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">OrderComponent</span>: <span style="color:#a6e22e">orders</span>.<span style="color:#a6e22e">NewOrderComponentImpl</span>(<span style="color:#a6e22e">orders</span>.<span style="color:#a6e22e">Deps</span>{
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">DB</span>: <span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">InitMySQL</span>(),
-</span></span><span style="display:flex;"><span>		}),
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">PaymentComponent</span>: <span style="color:#a6e22e">payments</span>.<span style="color:#a6e22e">NewPaymentComponentImpl</span>(<span style="color:#a6e22e">payments</span>.<span style="color:#a6e22e">Deps</span>{
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">DB</span>: <span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">InitPostgres</span>(),
-</span></span><span style="display:flex;"><span>		}),
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">UserComponent</span>: <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">NewUserComponentImpl</span>(<span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">Deps</span>{
-</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">DB</span>: <span style="color:#a6e22e">db</span>.<span style="color:#a6e22e">InitMySQL</span>(),
-</span></span><span style="display:flex;"><span>		}),
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Orchestrates controllers</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">routes</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">Register</span>(<span style="color:#a6e22e">router</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Engine</span>, <span style="color:#a6e22e">container</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">AppContainer</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">api</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">Group</span>(<span style="color:#e6db74">&#34;/api&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Public (no auth)</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">public</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">Group</span>(<span style="color:#e6db74">&#34;/public&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Private (with auth middleware)</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">private</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">Group</span>(<span style="color:#e6db74">&#34;/private&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">private</span>.<span style="color:#a6e22e">Use</span>(<span style="color:#a6e22e">AuthMiddleware</span>())
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Payments</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">paymentController</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">web</span>.<span style="color:#a6e22e">NewPaymentController</span>(<span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">PaymentComponent</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">paymentController</span>.<span style="color:#a6e22e">RegisterRoutes</span>(<span style="color:#a6e22e">private</span>.<span style="color:#a6e22e">Group</span>(<span style="color:#e6db74">&#34;/payments&#34;</span>))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Orders</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">orderController</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">web</span>.<span style="color:#a6e22e">NewOrderController</span>(<span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">OrderComponent</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">orderController</span>.<span style="color:#a6e22e">RegisterRoutes</span>(<span style="color:#a6e22e">public</span>.<span style="color:#a6e22e">Group</span>(<span style="color:#e6db74">&#34;/orders&#34;</span>))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Users</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">userController</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">web</span>.<span style="color:#a6e22e">NewUserController</span>(<span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">UserComponent</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">userController</span>.<span style="color:#a6e22e">RegisterRoutes</span>(<span style="color:#a6e22e">private</span>.<span style="color:#a6e22e">Group</span>(<span style="color:#e6db74">&#34;/users&#34;</span>))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Health</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">GET</span>(<span style="color:#e6db74">&#34;/health&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Context</span>) {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">JSON</span>(<span style="color:#ae81ff">200</span>, <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">H</span>{<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>})
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Key metaphor:</p>
-<blockquote>
-<p><code>users/adapters/service.go</code> is like a professional translator. <code>payments</code> says “I need a user,” and the translator converts that to the internal dialect of <code>users</code>. If <code>users</code> changes its language, only the translator needs updating.</p></blockquote>
-<h2 id="-what-if-we-dont-use-contracts-the-chaos-we-lived-through">💣 What If We Don’t Use Contracts? (The Chaos We Lived Through)</h2>
-<p>Here&rsquo;s a before/after from our real codebase:</p>
-<h3 id="-before-criminal-coupling">🚫 Before (Criminal Coupling)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/payments/payment_component_impl.go (OLD)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentService</span>) <span style="color:#a6e22e">Refund</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userRepo</span>.<span style="color:#a6e22e">GetUser</span>(<span style="color:#a6e22e">userID</span>)  <span style="color:#75715e">// Direct access to users repo!</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">CreditCard</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">nil</span> {  <span style="color:#75715e">// 💥 Internal field that changed 3 times</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;no credit card&#34;</span>)
-</span></span><span style="display:flex;"><span>	}
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="-after-contracts-to-the-rescue">✅ After (Contracts to the Rescue)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/service.go (NEW)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Service</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">PaymentUserDTO</span>, <span style="color:#66d9ef">error</span>)  <span style="color:#75715e">// Now the contract is explicit!</span>
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// internal/payments/service.go (NEW)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentService</span>) <span style="color:#a6e22e">Refund</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">userID</span>)  <span style="color:#75715e">// Only what’s NEEDED</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Tangible benefits</strong>:</p>
-<ol>
-<li>
-<p>When <code>users</code> changed its credit card model, <code>payments</code> didn’t even notice.</p>
-</li>
-<li>
-<p><code>payments</code> tests use a 10-line mock, not a fake DB.</p>
-</li>
-</ol>
-<h2 id="-conclusion-less-theory-more-superpowers">📌 Conclusion: Less Theory, More Superpowers</h2>
-<p>This architecture allowed us to:</p>
-<ul>
-<li>
-<p>Move <code>users</code> to another repo without touching <code>payments</code>.</p>
-</li>
-<li>
-<p>Refactor the DB 3 times without panic.</p>
-</li>
-<li>
-<p>Onboard new devs with: “Need data from X? Check their contracts.”</p>
-</li>
-</ul>
-<blockquote>
-<p>&ldquo;Clean Architecture is not about perfect folders, but about sleeping well knowing tomorrow’s change won’t ruin your week.&rdquo;</p></blockquote>
-<p>💬 Have you also struggled with tight coupling?
-Tell me in the comments.</p>
-
-      </div>
-      
-      
-     
-        
-         
-      </div>
-
-  
-
-<section class="all-comments">
-  <div class="comments-header">
-    <h3>Conversación</h3>
-    <div class="comment-count">
-      💬 <span id="comment-count-section">0</span> comentarios
-    </div>
-  </div>
-
-  
-  <div id="login-container" class="login-container" style="display: none;">
-    <p>Debes iniciar sesión con GitHub para comentar</p>
-    <button id="login-github-btn" class="login-github-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
-      </svg>
-      Iniciar sesión con GitHub
-    </button>
-  </div>
-
-  
-  <form id="main-comment-form" class="comment-form" style="display: none;">
-    <div class="avatar-placeholder">
-      <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
-    </div>
-    <div class="form-content">
-      <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
-      <div class="form-actions">
-        <button type="submit" class="submit-button">Publicar</button>
-      </div>
-    </div>
-    <input type="hidden" id="reply-to" value="">
-  </form>
-</section>
-
-    </article>
-  </main>
-
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-    
-    const themeToggles = document.querySelectorAll('.theme-toggle');
-    
-    
-    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const currentTheme = localStorage.getItem('theme');
-
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
-
-    
-    themeToggles.forEach(button => {
-        button.addEventListener('click', () => {
-            const current = document.documentElement.getAttribute('data-theme');
-            if (current === 'light') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeToggles.forEach(btn => btn.textContent = '☀️');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                document.documentElement.setAttribute('data-theme', 'light');
-                themeToggles.forEach(btn => btn.textContent = '🌙');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    });
-
-    
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) {
-            const newTheme = e.matches ? 'dark' : 'light';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            themeToggles.forEach(btn => btn.textContent = newTheme === 'dark' ? '☀️' : '🌙');
-        }
-    });
-});
-</script>
-
-
-<script>
-  const postId = "posts\/package-by-component.md"; 
-  const countKey = `claps-${postId}`;
-  const countDisplay = document.getElementById("clap-count");
-  const button = document.getElementById("clap-button");
-
-  const saved = localStorage.getItem(countKey);
-  let count = saved ? parseInt(saved) : 0;
-  if (countDisplay) countDisplay.textContent = count;
-
-  if (button) {
-    button.addEventListener("click", () => {
-      count += 1;
-      countDisplay.textContent = count;
-      localStorage.setItem(countKey, count);
-    });
-  }
-</script>
-
-
-  <script>
-    window.PUBLIC_SUPABASE_URL = 'https:\/\/hnshpzakudamqqauqqqe.supabase.co';
-    window.PUBLIC_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhuc2hwemFrdWRhbXFxYXVxcXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NTEwOTgsImV4cCI6MjA2ODMyNzA5OH0.3P9rwWs8hbXBCpvX0ddfMH6p0GzVVrjfOCx-xTaMgd8';
-
-</script>
-
-  <script type="module" src="/js/main.js"></script>
-</body>
-</html>
+Contracts don’t eliminate bugs, but they <strong>contain</strong> the damage. Even if <code>UserService</code> failed:</p><ol><li><p><code>payments</code> had no idea about internal fields like <code>u.FailedLoginAttempts</code>.</p></li><li><p>The error was clear and manageable.</p></li></ol><h2 id=-step-3-payments--the-demanding-client>💸 Step 3: payments – The Demanding Client</h2><p>Here’s how the contract is consumed (with a gotcha we missed):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// components/payments/payment_component_impl/service.go</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>PaymentComponentImpl</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>userService</span> <span style=color:#a6e22e>user</span>.<span style=color:#a6e22e>Service</span>  <span style=color:#75715e>// &lt;- Depends on the CONTRACT, not on users</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PaymentComponentImpl</span>) <span style=color:#a6e22e>Charge</span>(<span style=color:#a6e22e>userID</span> <span style=color:#66d9ef>string</span>, <span style=color:#a6e22e>amount</span> <span style=color:#66d9ef>float64</span>) <span style=color:#66d9ef>error</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>u</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>userService</span>.<span style=color:#a6e22e>GetUserByID</span>(<span style=color:#a6e22e>userID</span>)
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;payment failed for %s: %w&#34;</span>, <span style=color:#a6e22e>userID</span>, <span style=color:#a6e22e>err</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>u</span>.<span style=color:#a6e22e>Email</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;&#34;</span> {  <span style=color:#75715e>// 💡 Validation where it SHOULD be!</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>New</span>(<span style=color:#e6db74>&#34;email required for payments&#34;</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// ... Stripe/PayPal logic</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>What happened in production?</strong></p><p>We discovered that some users had <code>Email == ""</code> (bad initial validation).</p><p><strong>Thanks to the contract</strong>: The bug was isolated in <code>users</code>; <code>payments</code> only saw invalid data, not corrupted fields.</p><h2 id=-wiring-in-maingo--the-marriage-of-the-code>⚡ Wiring in main.go – The “Marriage” of the Code</h2><p>This is where everything comes together (or blows up, if done wrong):</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// cmd/main.go</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ctx</span>, <span style=color:#a6e22e>cancel</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>WithCancel</span>(<span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Background</span>())
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>defer</span> <span style=color:#a6e22e>cancel</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>wg</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>sync</span>.<span style=color:#a6e22e>WaitGroup</span>{}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>router</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Default</span>()
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>container</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>NewAppContainer</span>() <span style=color:#75715e>// Creates all components, injecting respective databases</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>routes</span>.<span style=color:#a6e22e>Register</span>(<span style=color:#a6e22e>router</span>, <span style=color:#a6e22e>container</span>) <span style=color:#75715e>// Registers all routes</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>go</span> <span style=color:#a6e22e>server</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>ctx</span>, <span style=color:#a6e22e>router</span>, <span style=color:#a6e22e>wg</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>sig</span> <span style=color:#f92672>:=</span> make(<span style=color:#66d9ef>chan</span> <span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Signal</span>, <span style=color:#ae81ff>1</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>signal</span>.<span style=color:#a6e22e>Notify</span>(<span style=color:#a6e22e>sig</span>, <span style=color:#a6e22e>syscall</span>.<span style=color:#a6e22e>SIGINT</span>, <span style=color:#a6e22e>syscall</span>.<span style=color:#a6e22e>SIGTERM</span>)
+</span></span><span style=display:flex><span>	<span style=color:#f92672>&lt;-</span><span style=color:#a6e22e>sig</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>cancel</span>()
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>wg</span>.<span style=color:#a6e22e>Wait</span>()
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Orchestrates component initialization and dependency injection</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>app</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>AppContainer</span> <span style=color:#66d9ef>struct</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>OrderComponent</span>   <span style=color:#a6e22e>orders</span>.<span style=color:#a6e22e>OrderComponent</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>PaymentComponent</span> <span style=color:#a6e22e>payments</span>.<span style=color:#a6e22e>PaymentComponent</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>UserComponent</span>    <span style=color:#a6e22e>users</span>.<span style=color:#a6e22e>UserComponent</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>NewAppContainer</span>() <span style=color:#f92672>*</span><span style=color:#a6e22e>AppContainer</span> {
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>return</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>AppContainer</span>{
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>OrderComponent</span>: <span style=color:#a6e22e>orders</span>.<span style=color:#a6e22e>NewOrderComponentImpl</span>(<span style=color:#a6e22e>orders</span>.<span style=color:#a6e22e>Deps</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>DB</span>: <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>InitMySQL</span>(),
+</span></span><span style=display:flex><span>		}),
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>PaymentComponent</span>: <span style=color:#a6e22e>payments</span>.<span style=color:#a6e22e>NewPaymentComponentImpl</span>(<span style=color:#a6e22e>payments</span>.<span style=color:#a6e22e>Deps</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>DB</span>: <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>InitPostgres</span>(),
+</span></span><span style=display:flex><span>		}),
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>UserComponent</span>: <span style=color:#a6e22e>users</span>.<span style=color:#a6e22e>NewUserComponentImpl</span>(<span style=color:#a6e22e>users</span>.<span style=color:#a6e22e>Deps</span>{
+</span></span><span style=display:flex><span>			<span style=color:#a6e22e>DB</span>: <span style=color:#a6e22e>db</span>.<span style=color:#a6e22e>InitMySQL</span>(),
+</span></span><span style=display:flex><span>		}),
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// Orchestrates controllers</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>routes</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>Register</span>(<span style=color:#a6e22e>router</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Engine</span>, <span style=color:#a6e22e>container</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>AppContainer</span>) {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>api</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>router</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/api&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Public (no auth)</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>public</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>api</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/public&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Private (with auth middleware)</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>private</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>api</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/private&#34;</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>private</span>.<span style=color:#a6e22e>Use</span>(<span style=color:#a6e22e>AuthMiddleware</span>())
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Payments</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>paymentController</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>web</span>.<span style=color:#a6e22e>NewPaymentController</span>(<span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>PaymentComponent</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>paymentController</span>.<span style=color:#a6e22e>RegisterRoutes</span>(<span style=color:#a6e22e>private</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/payments&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Orders</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>orderController</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>web</span>.<span style=color:#a6e22e>NewOrderController</span>(<span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>OrderComponent</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>orderController</span>.<span style=color:#a6e22e>RegisterRoutes</span>(<span style=color:#a6e22e>public</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/orders&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Users</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>userController</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>web</span>.<span style=color:#a6e22e>NewUserController</span>(<span style=color:#a6e22e>container</span>.<span style=color:#a6e22e>UserComponent</span>)
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>userController</span>.<span style=color:#a6e22e>RegisterRoutes</span>(<span style=color:#a6e22e>private</span>.<span style=color:#a6e22e>Group</span>(<span style=color:#e6db74>&#34;/users&#34;</span>))
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Health</span>
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>api</span>.<span style=color:#a6e22e>GET</span>(<span style=color:#e6db74>&#34;/health&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>c</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>Context</span>) {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>JSON</span>(<span style=color:#ae81ff>200</span>, <span style=color:#a6e22e>gin</span>.<span style=color:#a6e22e>H</span>{<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;ok&#34;</span>})
+</span></span><span style=display:flex><span>	})
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>Key metaphor:</p><blockquote><p><code>users/adapters/service.go</code> is like a professional translator. <code>payments</code> says “I need a user,” and the translator converts that to the internal dialect of <code>users</code>. If <code>users</code> changes its language, only the translator needs updating.</p></blockquote><h2 id=-what-if-we-dont-use-contracts-the-chaos-we-lived-through>💣 What If We Don’t Use Contracts? (The Chaos We Lived Through)</h2><p>Here&rsquo;s a before/after from our real codebase:</p><h3 id=-before-criminal-coupling>🚫 Before (Criminal Coupling)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// internal/payments/payment_component_impl.go (OLD)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PaymentService</span>) <span style=color:#a6e22e>Refund</span>(<span style=color:#a6e22e>userID</span> <span style=color:#66d9ef>string</span>) <span style=color:#66d9ef>error</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>u</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>userRepo</span>.<span style=color:#a6e22e>GetUser</span>(<span style=color:#a6e22e>userID</span>)  <span style=color:#75715e>// Direct access to users repo!</span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>err</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>u</span>.<span style=color:#a6e22e>CreditCard</span> <span style=color:#f92672>==</span> <span style=color:#66d9ef>nil</span> {  <span style=color:#75715e>// 💥 Internal field that changed 3 times</span>
+</span></span><span style=display:flex><span>		<span style=color:#66d9ef>return</span> <span style=color:#a6e22e>errors</span>.<span style=color:#a6e22e>New</span>(<span style=color:#e6db74>&#34;no credit card&#34;</span>)
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=-after-contracts-to-the-rescue>✅ After (Contracts to the Rescue)</h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// contracts/user/service.go (NEW)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Service</span> <span style=color:#66d9ef>interface</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>GetUserForPayment</span>(<span style=color:#a6e22e>id</span> <span style=color:#66d9ef>string</span>) (<span style=color:#a6e22e>PaymentUserDTO</span>, <span style=color:#66d9ef>error</span>)  <span style=color:#75715e>// Now the contract is explicit!</span>
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>// internal/payments/service.go (NEW)</span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> (<span style=color:#a6e22e>s</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>PaymentService</span>) <span style=color:#a6e22e>Refund</span>(<span style=color:#a6e22e>userID</span> <span style=color:#66d9ef>string</span>) <span style=color:#66d9ef>error</span> {
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>u</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>s</span>.<span style=color:#a6e22e>userService</span>.<span style=color:#a6e22e>GetUserForPayment</span>(<span style=color:#a6e22e>userID</span>)  <span style=color:#75715e>// Only what’s NEEDED</span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// ...</span>
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p><strong>Tangible benefits</strong>:</p><ol><li><p>When <code>users</code> changed its credit card model, <code>payments</code> didn’t even notice.</p></li><li><p><code>payments</code> tests use a 10-line mock, not a fake DB.</p></li></ol><h2 id=-conclusion-less-theory-more-superpowers>📌 Conclusion: Less Theory, More Superpowers</h2><p>This architecture allowed us to:</p><ul><li><p>Move <code>users</code> to another repo without touching <code>payments</code>.</p></li><li><p>Refactor the DB 3 times without panic.</p></li><li><p>Onboard new devs with: “Need data from X? Check their contracts.”</p></li></ul><blockquote><p>&ldquo;Clean Architecture is not about perfect folders, but about sleeping well knowing tomorrow’s change won’t ruin your week.&rdquo;</p></blockquote><p>💬 Have you also struggled with tight coupling?
+Tell me in the comments.</p></div></div><section class=all-comments><div class=comments-header><h3>Conversación</h3><div class=comment-count>💬 <span id=comment-count-section>0</span> comentarios</div></div><div id=login-container class=login-container style=display:none><p>Debes iniciar sesión con GitHub para comentar</p><button id=login-github-btn class=login-github-btn>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482.0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943.0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647.0.0.84-.269 2.75 1.025A9.578 9.578.0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683.0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852.0 1.336-.012 2.415-.012 2.743.0.267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+Iniciar sesión con GitHub</button></div><form id=main-comment-form class=comment-form style=display:none><div class=avatar-placeholder><img id=main-user-avatar-img src="https://www.gravatar.com/avatar/?d=mp&s=40" class=avatar-img></div><div class=form-content><textarea placeholder="Escribe tu comentario..." rows=3 required></textarea><div class=form-actions><button type=submit class=submit-button>Publicar</button></div></div><input type=hidden id=reply-to></form></section></article></main><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.querySelectorAll(".theme-toggle"),n=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,t=localStorage.getItem("theme");t==="dark"||!t&&n?(document.documentElement.setAttribute("data-theme","dark"),e.forEach(e=>e.textContent="☀️")):(document.documentElement.setAttribute("data-theme","light"),e.forEach(e=>e.textContent="🌙")),e.forEach(t=>{t.addEventListener("click",()=>{const t=document.documentElement.getAttribute("data-theme");t==="light"?(document.documentElement.setAttribute("data-theme","dark"),e.forEach(e=>e.textContent="☀️"),localStorage.setItem("theme","dark")):(document.documentElement.setAttribute("data-theme","light"),e.forEach(e=>e.textContent="🌙"),localStorage.setItem("theme","light"))})}),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t=>{if(!localStorage.getItem("theme")){const n=t.matches?"dark":"light";document.documentElement.setAttribute("data-theme",n),e.forEach(e=>e.textContent=n==="dark"?"☀️":"🌙")}})})</script><script>const postId="posts/package-by-component.md",countKey=`claps-${postId}`,countDisplay=document.getElementById("clap-count"),button=document.getElementById("clap-button"),saved=localStorage.getItem(countKey);let count=saved?parseInt(saved):0;countDisplay&&(countDisplay.textContent=count),button&&button.addEventListener("click",()=>{count+=1,countDisplay.textContent=count,localStorage.setItem(countKey,count)})</script><script>window.PUBLIC_SUPABASE_URL="https://hnshpzakudamqqauqqqe.supabase.co",window.PUBLIC_SUPABASE_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imhuc2hwemFrdWRhbXFxYXVxcXFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NTEwOTgsImV4cCI6MjA2ODMyNzA5OH0.3P9rwWs8hbXBCpvX0ddfMH6p0GzVVrjfOCx-xTaMgd8"</script><script type=module src=/js/main.js></script></body></html>
