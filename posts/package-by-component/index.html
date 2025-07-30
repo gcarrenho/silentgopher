@@ -1,7 +1,7 @@
 <!doctype html><html lang=es data-theme><head><meta charset=UTF-8><title>Parte 2: Aplicando Component-Based Clean Architecture en Go</title><link rel=stylesheet href=/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU="><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel=stylesheet></head><body data-post-id=package-by-component class=post-page><header class=main-header><img src=/images/posts/package-by-component.png alt="Parte 2: Aplicando Component-Based Clean Architecture en Go" class=header-gopher>
-<button class=theme-toggle aria-label="Cambiar tema">🌙</button></header><nav style=text-align:center;margin-top:1rem><a href=/>Inicio</a> |
-<a href=/posts></a>|
-<a href=/about></a></nav><main class=medium-article><article><h1>Parte 2: Aplicando Component-Based Clean Architecture en Go</h1><h2 class=subtitle>Package by Components</h2><div class=engagement-stats><span class=stat-item>⏱️ <span class=minutes>4</span> min
+<button class=theme-toggle aria-label="Cambiar tema">🌙</button></header><nav style=text-align:center;margin-top:1rem><a href=/></a>|
+<a href=/posts>Artículos</a> |
+<a href=/about>Sobre mí</a></nav><main class=medium-article><article><h1>Parte 2: Aplicando Component-Based Clean Architecture en Go</h1><h2 class=subtitle>Package by Components</h2><div class=engagement-stats><span class=stat-item>⏱️ <span class=minutes>4</span> min
 </span>•
 <span class=stat-item>👁️ <span id=view-count>0</span>
 </span>•
@@ -10,7 +10,7 @@
 </button>
 •
 <button id=comment-btn class=comment-button aria-label="Comentar este artículo">
-💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 14, 2025 — @SilentGopher</p><div class=content><blockquote><p>💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
+💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 14, 2025 — por @SilentGopher</p><div class=content><blockquote><p>💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
 Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.</p></blockquote><h2 id=-el-proyecto-que-casi-me-quema-los-párpados>🚧 El Proyecto que casi me Quema los Párpados</h2><p>Hace varios meses, heredé un monolito en Go donde:</p><ul><li><p><code>users</code> y <code>orders</code> compartían structs como si fueran confesiones de borrachos.</p></li><li><p>Un cambio en <code>User.Email</code> rompía 3 servicios distintos.</p></li><li><p>Los tests eran tan frágiles como cristal de Murano.</p></li></ul><p><strong>Hoy te muestro cómo lo convertimos en esto</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>cmd</span><span style=color:#f92672>/</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>internal</span><span style=color:#f92672>/</span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>

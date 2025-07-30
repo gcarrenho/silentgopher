@@ -1,7 +1,7 @@
 <!doctype html><html lang=es data-theme><head><meta charset=UTF-8><title>Part 2: Applying Component-Based Clean Architecture in Go</title><link rel=stylesheet href=/scss/main.min.c6663d93d404c52f5be37021224d6c75bb16a53200683e3143b1d6ccb9b93505.css integrity="sha256-xmY9k9QExS9b43AhIk1sdbsWpTIAaD4xQ7HWzLm5NQU="><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel=stylesheet></head><body data-post-id=package-by-component class=post-page><header class=main-header><img src=/images/posts/package-by-component.png alt="Part 2: Applying Component-Based Clean Architecture in Go" class=header-gopher>
 <button class=theme-toggle aria-label="Cambiar tema">🌙</button></header><nav style=text-align:center;margin-top:1rem><a href=/>Home</a> |
-<a href=/posts></a>|
-<a href=/about></a></nav><main class=medium-article><article><h1>Part 2: Applying Component-Based Clean Architecture in Go</h1><h2 class=subtitle>Package by Components</h2><div class=engagement-stats><span class=stat-item>⏱️ <span class=minutes>4</span> min
+<a href=/posts>Articles</a> |
+<a href=/about>About me</a></nav><main class=medium-article><article><h1>Part 2: Applying Component-Based Clean Architecture in Go</h1><h2 class=subtitle>Package by Components</h2><div class=engagement-stats><span class=stat-item>⏱️ <span class=minutes>4</span> min
 </span>•
 <span class=stat-item>👁️ <span id=view-count>0</span>
 </span>•
@@ -10,7 +10,7 @@
 </button>
 •
 <button id=comment-btn class=comment-button aria-label="Comentar este artículo">
-💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 14, 2025 — @SilentGopher</p><div class=content><blockquote><p>💡 WARNING: If you&rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
+💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 14, 2025 — by @SilentGopher</p><div class=content><blockquote><p>💡 WARNING: If you&rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
 This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.</p></blockquote><h2 id=-the-project-that-nearly-burned-my-eyeballs>🚧 The Project That Nearly Burned My Eyeballs</h2><p>Several months ago, I inherited a Go monolith where:</p><ul><li><p><code>users</code> and <code>orders</code> shared structs like drunken confessions.</p></li><li><p>A change in <code>User.Email</code> broke 3 different services.</p></li><li><p>The tests were as fragile as Murano glass.</p></li></ul><p><strong>Today, I’ll show you how we turned it into this</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>cmd</span><span style=color:#f92672>/</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>internal</span><span style=color:#f92672>/</span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>
