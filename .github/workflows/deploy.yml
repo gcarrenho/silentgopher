@@ -1,38 +1,44 @@
-# .github/workflows/deploy.yml
 name: Deploy Hugo site to GitHub Pages
 
 on:
   push:
     branches:
-      - master  # o "master"
+      - master  # o "main" si es tu rama principal
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
 
     steps:
-    - name: Set secrets
-      uses: actions/checkout@v4
-      run: |
+      # Checkout el repositorio (solo una vez, versión actualizada)
+      - name: Checkout repo
+        uses: actions/checkout@v4  # Usamos la última versión
+
+      # Configura las variables de entorno
+      - name: Set environment variables
+        run: |
           echo "PUBLIC_SUPABASE_URL=${{ secrets.PUBLIC_SUPABASE_URL }}" >> $GITHUB_ENV
           echo "PUBLIC_SUPABASE_KEY=${{ secrets.PUBLIC_SUPABASE_KEY }}" >> $GITHUB_ENV
           echo "PUBLIC_FIREBASE_API_KEY=${{ secrets.PUBLIC_FIREBASE_API_KEY }}" >> $GITHUB_ENV
           echo "PUBLIC_FIREBASE_APP_ID=${{ secrets.PUBLIC_FIREBASE_APP_ID }}" >> $GITHUB_ENV
           echo "PUBLIC_FIREBASE_MESSAGINGSENDERID=${{ secrets.PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}" >> $GITHUB_ENV
 
-    - name: Checkout repo
-      uses: actions/checkout@v3
+      # Instala Hugo
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.148.2"  # Versión fija para consistencia
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: '0.148.2'
+      # Build del sitio con minificación
+      - name: Build site
+        run: hugo --minify
 
-    - name: Build site
-      run: hugo --minify
-
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./public
+      # Despliegue en GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
