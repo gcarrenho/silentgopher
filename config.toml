@@ -92,9 +92,12 @@ appId = ""
     methods = ['(?i)GET|POST']
     urls = ['.*']
 
-[build]
-  writeStats = true  # Helps with sitemap generation
-
+# Enable sitemap generation
 [sitemap]
   changefreq = "weekly"
   priority = 0.5
+  filename = "sitemap.xml"  # Explicit output filename
+
+# For Hugo versions ≥ 0.91
+[build]
+  writeStats = true
