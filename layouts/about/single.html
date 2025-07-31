@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ .Title }}</title>
+  {{ $sass := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $sass.RelPermalink }}" integrity="{{ $sass.Data.Integrity }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body class="about-page">
+  <header class="main-header">
+     <!-- 
+    <img src="{{ with .Params.image }}{{ . | relURL }}{{ else }}{{ "/images/posts/about.jpg" | relURL }}{{ end }}" 
+         alt="{{ .Title }}" 
+         class="header-gopher"> -->
+    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+  </header>
+
+    <div class="profile-container">
+        <img src="{{ "/images/gopherProfile.png" | relURL }}" alt="{{ i18n " profilePhotoAlt" }}" class="profile-pic">
+    </div>
+
+  <nav style="text-align:center; margin-top:1rem;">
+    <a href="/">{{ i18n "home" }}</a> |
+    <a href="/posts">{{ i18n "articles" }}</a> |
+    <a href="/about">{{ i18n "about_me" }}</a>
+  </nav>
+
+  <main class="medium-article no-article-image">
+    <article>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.subtitle }}
+        <h2 class="subtitle">{{ . }}</h2>
+      {{ end }}
+
+      <div class="content">
+        {{ .Content }}
+      </div>
+    </article>
+  </main>
+
+  {{ partial "theme-script.html" . }}
+  {{ partial "scripts.html" . }}
+
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

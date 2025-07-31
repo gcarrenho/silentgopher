@@ -1,7 +1,7 @@
 ---
 title: "Parte 2: Aplicando Component-Based Clean Architecture en Go"
 subtitle: "Package by Components"
-date: 2025-06-14
+date: 2025-07-31
 author: "@SilentGopher"
 image: "/images/posts/package-by-component.png"
 tags: ["Go", "Clean Architecture", "Package by Components"]

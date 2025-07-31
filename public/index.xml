@@ -6,12 +6,12 @@
     <description>Recent content in Inicio on Silent Gopher</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>es</language>
-    <lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Parte 2: Aplicando Component-Based Clean Architecture en Go</title>
       <link>http://localhost:1313/posts/package-by-component/</link>
-      <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/package-by-component/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
@@ -28,18 +28,20 @@ Esto es código real con cicatrices, donde el 60% funcionó al primer intento y 
     <item>
       <title>Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</title>
       <link>http://localhost:1313/posts/clean-architecture/</link>
-      <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/posts/clean-architecture/</guid>
       <description>&lt;blockquote&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;Advertencia&lt;/strong&gt;: Esto no es otro artículo teórico con diagramas bonitos que solo funcionan en PowerPoint.
 Hablaré de fracasos, de cómo &lt;strong&gt;mis primeros intentos con Clean Architecture fueron un desastre&lt;/strong&gt;, y de la solución que finalmente funcionó en proyectos reales (con deadlines, jefes impacientes y requirements que cambian cada martes).&lt;/p&gt;&lt;/blockquote&gt;</description>
     </item>
     <item>
-      <title></title>
+      <title>Sobre mí</title>
       <link>http://localhost:1313/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/about/</guid>
-      <description></description>
+      <description>&lt;p&gt;Soy &lt;strong&gt;SilentGopher&lt;/strong&gt;, un apasionado del ecosistema Go que prefiere construir en silencio antes que hablar de más. Me gusta escribir código limpio, crear herramientas útiles y dejar que el trabajo hable por sí mismo.&lt;/p&gt;
+&lt;p&gt;No busco likes ni fama. Prefiero el sonido del teclado a los aplausos, y el placer de resolver problemas al protagonismo. Si algo de lo que comparto te sirve, ya es suficiente recompensa.&lt;/p&gt;
+&lt;p&gt;Este sitio es mi pequeña madriguera digital, donde dejo huellas tranquilas de lo que voy creando, aprendiendo o reflexionando sobre desarrollo, principalmente con &lt;strong&gt;Golang&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

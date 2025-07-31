@@ -1,7 +1,7 @@
 ---
 title: "Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama"
 subtitle: "Clean Architecture"
-date: 2025-06-13
+date: 2025-07-30
 author: "@SilentGopher"
 tags: ["Go", "Clean Architecture"]
 image: "/images/posts/clean-architecture.jpg"
