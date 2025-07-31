@@ -7,8 +7,6 @@ export async function setupComments() {
         window.PUBLIC_SUPABASE_KEY
     );
 
-
-    //const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const postId = document.body.dataset.postId;
     let currentUser = null;
 
@@ -561,7 +559,15 @@ export async function setupComments() {
 
         //DOM.commentBtn.onclick = () => commentSidebar.classList.add('open');
         DOM.commentBtn.onclick = () => {
-            commentSidebar.classList.add('open');
+            commentSidebar.classList.toggle('open');
+
+            // Seleccionamos el elemento .all-comments
+            const allCommentsSection = document.querySelector('.all-comments');
+
+            // Añadimos el evento click
+            allCommentsSection.onclick = () => {
+                commentSidebar.classList.toggle('open');
+            };
 
             // Esperar al próximo frame para asegurar que el sidebar se muestra antes del focus/scroll
             requestAnimationFrame(() => {
