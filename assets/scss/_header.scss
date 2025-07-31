@@ -31,23 +31,6 @@
 
 }
 
-.profile-container {
-    text-align: center;
-    margin-top: -75px;
-    /* Tira la imagen hacia arriba */
-    position: relative;
-    z-index: 10;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 5px solid var(--bg-color);
-    object-fit: cover;
-    box-shadow: 0 4px 15px var(--shadow-color);
-}
-
 .theme-toggle {
     position: absolute;
     top: 24px;

@@ -6,8 +6,17 @@
     <description>Recent content in Inicio on Silent Gopher</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 14 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 30 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About Me</title>
+      <link>http://localhost:1313/en/about/</link>
+      <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/about/</guid>
+      <description>&lt;p&gt;I am &lt;strong&gt;SilentGopher&lt;/strong&gt;, a passionate Go enthusiast who prefers to build quietly rather than talk too much. I enjoy writing clean code, creating useful tools, and letting the work speak for itself.&lt;/p&gt;
+&lt;p&gt;I don&amp;rsquo;t seek likes or fame. I prefer the sound of keyboards to applause, and the satisfaction of problem-solving over the spotlight. If anything I share proves useful to you, that&amp;rsquo;s reward enough.&lt;/p&gt;
+&lt;p&gt;This site is my little digital burrow, where I leave quiet traces of what I&amp;rsquo;m building, learning, or reflecting about development - primarily with &lt;strong&gt;Golang&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Part 2: Applying Component-Based Clean Architecture in Go</title>
       <link>http://localhost:1313/en/posts/package-by-component/</link>
@@ -36,13 +45,6 @@ This is real-world code with scars—60% worked on the first try, the other 40% 
       <description>&lt;blockquote&gt;
 &lt;p&gt;⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint.
 I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).&lt;/p&gt;&lt;/blockquote&gt;</description>
-    </item>
-    <item>
-      <title></title>
-      <link>http://localhost:1313/en/about/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/about/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>

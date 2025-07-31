@@ -19,15 +19,16 @@
     <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
   </header>
 
-    <div class="profile-container">
-        <img src="{{ "/images/gopherProfile.png" | relURL }}" alt="{{ i18n " profilePhotoAlt" }}" class="profile-pic">
-    </div>
-
-  <nav style="text-align:center; margin-top:1rem;">
-    <a href="/">{{ i18n "home" }}</a> |
-    <a href="/posts">{{ i18n "articles" }}</a> |
+   <div class="profile-nav-container">
+      <nav class="profile-nav">
+    <a href="/">{{ i18n "home" }}</a>
+    <a href="/posts">{{ i18n "articles" }}</a>
     <a href="/about">{{ i18n "about_me" }}</a>
   </nav>
+  <img src="{{ "/images/gopherProfile.png" | relURL }}" alt="{{ i18n "profilePhotoAlt" }}" class="profile-pic">
+
+
+</div>
 
   <main class="medium-article no-article-image">
     <article>
