@@ -246,4 +246,4 @@ Esta arquitectura nos permitió:
 > "Clean Architecture no se trata de carpetas perfectas, sino de poder dormir sabiendo que el cambio de mañana no te arruinará la semana."
 
 💬 ¿Vos también has lidiado con acoplamientos?
-Contame en los comments.
+Déjame saber en los comentarios.
