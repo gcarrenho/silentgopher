@@ -10,7 +10,7 @@
 </button>
 •
 <button id=comment-btn class=comment-button aria-label="Comentar este artículo">
-💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>June 14, 2025 — por @SilentGopher</p><div class=content><blockquote><p>💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
+💬 <span id=comment-count>0</span></button></div></div><p class=meta-info>July 31, 2025 — por @SilentGopher</p><div class=content><blockquote><p>💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
 Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.</p></blockquote><h2 id=-el-proyecto-que-casi-me-quema-los-párpados>🚧 El Proyecto que casi me Quema los Párpados</h2><p>Hace varios meses, heredé un monolito en Go donde:</p><ul><li><p><code>users</code> y <code>orders</code> compartían structs como si fueran confesiones de borrachos.</p></li><li><p>Un cambio en <code>User.Email</code> rompía 3 servicios distintos.</p></li><li><p>Los tests eran tan frágiles como cristal de Murano.</p></li></ul><p><strong>Hoy te muestro cómo lo convertimos en esto</strong>:</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>cmd</span><span style=color:#f92672>/</span>
 </span></span><span style=display:flex><span><span style=color:#f92672>/</span><span style=color:#a6e22e>internal</span><span style=color:#f92672>/</span>
 </span></span><span style=display:flex><span>  <span style=color:#a6e22e>users</span><span style=color:#f92672>/</span>
