@@ -91,3 +91,10 @@ appId = ""
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
+
+[build]
+  writeStats = true  # Helps with sitemap generation
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
