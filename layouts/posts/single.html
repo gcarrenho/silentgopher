@@ -4,7 +4,71 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }} | {{ .Site.Title }}</title>
-  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
+
+  {{- $description := cond (ne .Params.description "") .Params.description (.Summary | plainify | truncate 160) }}
+  <meta name="description" content="{{ $description }}">
+  <meta name="author" content="{{ .Params.author | default .Site.Params.author }}">
+  <meta name="robots" content="index, follow">
+  {{ with .Params.tags }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
+
+  <!-- Canonical + hreflang -->
+  <link rel="canonical" href="{{ .Permalink }}">
+  {{ range .Translations }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+  {{ end }}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+
+  <!-- Open Graph (article) -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ .Title }}">
+  <meta property="og:description" content="{{ $description }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:locale" content="{{ .Language.Lang }}">
+  {{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+  <meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+  <meta property="article:modified_time" content="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
+  <meta property="article:author" content="{{ .Params.author | default .Site.Params.author }}">
+  {{ range .Params.tags }}<meta property="article:tag" content="{{ . }}">
+  {{ end }}
+
+  <!-- Twitter card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ .Title }}">
+  <meta name="twitter:description" content="{{ $description }}">
+  {{ with .Params.image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}
+
+  <!-- JSON-LD: TechArticle (consumed by AI search: Perplexity, ChatGPT, Google AI Overviews) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": {{ .Title | jsonify }},
+    "description": {{ $description | jsonify }},
+    "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+    "author": {
+      "@type": "Person",
+      "name": {{ (.Params.author | default .Site.Params.author) | jsonify }},
+      "url": {{ .Site.BaseURL | jsonify }}
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": {{ .Site.Params.author | jsonify }},
+      "url": {{ .Site.BaseURL | jsonify }}
+    },
+    "url": {{ .Permalink | jsonify }},
+    "inLanguage": "{{ .Language.Lang }}",
+    {{ with .Params.image }}"image": {{ . | absURL | jsonify }},{{ end }}
+    "keywords": [{{ range $i, $tag := .Params.tags }}{{ if $i }}, {{ end }}{{ $tag | jsonify }}{{ end }}],
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ .Permalink | jsonify }}
+    }
+  }
+  </script>
+
   {{ $sass := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $sass.RelPermalink }}" integrity="{{ $sass.Data.Integrity }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">

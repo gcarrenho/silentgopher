@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Package by Components on Silent Gopher</title>
-    <link>http://localhost:63865/tags/package-by-components/</link>
+    <link>http://localhost:1313/tags/package-by-components/</link>
     <description>Recent content in Package by Components on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
     <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:63865/tags/package-by-components/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/package-by-components/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Parte 2: Aplicando Component-Based Clean Architecture en Go</title>
-      <link>http://localhost:63865/posts/package-by-component/</link>
+      <link>http://localhost:1313/posts/package-by-component/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/posts/package-by-component/</guid>
+      <guid>http://localhost:1313/posts/package-by-component/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.&#xA;Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;-el-proyecto-que-casi-me-quema-los-párpados&#34;&gt;🚧 El Proyecto que casi me Quema los Párpados&lt;/h2&gt;&#xA;&lt;p&gt;Hace varios meses, heredé un monolito en Go donde:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;users&lt;/code&gt; y &lt;code&gt;orders&lt;/code&gt; compartían structs como si fueran confesiones de borrachos.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Un cambio en &lt;code&gt;User.Email&lt;/code&gt; rompía 3 servicios distintos.&lt;/p&gt;</description>
     </item>
   </channel>

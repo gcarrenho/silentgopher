@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Inicio on Silent Gopher</title>
-    <link>http://localhost:63865/en/</link>
+    <link>http://localhost:1313/en/</link>
     <description>Recent content in Inicio on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Fri, 01 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:63865/en/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Functional Options in Go: The Pattern Behind Clean Service Constructors</title>
-      <link>http://localhost:63865/en/posts/functional-options/</link>
+      <link>http://localhost:1313/en/posts/functional-options/</link>
       <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/en/posts/functional-options/</guid>
+      <guid>http://localhost:1313/en/posts/functional-options/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;💡 If your function signature has grown to five parameters, the sixth one doesn&amp;rsquo;t make the code harder to read — it makes it dangerous.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>About Me</title>
-      <link>http://localhost:63865/en/about/</link>
+      <link>http://localhost:1313/en/about/</link>
       <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/en/about/</guid>
+      <guid>http://localhost:1313/en/about/</guid>
       <description>&lt;p&gt;I am &lt;strong&gt;SilentGopher&lt;/strong&gt;, a passionate Go enthusiast who prefers to build quietly rather than talk too much. I enjoy writing clean code, creating useful tools, and letting the work speak for itself.&lt;/p&gt;&#xA;&lt;p&gt;I don&amp;rsquo;t seek likes or fame. I prefer the sound of keyboards to applause, and the satisfaction of problem-solving over the spotlight. If anything I share proves useful to you, that&amp;rsquo;s reward enough.&lt;/p&gt;&#xA;&lt;p&gt;This site is my little digital burrow, where I leave quiet traces of what I&amp;rsquo;m building, learning, or reflecting about development - primarily with &lt;strong&gt;Golang&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Coupling and Cohesion in Software Architecture (with Go Examples)</title>
-      <link>http://localhost:63865/en/posts/coupling-and-cohesion/</link>
+      <link>http://localhost:1313/en/posts/coupling-and-cohesion/</link>
       <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/en/posts/coupling-and-cohesion/</guid>
+      <guid>http://localhost:1313/en/posts/coupling-and-cohesion/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;When designing distributed or modular systems, understanding the relationship between coupling and cohesion is key to achieving a maintainable, flexible, and scalable architecture.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Part 2: Applying Component-Based Clean Architecture in Go</title>
-      <link>http://localhost:63865/en/posts/package-by-component/</link>
+      <link>http://localhost:1313/en/posts/package-by-component/</link>
       <pubDate>Sat, 14 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/en/posts/package-by-component/</guid>
+      <guid>http://localhost:1313/en/posts/package-by-component/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;💡 WARNING: If you&amp;rsquo;re expecting perfect copy-paste code, better go to StackOverflow.&#xA;This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;-the-project-that-nearly-burned-my-eyeballs&#34;&gt;🚧 The Project That Nearly Burned My Eyeballs&lt;/h2&gt;&#xA;&lt;p&gt;Several months ago, I inherited a Go monolith where:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;users&lt;/code&gt; and &lt;code&gt;orders&lt;/code&gt; shared structs like drunken confessions.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;A change in &lt;code&gt;User.Email&lt;/code&gt; broke 3 different services.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;The tests were as fragile as Murano glass.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Part 1: Understanding Clean Architecture Beyond the Diagram</title>
-      <link>http://localhost:63865/en/posts/clean-architecture/</link>
+      <link>http://localhost:1313/en/posts/clean-architecture/</link>
       <pubDate>Fri, 13 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/en/posts/clean-architecture/</guid>
+      <guid>http://localhost:1313/en/posts/clean-architecture/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint.&#xA;I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
   </channel>

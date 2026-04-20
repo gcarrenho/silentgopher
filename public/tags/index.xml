@@ -2,66 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Silent Gopher</title>
-    <link>http://localhost:63865/tags/</link>
+    <link>http://localhost:1313/tags/</link>
     <description>Recent content in Tags on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <lastBuildDate>Fri, 01 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:63865/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Clean Code</title>
-      <link>http://localhost:63865/tags/clean-code/</link>
-      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/clean-code/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Functional Options</title>
-      <link>http://localhost:63865/tags/functional-options/</link>
-      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/functional-options/</guid>
+      <title>Clean Architecture</title>
+      <link>http://localhost:1313/tags/clean-architecture/</link>
+      <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/tags/clean-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Go</title>
-      <link>http://localhost:63865/tags/go/</link>
-      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Patterns</title>
-      <link>http://localhost:63865/tags/patterns/</link>
-      <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/patterns/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Clean Architecture</title>
-      <link>http://localhost:63865/tags/clean-architecture/</link>
+      <link>http://localhost:1313/tags/go/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/clean-architecture/</guid>
+      <guid>http://localhost:1313/tags/go/</guid>
       <description></description>
     </item>
     <item>
       <title>Package by Components</title>
-      <link>http://localhost:63865/tags/package-by-components/</link>
+      <link>http://localhost:1313/tags/package-by-components/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/package-by-components/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Cohesion</title>
-      <link>http://localhost:63865/tags/cohesion/</link>
-      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/cohesion/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Coupling</title>
-      <link>http://localhost:63865/tags/coupling/</link>
-      <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/tags/coupling/</guid>
+      <guid>http://localhost:1313/tags/package-by-components/</guid>
       <description></description>
     </item>
   </channel>

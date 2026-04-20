@@ -4,6 +4,7 @@ image: "/images/posts/clean-architecture.jpg"
 date: "2025-06-13"
 subtitle: "Clean Architecture"
 author: "@SilentGopher"
+description: "Stop copy-pasting Clean Architecture diagrams. This is how it actually works in production Go projects — with real failures, component boundaries, and contracts that let your team move fast without breaking things."
 tags: ["Go", "Clean Architecture"]
 draft: false
 ---

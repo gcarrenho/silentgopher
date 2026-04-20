@@ -3,6 +3,7 @@ title: "Functional Options in Go: The Pattern Behind Clean Service Constructors"
 subtitle: "Functional Options Pattern"
 date: 2025-08-01
 author: "@SilentGopher"
+description: "How to stop passing boolean flags and empty strings to your Go constructors. A deep dive into the Functional Options pattern — when to use it at constructor level vs method level, and when not to use it at all."
 image: "/images/posts/functional-options/functional-options.png"
 tags: ["Go", "Clean Code", "Patterns", "Functional Options"]
 draft: false

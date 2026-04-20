@@ -2,258 +2,183 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:63865/tags/clean-code/</loc>
+    <loc>http://localhost:1313/posts/functional-options/</loc>
     <lastmod>2025-08-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/tags/clean-code/"
+                href="http://localhost:1313/en/posts/functional-options/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/tags/clean-code/"
+                href="http://localhost:1313/posts/functional-options/"
                 />
   </url><url>
-    <loc>http://localhost:63865/tags/functional-options/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-08-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/tags/functional-options/"
+                href="http://localhost:1313/en/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/tags/functional-options/"
+                href="http://localhost:1313/"
                 />
   </url><url>
-    <loc>http://localhost:63865/posts/functional-options/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-08-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/posts/functional-options/"
+                href="http://localhost:1313/en/posts/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/posts/functional-options/"
+                href="http://localhost:1313/posts/"
                 />
   </url><url>
-    <loc>http://localhost:63865/tags/go/</loc>
-    <lastmod>2025-08-01T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/tags/go/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/tags/go/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/</loc>
-    <lastmod>2025-08-01T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/tags/patterns/</loc>
-    <lastmod>2025-08-01T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/tags/patterns/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/tags/patterns/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/posts/</loc>
-    <lastmod>2025-08-01T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/posts/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/tags/</loc>
-    <lastmod>2025-08-01T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/tags/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/tags/clean-architecture/</loc>
+    <loc>http://localhost:1313/tags/clean-architecture/</loc>
     <lastmod>2025-07-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/tags/clean-architecture/"
+                href="http://localhost:1313/en/tags/clean-architecture/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/tags/clean-architecture/"
+                href="http://localhost:1313/tags/clean-architecture/"
                 />
   </url><url>
-    <loc>http://localhost:63865/tags/package-by-components/</loc>
+    <loc>http://localhost:1313/tags/go/</loc>
     <lastmod>2025-07-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/tags/package-by-components/"
+                href="http://localhost:1313/en/tags/go/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/tags/package-by-components/"
+                href="http://localhost:1313/tags/go/"
                 />
   </url><url>
-    <loc>http://localhost:63865/posts/package-by-component/</loc>
+    <loc>http://localhost:1313/tags/package-by-components/</loc>
     <lastmod>2025-07-31T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/posts/package-by-component/"
+                href="http://localhost:1313/en/tags/package-by-components/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/posts/package-by-component/"
+                href="http://localhost:1313/tags/package-by-components/"
                 />
   </url><url>
-    <loc>http://localhost:63865/posts/clean-architecture/</loc>
+    <loc>http://localhost:1313/posts/package-by-component/</loc>
+    <lastmod>2025-07-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/posts/package-by-component/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/posts/package-by-component/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-07-31T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/posts/clean-architecture/</loc>
     <lastmod>2025-07-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/posts/clean-architecture/"
+                href="http://localhost:1313/en/posts/clean-architecture/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/posts/clean-architecture/"
+                href="http://localhost:1313/posts/clean-architecture/"
                 />
   </url><url>
-    <loc>http://localhost:63865/about/</loc>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2025-07-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/about/"
+                href="http://localhost:1313/en/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/about/"
+                href="http://localhost:1313/about/"
                 />
   </url><url>
-    <loc>http://localhost:63865/posts/coupling-and-cohesion/</loc>
+    <loc>http://localhost:1313/posts/coupling-and-cohesion/</loc>
     <lastmod>2025-06-15T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/posts/coupling-and-cohesion/"
+                href="http://localhost:1313/en/posts/coupling-and-cohesion/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/posts/coupling-and-cohesion/"
+                href="http://localhost:1313/posts/coupling-and-cohesion/"
                 />
   </url><url>
-    <loc>http://localhost:63865/tags/cohesion/</loc>
-    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:63865/en/tags/cohesion/"
+                href="http://localhost:1313/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:63865/tags/cohesion/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/tags/coupling/</loc>
-    <lastmod>2025-06-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/tags/coupling/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/tags/coupling/"
-                />
-  </url><url>
-    <loc>http://localhost:63865/categories/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:63865/en/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:63865/categories/"
+                href="http://localhost:1313/categories/"
                 />
   </url>
 </urlset>

@@ -3,6 +3,7 @@ title: "Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama"
 subtitle: "Clean Architecture"
 date: 2025-07-30
 author: "@SilentGopher"
+description: "Dejá de copiar diagramas de Clean Architecture. Así funciona en proyectos Go reales — con fallas reales, límites de componentes y contratos que permiten que tu equipo avance sin romper nada."
 tags: ["Go", "Clean Architecture"]
 image: "/images/posts/clean-architecture.jpg"
 draft: false

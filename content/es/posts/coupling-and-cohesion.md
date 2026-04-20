@@ -3,7 +3,7 @@ title: "Acoplamiento y Cohesión en Arquitectura de Software (con ejemplos en Go
 subtitle: "Coupling and Cohesion"
 date: 2025-06-15
 author: "@SilentGopher"
-tags: ["Go", "Coupling", "Cohesion"]
+description: "Acoplamiento estructural, contractual, temporal, funcional y de despliegue explicados con Go real. Incluye una guerra de migración, el patrón de eventos asíncronos y una tabla de decisión para elegir el nivel correcto."
 image: "/images/posts/coupling-cohesion/coupling-cohesion.png"
 draft: false
 ---

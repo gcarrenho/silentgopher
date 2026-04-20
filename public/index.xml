@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Inicio on Silent Gopher</title>
-    <link>http://localhost:63865/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content in Inicio on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
     <lastBuildDate>Fri, 01 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:63865/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Functional Options en Go: El Patrón Detrás de Constructores Limpios</title>
-      <link>http://localhost:63865/posts/functional-options/</link>
+      <link>http://localhost:1313/posts/functional-options/</link>
       <pubDate>Fri, 01 Aug 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/posts/functional-options/</guid>
+      <guid>http://localhost:1313/posts/functional-options/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;💡 Si la firma de tu función ya tiene cinco parámetros, el sexto no la hace más difícil de leer — la hace peligrosa.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Parte 2: Aplicando Component-Based Clean Architecture en Go</title>
-      <link>http://localhost:63865/posts/package-by-component/</link>
+      <link>http://localhost:1313/posts/package-by-component/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/posts/package-by-component/</guid>
+      <guid>http://localhost:1313/posts/package-by-component/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.&#xA;Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;-el-proyecto-que-casi-me-quema-los-párpados&#34;&gt;🚧 El Proyecto que casi me Quema los Párpados&lt;/h2&gt;&#xA;&lt;p&gt;Hace varios meses, heredé un monolito en Go donde:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;&lt;code&gt;users&lt;/code&gt; y &lt;code&gt;orders&lt;/code&gt; compartían structs como si fueran confesiones de borrachos.&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Un cambio en &lt;code&gt;User.Email&lt;/code&gt; rompía 3 servicios distintos.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</title>
-      <link>http://localhost:63865/posts/clean-architecture/</link>
+      <link>http://localhost:1313/posts/clean-architecture/</link>
       <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/posts/clean-architecture/</guid>
+      <guid>http://localhost:1313/posts/clean-architecture/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;⚠️ &lt;strong&gt;Advertencia&lt;/strong&gt;: Esto no es otro artículo teórico con diagramas bonitos que solo funcionan en PowerPoint.&#xA;Hablaré de fracasos, de cómo &lt;strong&gt;mis primeros intentos con Clean Architecture fueron un desastre&lt;/strong&gt;, y de la solución que finalmente funcionó en proyectos reales (con deadlines, jefes impacientes y requirements que cambian cada martes).&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Sobre mí</title>
-      <link>http://localhost:63865/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Wed, 30 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description>&lt;p&gt;Soy &lt;strong&gt;SilentGopher&lt;/strong&gt;, un apasionado del ecosistema Go que prefiere construir en silencio antes que hablar de más. Me gusta escribir código limpio, crear herramientas útiles y dejar que el trabajo hable por sí mismo.&lt;/p&gt;&#xA;&lt;p&gt;No busco likes ni fama. Prefiero el sonido del teclado a los aplausos, y el placer de resolver problemas al protagonismo. Si algo de lo que comparto te sirve, ya es suficiente recompensa.&lt;/p&gt;&#xA;&lt;p&gt;Este sitio es mi pequeña madriguera digital, donde dejo huellas tranquilas de lo que voy creando, aprendiendo o reflexionando sobre desarrollo, principalmente con &lt;strong&gt;Golang&lt;/strong&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Acoplamiento y Cohesión en Arquitectura de Software (con ejemplos en Go)</title>
-      <link>http://localhost:63865/posts/coupling-and-cohesion/</link>
+      <link>http://localhost:1313/posts/coupling-and-cohesion/</link>
       <pubDate>Sun, 15 Jun 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:63865/posts/coupling-and-cohesion/</guid>
+      <guid>http://localhost:1313/posts/coupling-and-cohesion/</guid>
       <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Al diseñar sistemas distribuidos o modulares, comprender la relación entre &lt;strong&gt;acoplamiento&lt;/strong&gt; y &lt;strong&gt;cohesión&lt;/strong&gt; es clave para lograr una arquitectura mantenible, flexible y escalable.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
   </channel>

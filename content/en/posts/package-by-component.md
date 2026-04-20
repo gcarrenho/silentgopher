@@ -3,6 +3,7 @@ title: "Part 2: Applying Component-Based Clean Architecture in Go"
 subtitle: "Package by Components"
 date: 2025-06-14
 author: "@SilentGopher"
+description: "Real production Go code organized by component, not layer. Contracts, dependency injection, error boundaries, and the AppContainer pattern — with the actual bugs we shipped and the lessons they taught us."
 image: "/images/posts/package-by-component.png"
 tags: ["Go", "Clean Architecture", "Package by Components"]
 draft: false

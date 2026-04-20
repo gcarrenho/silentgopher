@@ -3,6 +3,7 @@ title: "Coupling and Cohesion in Software Architecture (with Go Examples)"
 subtitle: "Coupling and Cohesion"
 date: "2025-06-15"
 author: "@SilentGopher"
+description: "Structural, contractual, temporal, functional and deployment coupling explained with real Go code. Includes a migration war story, async events pattern, and a decision table for choosing the right coupling level."
 tags: ["Go", "Coupling", "Cohesion"]
 image: "/images/posts/coupling-cohesion/coupling-cohesion.png"
 draft: false

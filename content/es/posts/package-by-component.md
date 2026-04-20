@@ -5,6 +5,7 @@ date: 2025-07-31
 author: "@SilentGopher"
 image: "/images/posts/package-by-component.png"
 tags: ["Go", "Clean Architecture", "Package by Components"]
+description: "Código Go real organizado por componente, no por capa. Contratos, inyección de dependencias, error boundaries y el patrón AppContainer — con los bugs reales que pusimos en prod y lo que aprendimos."
 draft: false
 ---
 
