@@ -1,51 +1,303 @@
 
 <!DOCTYPE html>
-<html lang="es">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="es" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63865&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8" />
-  <title>Go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go | Silent Gopher</title>
   
-    <link rel="stylesheet" href="/scss/main.min.8bad63f3f669f27124dd397e2b4b595878d5bc5886b606b4888699231a016add.css" integrity="sha256-i61j8/Zp8nEk3Tl&#43;K0tZWHjVvFiGtga0iIaZIxoBat0=">
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="/scss/main.min.67071da49f24c2816ec10b04a1808d527f63f16a4562aa6ec610d0077d0d3462.css" integrity="sha256-ZwcdpJ8kwoFuwQsEoYCNUn9j8WpFYqpuxhDQB30NNGI=">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="articles-header ">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
-  </header>
 
-<nav style="text-align:center; margin-top:1rem;">
-  <a href="/">Inicio</a>
+<header class="articles-header">
+  <div class="header-controls-container">
+    <button class="theme-toggle" aria-label="Cambiar tema">
+      <span class="theme-icon">🌙</span>
+    </button>
+    <div class="language-switcher">
+      
+        
+          <span class="active">Es</span>
+        
+      
+        
+          <a href="http://localhost:63865/en">En</a>
+        
+      
+    </div>
+  </div>
+</header>
+
+<nav>
+  <a href="/">Inicio</a> |
   <a href="/posts">Artículos</a> |
   <a href="/about">Sobre mí</a>
 </nav>
 
-  <h1 style="text-align:center;">Artículos</h1>
+<main class="articles-page">
+  <div class="articles-page-header">
+    <h1 class="articles-page-title">Artículos</h1>
+    <p class="articles-page-count">4 artículos</p>
+  </div>
 
   <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Buscar artículos...">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Buscar artículos..." autocomplete="off">
+    <span class="search-results-count" id="searchCount"></span>
   </div>
 
-  <div class="articles-list" id="articlesList">
+  <div class="blog-wrapper" id="articlesList">
     
     
-      <div class="article-card" data-title="parte 2: aplicando component-based clean architecture en go">
-        <h2><a href="/posts/package-by-component/">Parte 2: Aplicando Component-Based Clean Architecture en Go</a></h2>
-        <p>Package by Components</p>
-        <small>31 Jul, 2025</small>
+      <div class="blog-card-wrapper" data-title="functional options en go: el patrón detrás de constructores limpios" data-tags="go clean code patterns functional options ">
+        <article class="post-card">
+  <a href="/posts/functional-options/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/posts/functional-options/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/functional-options/functional-options.png" alt="Functional Options en Go: El Patrón Detrás de Constructores Limpios" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-08-01">Aug 1, 2025</time>
+    <span class="dot">·</span>
+    <span>9 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/posts/functional-options/">Functional Options en Go: El Patrón Detrás de Constructores Limpios</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Functional Options Pattern</p>
+  
+
+  <p class="post-card-description">
+    
+       💡 Si la firma de tu función ya tiene cinco parámetros, el sexto no la hace más difícil de leer — la hace peligrosa.
+
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/clean-code">#Clean Code</a></li>
+        
+          <li><a href="/tags/patterns">#Patterns</a></li>
+        
+          <li><a href="/tags/functional-options">#Functional Options</a></li>
+        
+      </ul>
+      <a href="/posts/functional-options/" class="post-card-readmore">
+        Leer más
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
       </div>
     
-      <div class="article-card" data-title="parte 1: entendiendo clean architecture más allá del diagrama">
-        <h2><a href="/posts/clean-architecture/">Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</a></h2>
-        <p>Clean Architecture</p>
-        <small>30 Jul, 2025</small>
+      <div class="blog-card-wrapper" data-title="parte 2: aplicando component-based clean architecture en go" data-tags="go clean architecture package by components ">
+        <article class="post-card">
+  <a href="/posts/package-by-component/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/posts/package-by-component/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/package-by-component.png" alt="Parte 2: Aplicando Component-Based Clean Architecture en Go" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-07-31">Jul 31, 2025</time>
+    <span class="dot">·</span>
+    <span>6 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/posts/package-by-component/">Parte 2: Aplicando Component-Based Clean Architecture en Go</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Package by Components</p>
+  
+
+  <p class="post-card-description">
+    
+       💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow. Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar …
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/clean-architecture">#Clean Architecture</a></li>
+        
+          <li><a href="/tags/package-by-components">#Package by Components</a></li>
+        
+      </ul>
+      <a href="/posts/package-by-component/" class="post-card-readmore">
+        Leer más
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+      </div>
+    
+      <div class="blog-card-wrapper" data-title="parte 1: entendiendo clean architecture más allá del diagrama" data-tags="go clean architecture ">
+        <article class="post-card">
+  <a href="/posts/clean-architecture/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/posts/clean-architecture/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/clean-architecture.jpg" alt="Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-07-30">Jul 30, 2025</time>
+    <span class="dot">·</span>
+    <span>7 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/posts/clean-architecture/">Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Clean Architecture</p>
+  
+
+  <p class="post-card-description">
+    
+       ⚠️ Advertencia: Esto no es otro artículo teórico con diagramas bonitos que solo funcionan en PowerPoint. Hablaré de fracasos, de cómo mis primeros intentos con Clean Architecture …
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/clean-architecture">#Clean Architecture</a></li>
+        
+      </ul>
+      <a href="/posts/clean-architecture/" class="post-card-readmore">
+        Leer más
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+      </div>
+    
+      <div class="blog-card-wrapper" data-title="acoplamiento y cohesión en arquitectura de software (con ejemplos en go)" data-tags="go coupling cohesion ">
+        <article class="post-card">
+  <a href="/posts/coupling-and-cohesion/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/posts/coupling-and-cohesion/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/coupling-cohesion/coupling-cohesion.png" alt="Acoplamiento y Cohesión en Arquitectura de Software (con ejemplos en Go)" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-06-15">Jun 15, 2025</time>
+    <span class="dot">·</span>
+    <span>6 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/posts/coupling-and-cohesion/">Acoplamiento y Cohesión en Arquitectura de Software (con ejemplos en Go)</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Coupling and Cohesion</p>
+  
+
+  <p class="post-card-description">
+    
+       Al diseñar sistemas distribuidos o modulares, comprender la relación entre acoplamiento y cohesión es clave para lograr una arquitectura mantenible, flexible y escalable.
+
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/coupling">#Coupling</a></li>
+        
+          <li><a href="/tags/cohesion">#Cohesion</a></li>
+        
+      </ul>
+      <a href="/posts/coupling-and-cohesion/" class="post-card-readmore">
+        Leer más
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
       </div>
     
   </div>
 
- 
-  <script>
+  <div class="no-results" id="noResults" style="display:none;">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <p>No se encontraron artículos</p>
+  </div>
+</main>
+
+<script>
 document.addEventListener('DOMContentLoaded', () => {
     
     const themeToggles = document.querySelectorAll('.theme-toggle');
@@ -92,17 +344,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  <script>
-    const input = document.getElementById('searchInput');
-    const articles = document.querySelectorAll('.article-card');
+<script>
+  const input = document.getElementById('searchInput');
+  const cards = document.querySelectorAll('.blog-card-wrapper');
+  const noResults = document.getElementById('noResults');
+  const searchCount = document.getElementById('searchCount');
 
-    input.addEventListener('input', () => {
-      const filter = input.value.toLowerCase();
-      articles.forEach(card => {
-        const title = card.dataset.title;
-        card.style.display = title.includes(filter) ? '' : 'none';
-      });
+  input.addEventListener('input', () => {
+    const filter = input.value.toLowerCase().trim();
+    let visible = 0;
+
+    cards.forEach(card => {
+      const title = card.dataset.title || '';
+      const tags = card.dataset.tags || '';
+      const match = !filter || title.includes(filter) || tags.includes(filter);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
     });
-  </script>
+
+    noResults.style.display = (filter && visible === 0) ? 'flex' : 'none';
+    searchCount.textContent = filter ? `${visible} resultado${visible !== 1 ? 's' : ''}` : '';
+  });
+</script>
 </body>
 </html>

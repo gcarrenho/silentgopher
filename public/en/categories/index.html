@@ -1,65 +1,140 @@
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-    <script>
-    window.PUBLIC_SUPABASE_URL = '';
-    window.PUBLIC_SUPABASE_KEY = '';
-
-</script>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="gopher, golang, blog, tecnología, programación, silentgopher, hexagonal, package by component, clean architecture">
-    <meta name="robots" content="index, follow">
-
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Categories | Silent Gopher">
-    <meta property="og:description" content="">
-    <meta property="og:url" content="http://localhost:1313/en/categories/">
-    <meta property="og:image" content="http://localhost:1313/images/default-og.png">
-
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Categories | Silent Gopher">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="http://localhost:1313/images/default-og.png">
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categories | Silent Gopher</title>
-    
-    <link rel="stylesheet" href="/scss/main.min.8bad63f3f669f27124dd397e2b4b595878d5bc5886b606b4888699231a016add.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63865&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories | Silent Gopher</title>
+  
+  <link rel="stylesheet" href="/scss/main.min.67071da49f24c2816ec10b04a1808d527f63f16a4562aa6ec610d0077d0d3462.css" integrity="sha256-ZwcdpJ8kwoFuwQsEoYCNUn9j8WpFYqpuxhDQB30NNGI=">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
-
 <body>
-     
-    
-    
-    <script type="module">
-        import { trackPageView } from '/js/modules/analytics.js';
-        
-        document.addEventListener('DOMContentLoaded', trackPageView);
-    </script>
 
-    
-<header class="page-header">
-    <h1>Categories</h1>
+<header class="articles-header">
+  <div class="header-controls-container">
+    <button class="theme-toggle" aria-label="Cambiar tema">
+      <span class="theme-icon">🌙</span>
+    </button>
+    <div class="language-switcher">
+      
+        
+          <a href="http://localhost:63865/es">Es</a>
+        
+      
+        
+          <span class="active">En</span>
+        
+      
+    </div>
+  </div>
 </header>
 
-<ul class="terms-tags">
-</ul>
+<nav>
+  <a href="/en/">Home</a> |
+  <a href="/en/posts">Articles</a> |
+  <a href="/en/about">About me</a>
+</nav>
+
+<main class="articles-page">
+  <div class="articles-page-header">
+    <h1 class="articles-page-title">Articles</h1>
+    <p class="articles-page-count">0 artículos</p>
+  </div>
+
+  <div class="search-bar">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <input type="text" id="searchInput" placeholder="Buscar artículos..." autocomplete="off">
+    <span class="search-results-count" id="searchCount"></span>
+  </div>
+
+  <div class="blog-wrapper" id="articlesList">
+    
+    
+  </div>
+
+  <div class="no-results" id="noResults" style="display:none;">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="11" cy="11" r="8"></circle>
+      <path d="m21 21-4.35-4.35"></path>
+    </svg>
+    <p>No se encontraron artículos</p>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const themeToggles = document.querySelectorAll('.theme-toggle');
+    
+    
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = localStorage.getItem('theme');
+
+    
+    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggles.forEach(btn => btn.textContent = '☀️');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggles.forEach(btn => btn.textContent = '🌙');
+    }
+
+    
+    themeToggles.forEach(button => {
+        button.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggles.forEach(btn => btn.textContent = '☀️');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggles.forEach(btn => btn.textContent = '🌙');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    });
+
+    
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggles.forEach(btn => btn.textContent = newTheme === 'dark' ? '☀️' : '🌙');
+        }
+    });
+});
+</script>
 
 
-    <footer class="main-footer">
-        <p>&copy; 2025 @SilentGopher. Todos los derechos reservados.</p>
-    </footer>
 
-    <script type="module" src="/js/main.js"></script>
+<script>
+  const input = document.getElementById('searchInput');
+  const cards = document.querySelectorAll('.blog-card-wrapper');
+  const noResults = document.getElementById('noResults');
+  const searchCount = document.getElementById('searchCount');
 
+  input.addEventListener('input', () => {
+    const filter = input.value.toLowerCase().trim();
+    let visible = 0;
+
+    cards.forEach(card => {
+      const title = card.dataset.title || '';
+      const tags = card.dataset.tags || '';
+      const match = !filter || title.includes(filter) || tags.includes(filter);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    noResults.style.display = (filter && visible === 0) ? 'flex' : 'none';
+    searchCount.textContent = filter ? `${visible} resultado${visible !== 1 ? 's' : ''}` : '';
+  });
+</script>
 </body>
-
 </html>

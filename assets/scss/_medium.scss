@@ -331,3 +331,75 @@ a:hover {
         font-size: 1.5rem;
     }
 }
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.65rem;
+    }
+
+    .subtitle {
+        font-size: 1.1rem;
+    }
+
+    .medium-article {
+        margin: 1.5rem auto;
+        padding: 0 0.75rem;
+    }
+
+    .content p,
+    .content {
+        font-size: 1rem;
+    }
+
+    .content h2 {
+        font-size: 1.3rem;
+    }
+
+    .content h3 {
+        font-size: 1.15rem;
+    }
+
+    .meta-info {
+        font-size: 0.85em;
+    }
+}
+
+/* ====== Anchor links en headings (estilo danicat.dev) ====== */
+.content h2,
+.content h3,
+.content h4 {
+    position: relative;
+}
+
+.content h2 a.anchor,
+.content h3 a.anchor,
+.content h4 a.anchor {
+    position: absolute;
+    left: -1.25em;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    color: var(--meta);
+    font-weight: 400;
+    font-size: 0.85em;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    padding-right: 0.25em;
+}
+
+.content h2:hover a.anchor,
+.content h3:hover a.anchor,
+.content h4:hover a.anchor {
+    opacity: 1;
+}
+
+/* Fallback: heading IDs generados por Hugo se linkifican directamente */
+.content h2[id]::before,
+.content h3[id]::before {
+    content: "";
+    display: block;
+    height: 80px;
+    margin-top: -80px;
+    visibility: hidden;
+    pointer-events: none;
+}

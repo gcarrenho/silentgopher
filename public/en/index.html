@@ -2,14 +2,14 @@
 <html lang="en" data-theme="light">
 
 <head>
-	<meta name="generator" content="Hugo 0.150.0"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+	<meta name="generator" content="Hugo 0.160.1"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63865&amp;path=livereload" data-no-instant defer></script>
     <script>
     window.PUBLIC_SUPABASE_URL = '';
     window.PUBLIC_SUPABASE_KEY = '';
 
 </script>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="@SilentGopher">
     <meta name="keywords" content="gopher, golang, blog, tecnología, programación, silentgopher, hexagonal, package by component, clean architecture">
     <meta name="robots" content="index, follow">
 
@@ -17,20 +17,20 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Inicio | Silent Gopher">
     <meta property="og:description" content="">
-    <meta property="og:url" content="http://localhost:1313/en/">
-    <meta property="og:image" content="http://localhost:1313/images/default-og.png">
+    <meta property="og:url" content="http://localhost:63865/en/">
+    <meta property="og:image" content="http://localhost:63865/images/default-og.png">
 
     
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Inicio | Silent Gopher">
     <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="http://localhost:1313/images/default-og.png">
+    <meta name="twitter:image" content="http://localhost:63865/images/default-og.png">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Silent Gopher</title>
     
-    <link rel="stylesheet" href="/scss/main.min.8bad63f3f669f27124dd397e2b4b595878d5bc5886b606b4888699231a016add.css">
+    <link rel="stylesheet" href="/scss/main.min.67071da49f24c2816ec10b04a1808d527f63f16a4562aa6ec610d0077d0d3462.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@
           <div class="language-switcher">
             
                 
-                    <a href="http://localhost:1313/es">Es</a>
+                    <a href="http://localhost:63865/es">Es</a>
                 
             
                 
@@ -93,140 +93,226 @@
             
             
             
-            <div class="blog-card alt">
-  <div class="meta">
-    <div class="photo" style="background-image: url('/images/posts/package-by-component.png')"></div>
-    <ul class="details">
-      <li class="author">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-        @SilentGopher
-      </li>
-      <li class="date">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-        14 Jun 2025
-      </li>      
-      <li class="tags">
-          <svg class="icon tag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg>
-          <ul class="tag-list">
-            
-              <li><a href="/tags/go">Go</a></li>
-            
-              <li><a href="/tags/clean-architecture">Clean Architecture</a></li>
-            
-              <li><a href="/tags/package-by-components">Package by Components</a></li>
-            
-          </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="description">
-    <h1>Part 2: Applying Component-Based Clean Architecture in Go</h1>
-    <h2>Package by Components</h2>
-    
-    <div class="summary-container">
-      <div class="summary-content">
-        
-        
-        <blockquote>
-<p>💡 WARNING: If you&rsquo;re expecting perfect copy-paste code, better go to StackOverflow.
-This is real-world code with scars—60% worked on the first try, the other 40% made us cry during refactor.</p></blockquote>
-<h2 id="-the-project-that-nearly-burned-my-eyeballs">🚧 The Project That Nearly Burned My Eyeballs</h2>
-<p>Several months ago, I inherited a Go monolith where:</p>
-<ul>
-<li>
-<p><code>users</code> and <code>orders</code> shared structs like drunken confessions.</p>
-</li>
-<li>
-<p>A change in <code>User.Email</code> broke 3 different services.</p>
-</li>
-<li>
-<p>The tests were as fragile as Murano glass.</p>
-      </div>
-      <div class="fade-overlay"></div>
-    </div>
+            <article class="post-card">
+  <a href="/en/posts/functional-options/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
 
-    <p class="read-more">
-      <a href="/en/posts/package-by-component/">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
-        read more
-      </a>
-    </p>
-  </div>
-</div>
-            
-            <div class="blog-card ">
-  <div class="meta">
-    <div class="photo" style="background-image: url('/images/posts/clean-architecture.jpg')"></div>
-    <ul class="details">
-      <li class="author">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-        @SilentGopher
-      </li>
-      <li class="date">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-          <line x1="16" y1="2" x2="16" y2="6"></line>
-          <line x1="8" y1="2" x2="8" y2="6"></line>
-          <line x1="3" y1="10" x2="21" y2="10"></line>
-        </svg>
-        13 Jun 2025
-      </li>      
-      <li class="tags">
-          <svg class="icon tag-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-            <line x1="7" y1="7" x2="7" y2="7"></line>
-          </svg>
-          <ul class="tag-list">
-            
-              <li><a href="/tags/go">Go</a></li>
-            
-              <li><a href="/tags/clean-architecture">Clean Architecture</a></li>
-            
-          </ul>
-      </li>
-    </ul>
-  </div>
-  <div class="description">
-    <h1>Part 1: Understanding Clean Architecture Beyond the Diagram</h1>
-    <h2>Clean Architecture</h2>
-    
-    <div class="summary-container">
-      <div class="summary-content">
-        
-        
-        <blockquote>
-<p>⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint.
-I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).</p></blockquote>
-      </div>
-      <div class="fade-overlay"></div>
-    </div>
+  
+    <a href="/en/posts/functional-options/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/functional-options/functional-options.png" alt="Functional Options in Go: The Pattern Behind Clean Service Constructors" loading="lazy">
+    </a>
+  
 
-    <p class="read-more">
-      <a href="/en/posts/clean-architecture/">
-        <svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-          <path d="M5 12h14M12 5l7 7-7 7"></path>
-        </svg>
-        read more
-      </a>
-    </p>
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-08-01">Aug 1, 2025</time>
+    <span class="dot">·</span>
+    <span>9 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
   </div>
-</div>
+
+  <h2 class="post-card-title">
+    <a href="/en/posts/functional-options/">Functional Options in Go: The Pattern Behind Clean Service Constructors</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Functional Options Pattern</p>
+  
+
+  <p class="post-card-description">
+    
+       💡 If your function signature has grown to five parameters, the sixth one doesn&rsquo;t make the code harder to read — it makes it dangerous.
+
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/clean-code">#Clean Code</a></li>
+        
+          <li><a href="/tags/patterns">#Patterns</a></li>
+        
+          <li><a href="/tags/functional-options">#Functional Options</a></li>
+        
+      </ul>
+      <a href="/en/posts/functional-options/" class="post-card-readmore">
+        read more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+            
+            <article class="post-card">
+  <a href="/en/posts/coupling-and-cohesion/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/en/posts/coupling-and-cohesion/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/coupling-cohesion/coupling-cohesion.png" alt="Coupling and Cohesion in Software Architecture (with Go Examples)" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-06-15">Jun 15, 2025</time>
+    <span class="dot">·</span>
+    <span>6 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/en/posts/coupling-and-cohesion/">Coupling and Cohesion in Software Architecture (with Go Examples)</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Coupling and Cohesion</p>
+  
+
+  <p class="post-card-description">
+    
+       When designing distributed or modular systems, understanding the relationship between coupling and cohesion is key to achieving a maintainable, flexible, and scalable …
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/coupling">#Coupling</a></li>
+        
+          <li><a href="/tags/cohesion">#Cohesion</a></li>
+        
+      </ul>
+      <a href="/en/posts/coupling-and-cohesion/" class="post-card-readmore">
+        read more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+            
+            <article class="post-card">
+  <a href="/en/posts/package-by-component/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/en/posts/package-by-component/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/package-by-component.png" alt="Part 2: Applying Component-Based Clean Architecture in Go" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-06-14">Jun 14, 2025</time>
+    <span class="dot">·</span>
+    <span>6 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Package by Components</p>
+  
+
+  <p class="post-card-description">
+    
+       💡 WARNING: If you&rsquo;re expecting perfect copy-paste code, better go to StackOverflow. This is real-world code with scars—60% worked on the first try, the other 40% made us cry …
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/clean-architecture">#Clean Architecture</a></li>
+        
+          <li><a href="/tags/package-by-components">#Package by Components</a></li>
+        
+      </ul>
+      <a href="/en/posts/package-by-component/" class="post-card-readmore">
+        read more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+            
+            <article class="post-card">
+  <a href="/en/posts/clean-architecture/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/en/posts/clean-architecture/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/clean-architecture.jpg" alt="Part 1: Understanding Clean Architecture Beyond the Diagram" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2025-06-13">Jun 13, 2025</time>
+    <span class="dot">·</span>
+    <span>7 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/en/posts/clean-architecture/">Part 1: Understanding Clean Architecture Beyond the Diagram</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Clean Architecture</p>
+  
+
+  <p class="post-card-description">
+    
+       ⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint. I’ll talk about failures, how my first attempts with Clean Architecture were …
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/clean-architecture">#Clean Architecture</a></li>
+        
+      </ul>
+      <a href="/en/posts/clean-architecture/" class="post-card-readmore">
+        read more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
             
             
         </div>
@@ -238,7 +324,37 @@ I’ll talk about failures, how my first attempts with Clean Architecture were a
     <ul class="widget-list">
         
         <li>
-            <a href="http://localhost:1313/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
+            <a href="http://localhost:63865/en/posts/functional-options/">Functional Options in Go: The Pattern Behind Clean Service Constructors</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    01/08/2025
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="http://localhost:63865/en/posts/coupling-and-cohesion/">Coupling and Cohesion in Software Architecture (with Go Examples)</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    15/06/2025
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="http://localhost:63865/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
             <span class="post-meta">
                 
                 <span class="post-date">
@@ -253,7 +369,7 @@ I’ll talk about failures, how my first attempts with Clean Architecture were a
         </li>
         
         <li>
-            <a href="http://localhost:1313/en/posts/clean-architecture/">Part 1: Understanding Clean Architecture Beyond the Diagram</a>
+            <a href="http://localhost:63865/en/posts/clean-architecture/">Part 1: Understanding Clean Architecture Beyond the Diagram</a>
             <span class="post-meta">
                 
                 <span class="post-date">
@@ -350,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     <footer class="main-footer">
-        <p>&copy; 2025 @SilentGopher. Todos los derechos reservados.</p>
+        <p>&copy; 2026 @SilentGopher. Todos los derechos reservados.</p>
     </footer>
 
     <script type="module" src="/js/main.js"></script>

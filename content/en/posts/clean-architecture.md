@@ -170,7 +170,33 @@ type Payment struct {
 
 > "If module A uses something from B, B must expose it explicitly in its contract.
 Like a public API: if it’s not documented, it doesn’t exist."
+### 🤔 Key Question: Who Owns the Contract?
 
+This distinction is subtle but matters a lot. There are two philosophies:
+
+**Provider-driven** — the implementor publishes its contract, and consumers adapt to it:
+```go
+// contracts/users/service.go  <-- users "publishes" what it offers
+type UserService interface {
+    FindByID(ctx context.Context, id string) (UserDTO, error)
+}
+// payments imports this package to use it
+```
+
+**Consumer-driven** — the consumer defines exactly what it needs, and the provider satisfies it implicitly:
+```go
+// payments/service.go  <-- payments defines only what it cares about
+type userLookup interface {  // lowercase: package-private
+    FindByID(ctx context.Context, id string) (UserDTO, error)
+}
+// users implements this without knowing payments exists
+```
+
+In Go, the second approach is idiomatic because interfaces are satisfied **implicitly** — `users` doesn't need to declare that it implements anything, it just does. That reduces coupling to the minimum.
+
+**Which do I use?** The `/contracts/` approach is more explicit and easier to navigate in larger teams. The trade-off is that `contracts/` becomes a shared package — if two components import it, they become indirectly coupled through it. For medium-sized projects and teams that need clarity, it's a valid decision. For projects where total component independence is critical, the consumer-driven approach scales better.
+
+> **Practical Rule**: What matters isn't the pattern you choose, but that it's **documented and agreed on by the team**. A consistent mediocre architecture beats a perfect one that only the designer understands.
 ## 💡 The Solution That Worked for Me: Components + Contracts
 After getting burned, I learned that:  
 ✅ Each component should be a "mini-project" (with its own domain, logic, and adapters).  

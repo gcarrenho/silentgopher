@@ -173,6 +173,34 @@ type Payment struct {
 > "Si un módulo A usa algo de B, B debe exponerlo explícitamente en su contrato.
 Como una API pública: si no está documentado, no existe."
 
+### 🤔 Pregunta clave: ¿quién es dueño del contrato?
+
+Esta distinción es sutil pero importa mucho. Hay dos filosofías:
+
+**Provider-driven** — el que implementa publica su contrato, y los consumidores se adaptan a él:
+```go
+// contracts/users/service.go  <-- users "publica" lo que ofrece
+type UserService interface {
+    FindByID(ctx context.Context, id string) (UserDTO, error)
+}
+// payments importa este paquete para usarlo
+```
+
+**Consumer-driven** — el que consume define exactamente lo que necesita, el proveedor lo satisface de forma implícita:
+```go
+// payments/service.go  <-- payments define solo lo que le importa
+type userLookup interface {  // minúscula: package-private
+    FindByID(ctx context.Context, id string) (UserDTO, error)
+}
+// users implementa esto sin saber que payments existe
+```
+
+En Go, el segundo enfoque es el idiomático porque las interfaces se satisfacen **implícitamente** — `users` no necesita declarar que implementa nada, simplemente lo hace. Eso reduce el acoplamiento al mínimo.
+
+**¿Cuál uso yo?** El enfoque con `/contracts/` es más explícito y fácil de navegar en equipos grandes. El trade-off es que `contracts/` se convierte en un paquete compartido — si dos componentes lo importan, quedan indirectamente acoplados a través de él. Para proyectos medianos y equipos que necesitan claridad, es una decisión válida. Para proyectos donde la independencia total entre componentes es crítica, el enfoque consumer-driven escala mejor.
+
+> **Regla práctica**: Lo importante no es el patrón elegido, sino que quede **documentado y acordado en el equipo**. Una arquitectura consistente mediocre gana a una arquitectura perfecta que solo entiende el que la diseñó.
+
 
 ## 💡 La solución que me funcionó: Componentes + Contratos
 Después de quemarme, aprendí que:  

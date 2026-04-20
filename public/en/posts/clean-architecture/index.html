@@ -1,63 +1,101 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="en" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63865&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
-  <title>Part 1: Understanding Clean Architecture Beyond the Diagram</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Part 1: Understanding Clean Architecture Beyond the Diagram | Silent Gopher</title>
+  <meta name="description" content=" ⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint. I’ll talk about failures, how my first attempts with …">
   
-  <link rel="stylesheet" href="/scss/main.min.8bad63f3f669f27124dd397e2b4b595878d5bc5886b606b4888699231a016add.css" integrity="sha256-i61j8/Zp8nEk3Tl&#43;K0tZWHjVvFiGtga0iIaZIxoBat0=">
+  <link rel="stylesheet" href="/scss/main.min.67071da49f24c2816ec10b04a1808d527f63f16a4562aa6ec610d0077d0d3462.css" integrity="sha256-ZwcdpJ8kwoFuwQsEoYCNUn9j8WpFYqpuxhDQB30NNGI=">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
-  <body data-post-id="clean-architecture" class="post-page">
-  <header class="main-header">
-    <img src="/images/posts/clean-architecture.jpg" 
-       alt="Part 1: Understanding Clean Architecture Beyond the Diagram" 
-       class="header-gopher">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+<body data-post-id="clean-architecture" class="post-page">
+
+  
+  <header class="post-topbar">
+    <div class="topbar-controls">
+      <div class="language-switcher">
+        
+          
+            <a href="/posts/clean-architecture/">Es</a>
+          
+        
+        <span class="active">En</span>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+    <nav class="post-topbar-nav">
+      <a href="/en/">Home</a>
+      <span class="topbar-sep">|</span>
+      <a href="/en/posts">Articles</a>
+      <span class="topbar-sep">|</span>
+      <a href="/en/about">About me</a>
+    </nav>
+    <div class="topbar-spacer"></div>
   </header>
 
-  <nav style="text-align:center; margin-top:1rem;">
-    <a href="/">Home</a> |
-    <a href="/posts">Articles</a> |
-    <a href="/about">About me</a>
-  </nav>
-
-  <main class="medium-article ">
+  <main class="medium-article">
     <article>
-      <h1>Part 1: Understanding Clean Architecture Beyond the Diagram</h1>
-      
-        <h2 class="subtitle">Clean Architecture</h2>
-      
 
       
-      <div class="engagement-stats">
-        <span class="stat-item">
-          ⏱️ <span class="minutes">6</span> min
-        </span>
-        •
-        <span class="stat-item">
-          👁️ <span id="view-count">0</span>
-        </span>
-        •
-        <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
-          👏 <span id="clap-count">0</span>
-        </button>
-        •
-        <button id="comment-btn" class="comment-button" aria-label="Comentar este artículo">
-          💬 <span id="comment-count">0</span>
-        </button>
+      
+      <div class="post-hero">
+        <img src="/images/posts/clean-architecture.jpg" alt="Part 1: Understanding Clean Architecture Beyond the Diagram" class="post-hero-img" loading="eager">
       </div>
+      
 
-  </div> 
-        <p class="meta-info">
-          June 13, 2025 — by @SilentGopher
-        </p>
+      
+      <header class="post-header">
+        
+        <div class="post-tags">
+          
+            <a href="/tags/go" class="post-tag">#Go</a>
+          
+            <a href="/tags/clean-architecture" class="post-tag">#Clean Architecture</a>
+          
+        </div>
+        
+
+        <h1>Part 1: Understanding Clean Architecture Beyond the Diagram</h1>
+
+        
+          <p class="subtitle">Clean Architecture</p>
+        
+
+        <div class="post-byline">
+          <time datetime="2025-06-13">June 13, 2025</time>
+          <span class="dot">·</span>
+          <span>7 min</span>
+          
+            <span class="dot">·</span>
+            <span>@SilentGopher</span>
+          
+          <span class="dot">·</span>
+          <span>👁 <span id="view-count">0</span></span>
+        </div>
+
+        
+        <div class="engagement-stats">
+          <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
+            👏 <span id="clap-count">0</span>
+          </button>
+          <span class="stat-sep">·</span>
+          <button id="comment-btn" class="comment-button" aria-label="Ir a comentarios">
+            💬 <span id="comment-count">0</span>
+          </button>
+        </div>
+      </header>
+
       
       <div class="content">
         <blockquote>
 <p>⚠️ Warning: This isn’t another theoretical article with pretty diagrams that only work in PowerPoint.
-I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).</p></blockquote>
+I’ll talk about failures, how my first attempts with Clean Architecture were a disaster, and the solution that finally worked in real projects (with deadlines, impatient bosses, and requirements that change every Tuesday).</p>
+</blockquote>
 <h2 id="-why-am-i-writing-this">🚀 Why Am I Writing This?</h2>
 <p>A few years ago, in my first &ldquo;serious&rdquo; Go project, I made every possible mistake:</p>
 <ol>
@@ -75,13 +113,15 @@ I’ll talk about failures, how my first attempts with Clean Architecture were a
 <h2 id="-clean-architecture-theory-vs-my-reality">🔪 Clean Architecture: Theory vs. My Reality</h2>
 <p>The theory says:</p>
 <blockquote>
-<p>&ldquo;Separate domains, use interfaces, blah blah.&rdquo;</p></blockquote>
+<p>&ldquo;Separate domains, use interfaces, blah blah.&rdquo;</p>
+</blockquote>
 <p>My reality was:</p>
 <blockquote>
-<p>&ldquo;Why does my UserService know how to persist a PDF in S3? Who wrote this code?… Oh, it was me. 💀&rdquo;</p></blockquote>
+<p>&ldquo;Why does my UserService know how to persist a PDF in S3? Who wrote this code?… Oh, it was me. 💀&rdquo;</p>
+</blockquote>
 <h2 id="the-3-approaches-i-tried-and-how-they-bit-me">The 3 Approaches I Tried (And How They Bit Me)</h2>
 <h3 id="1-package-by-layer-the-classic-layer-graveyard">1. Package by Layer: The Classic &ldquo;Layer Graveyard&rdquo;</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">handlers</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Chaos</span> <span style="color:#a6e22e">lives</span> <span style="color:#a6e22e">here</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">handlers</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Chaos</span> <span style="color:#a6e22e">lives</span> <span style="color:#a6e22e">here</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">services</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;Domain&#34;</span> <span style="color:#a6e22e">logic</span> <span style="color:#a6e22e">mixed</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">HTTP</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">repositories</span><span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Why</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">this</span> <span style="color:#a6e22e">method</span> <span style="color:#a6e22e">have</span> <span style="color:#ae81ff">20</span> <span style="color:#a6e22e">parameters</span><span style="color:#960050;background-color:#1e0010">?</span>  
 </span></span></code></pre></div><p><strong>The Good</strong>:</p>
@@ -103,7 +143,7 @@ I’ll talk about failures, how my first attempts with Clean Architecture were a
 </li>
 </ul>
 <h3 id="2-package-by-feature-the-every-man-for-himself-approach">2. Package by Feature: The &ldquo;Every Man for Himself&rdquo; Approach</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">payments</span><span style="color:#f92672">/</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">reports</span><span style="color:#f92672">/</span>  <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Home</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">God</span> <span style="color:#a6e22e">Object</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">EVERYTHING</span>  
 </span></span></code></pre></div><p><strong>The Good</strong>:</p>
@@ -128,9 +168,10 @@ I’ll talk about failures, how my first attempts with Clean Architecture were a
 <h3 id="3-hexagonal-architecture-when-theory-collides-with-practice">3. Hexagonal Architecture: When theory collides with practice</h3>
 <p>The theory promised:</p>
 <blockquote>
-<p>&ldquo;Pure domain, swappable adapters, eternal happiness.&rdquo;</p></blockquote>
+<p>&ldquo;Pure domain, swappable adapters, eternal happiness.&rdquo;</p>
+</blockquote>
 <p>My implementation looked like:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>  
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">core</span><span style="color:#f92672">/</span>       <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Where</span> <span style="color:#a6e22e">the</span> <span style="color:#e6db74">&#34;domain&#34;</span> <span style="color:#a6e22e">lived</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">domain</span><span style="color:#f92672">/</span>   <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Ended</span> <span style="color:#a6e22e">up</span> <span style="color:#a6e22e">with</span> <span style="color:#ae81ff">50</span> <span style="color:#a6e22e">coupled</span> <span style="color:#e6db74">&#34;entities&#34;</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">ports</span><span style="color:#f92672">/</span>    <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Interfaces</span> <span style="color:#a6e22e">with</span> <span style="color:#ae81ff">100</span> <span style="color:#a6e22e">methods</span>  
@@ -152,11 +193,12 @@ I’ll talk about failures, how my first attempts with Clean Architecture were a
 <p>Or: &ldquo;Why Juan on the Team Hates Me After That PR&rdquo;</p>
 <p>Context: A few months ago, during a normal sprint, a new teammate (let’s call him Juan) got this task:</p>
 <blockquote>
-<p>&ldquo;We need an endpoint <code>/orders/user/{id}</code> to return orders. It’s urgent for the client!&rdquo;</p></blockquote>
+<p>&ldquo;We need an endpoint <code>/orders/user/{id}</code> to return orders. It’s urgent for the client!&rdquo;</p>
+</blockquote>
 <p>Juan, being efficient, saw that there was already an <code>OrderRepository</code> with the perfect method:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">FindByUserID</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) ([]<span style="color:#a6e22e">Order</span>, <span style="color:#66d9ef">error</span>)  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">FindByUserID</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) ([]<span style="color:#a6e22e">Order</span>, <span style="color:#66d9ef">error</span>)  
 </span></span></code></pre></div><p>So he wrote this in the handler:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">OrderHandler</span>) <span style="color:#a6e22e">GetOrdersByUser</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {  
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">OrderHandler</span>) <span style="color:#a6e22e">GetOrdersByUser</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">userID</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">chi</span>.<span style="color:#a6e22e">URLParam</span>(<span style="color:#a6e22e">r</span>, <span style="color:#e6db74">&#34;id&#34;</span>)  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">orders</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">orderRepo</span>.<span style="color:#a6e22e">FindByUserID</span>(<span style="color:#a6e22e">userID</span>) <span style="color:#75715e">// &lt;- Direct access!  </span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e">// ... (error handling and response)  </span>
@@ -191,7 +233,8 @@ He had to mock the DB&hellip; just to test a handler.</p>
 <p>(Without realizing it)</p>
 <p>The theoretical diagram said:</p>
 <blockquote>
-<p>&ldquo;Handlers (adapters) must talk to the domain (services), NOT to infrastructure (repositories).&rdquo;</p></blockquote>
+<p>&ldquo;Handlers (adapters) must talk to the domain (services), NOT to infrastructure (repositories).&rdquo;</p>
+</blockquote>
 <p>But in practice:</p>
 <ul>
 <li>
@@ -203,13 +246,13 @@ He had to mock the DB&hellip; just to test a handler.</p>
 </ul>
 <h2 id="-the-solution-contracts-not-coupling">💡 The Solution: Contracts, Not Coupling</h2>
 <p>🚫 Common Mistake (We’ve All Made It):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// payments/module.go  </span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// payments/module.go  </span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Payment</span> <span style="color:#66d9ef">struct</span> {  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">User</span> <span style="color:#a6e22e">users</span>.<span style="color:#a6e22e">UserEntity</span> <span style="color:#75715e">// &lt;- Direct coupling to users&#39; entity!  </span>
 </span></span><span style="display:flex;"><span>}  
 </span></span></code></pre></div><p><strong>Problem</strong>: If UserEntity changes, payments breaks.</p>
 <p>✅ The Fix We Implemented:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user.go  </span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user.go  </span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserDTO</span> <span style="color:#66d9ef">struct</span> {  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ID</span>    <span style="color:#66d9ef">string</span>  
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Email</span> <span style="color:#66d9ef">string</span> <span style="color:#75715e">// Only what we need  </span>
@@ -222,14 +265,34 @@ He had to mock the DB&hellip; just to test a handler.</p>
 </span></span></code></pre></div><p><strong>Simple Rule</strong>:</p>
 <blockquote>
 <p>&ldquo;If module A uses something from B, B must expose it explicitly in its contract.
-Like a public API: if it’s not documented, it doesn’t exist.&rdquo;</p></blockquote>
+Like a public API: if it’s not documented, it doesn’t exist.&rdquo;</p>
+</blockquote>
+<h3 id="-key-question-who-owns-the-contract">🤔 Key Question: Who Owns the Contract?</h3>
+<p>This distinction is subtle but matters a lot. There are two philosophies:</p>
+<p><strong>Provider-driven</strong> — the implementor publishes its contract, and consumers adapt to it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/users/service.go  &lt;-- users &#34;publishes&#34; what it offers</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">interface</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">FindByID</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// payments imports this package to use it</span>
+</span></span></code></pre></div><p><strong>Consumer-driven</strong> — the consumer defines exactly what it needs, and the provider satisfies it implicitly:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// payments/service.go  &lt;-- payments defines only what it cares about</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">userLookup</span> <span style="color:#66d9ef">interface</span> {  <span style="color:#75715e">// lowercase: package-private</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">FindByID</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// users implements this without knowing payments exists</span>
+</span></span></code></pre></div><p>In Go, the second approach is idiomatic because interfaces are satisfied <strong>implicitly</strong> — <code>users</code> doesn&rsquo;t need to declare that it implements anything, it just does. That reduces coupling to the minimum.</p>
+<p><strong>Which do I use?</strong> The <code>/contracts/</code> approach is more explicit and easier to navigate in larger teams. The trade-off is that <code>contracts/</code> becomes a shared package — if two components import it, they become indirectly coupled through it. For medium-sized projects and teams that need clarity, it&rsquo;s a valid decision. For projects where total component independence is critical, the consumer-driven approach scales better.</p>
+<blockquote>
+<p><strong>Practical Rule</strong>: What matters isn&rsquo;t the pattern you choose, but that it&rsquo;s <strong>documented and agreed on by the team</strong>. A consistent mediocre architecture beats a perfect one that only the designer understands.</p>
+</blockquote>
 <h2 id="-the-solution-that-worked-for-me-components--contracts">💡 The Solution That Worked for Me: Components + Contracts</h2>
 <p>After getting burned, I learned that:<br>
 ✅ Each component should be a &ldquo;mini-project&rdquo; (with its own domain, logic, and adapters).<br>
 ✅ Contracts are sacred (change one, and you break everything… like a public API).<br>
 ✅ Go is simple; your architecture should be too.</p>
 <p>Final Structure We Used (Still Alive):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">/</span><span style="color:#a6e22e">adapters</span><span style="color:#f92672">/</span>     <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">Contracts</span> <span style="color:#a6e22e">implementation</span>.
@@ -244,7 +307,8 @@ Like a public API: if it’s not documented, it doesn’t exist.&rdquo;</p></blo
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">/</span><span style="color:#a6e22e">web</span><span style="color:#f92672">/</span> <span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">entry</span> <span style="color:#a6e22e">point</span> <span style="color:#a6e22e">controllers</span><span style="color:#f92672">/</span><span style="color:#a6e22e">handlers</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">communicate</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">service</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">each</span> <span style="color:#a6e22e">component</span>.
 </span></span></code></pre></div><p><strong>Golden Rule</strong>:</p>
 <blockquote>
-<p>&ldquo;If a component needs something from another, don’t ask how it works. Request it in the contract and move on.&rdquo;</p></blockquote>
+<p>&ldquo;If a component needs something from another, don’t ask how it works. Request it in the contract and move on.&rdquo;</p>
+</blockquote>
 <p>(Real example: When we migrated from MySQL to PostgreSQL, we only touched adapters/. The domain didn’t even notice.)</p>
 <h2 id="-conclusion-clean-architecture-isnt-a-religion">🎤 Conclusion: Clean Architecture Isn’t a Religion</h2>
 <ul>
@@ -259,7 +323,8 @@ Like a public API: if it’s not documented, it doesn’t exist.&rdquo;</p></blo
 </li>
 </ul>
 <blockquote>
-<p>&ldquo;Clean architecture isn’t about perfect folders—it’s about being able to change your mind without fear of everything exploding.&rdquo;</p></blockquote>
+<p>&ldquo;Clean architecture isn’t about perfect folders—it’s about being able to change your mind without fear of everything exploding.&rdquo;</p>
+</blockquote>
 <p>🚀 In Part 2: I’ll show you the REAL code (with mistakes included) of how we implemented this in a 100k-line Go project.</p>
 <p>(And yes, there’ll be examples of how our &ldquo;wonderful&rdquo; PaymentService contract had to change 3 times… and how we survived it.)</p>
 <p>📢 Have you struggled with Clean Architecture too?
@@ -269,32 +334,143 @@ Let me know in the comments.</p>
 <li><a href="https://a.co/d/a3ALlXM">Clean Architecture - Robert C. Martin</a></li>
 </ul>
       </div>
+
       
       
-     
+      <div class="post-footer-tags">
         
-         
+          <a href="/tags/go" class="post-tag">#Go</a>
+        
+          <a href="/tags/clean-architecture" class="post-tag">#Clean Architecture</a>
+        
       </div>
+      
 
-  
+      
+      
+      <nav class="post-prevnext">
+        <div class="prevnext-item prev">
+          
+            <span class="prevnext-label">← Anterior</span>
+            <a href="/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
+          
+        </div>
+        <div class="prevnext-item next">
+          
+        </div>
+      </nav>
+      
 
-<section class="all-comments">
-  <div class="comments-header">
-    <h3>Conversación</h3>
-    <div class="comment-count">
-      💬 <span id="comment-count-section">0</span> comentarios
-    </div>
-  </div>
+      
+      <section class="all-comments" id="comments">
+        <div class="comments-header">
+          <h3>Conversación</h3>
+          <div class="comment-count">
+            💬 <span id="comment-count-section">0</span> comentarios
+          </div>
+        </div>
 
-  
-  <div id="login-container" class="login-container" style="display: none;">
-    <p>Debes iniciar sesión con GitHub para comentar</p>
-    <button id="login-github-btn" class="login-github-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
-      </svg>
-      Iniciar sesión con GitHub
-    </button>
+        <div id="login-container" class="login-container" style="display: none;">
+          <p>Inicia sesión con GitHub para comentar</p>
+          <button id="login-github-btn" class="login-github-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+            </svg>
+            Iniciar sesión con GitHub
+          </button>
+        </div>
+
+        <form id="main-comment-form" class="comment-form" style="display: none;">
+          <div class="avatar-placeholder">
+            <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
+          </div>
+          <div class="form-content">
+            <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
+            <div class="form-actions">
+              <button type="submit" class="submit-button">Publicar</button>
+            </div>
+          </div>
+          <input type="hidden" id="reply-to" value="">
+        </form>
+      </section>
+
+    </article>
+  </main>
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const themeToggles = document.querySelectorAll('.theme-toggle');
+    
+    
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = localStorage.getItem('theme');
+
+    
+    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggles.forEach(btn => btn.textContent = '☀️');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggles.forEach(btn => btn.textContent = '🌙');
+    }
+
+    
+    themeToggles.forEach(button => {
+        button.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggles.forEach(btn => btn.textContent = '☀️');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggles.forEach(btn => btn.textContent = '🌙');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    });
+
+    
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggles.forEach(btn => btn.textContent = newTheme === 'dark' ? '☀️' : '🌙');
+        }
+    });
+});
+</script>
+
+
+<script>
+  const postId = "posts\\clean-architecture.md"; 
+  const countKey = `claps-${postId}`;
+  const countDisplay = document.getElementById("clap-count");
+  const button = document.getElementById("clap-button");
+
+  const saved = localStorage.getItem(countKey);
+  let count = saved ? parseInt(saved) : 0;
+  if (countDisplay) countDisplay.textContent = count;
+
+  if (button) {
+    button.addEventListener("click", () => {
+      count += 1;
+      countDisplay.textContent = count;
+      localStorage.setItem(countKey, count);
+    });
+  }
+</script>
+
+
+  <script>
+    window.PUBLIC_SUPABASE_URL = '';
+    window.PUBLIC_SUPABASE_KEY = '';
+
+</script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
   </div>
 
   
@@ -362,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-  const postId = "posts\/clean-architecture.md"; 
+  const postId = "posts\\clean-architecture.md"; 
   const countKey = `claps-${postId}`;
   const countDisplay = document.getElementById("clap-count");
   const button = document.getElementById("clap-button");

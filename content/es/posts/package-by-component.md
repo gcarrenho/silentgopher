@@ -40,7 +40,7 @@ En lugar de que `payments` stalkee a `users`, creamos un contrato explícito:
 package user
 
 type Service interface {
-	GetUserByID(id string) (UserDTO, error)  // Solo 1 método. ¡Como un buen microservicio!
+	GetUserByID(ctx context.Context, id string) (UserDTO, error)  // Solo 1 método. ¡Como un buen microservicio!
 }
 
 type UserDTO struct {
@@ -65,11 +65,12 @@ type UserService struct {
 	repo UserRepository
 }
 
-func (s *UserService) GetUserByID(id string) (user.UserDTO, error) {
-	u, err := s.repo.FindByID(id)
+func (s *UserService) GetUserByID(ctx context.Context, id string) (user.UserDTO, error) {
+	u, err := s.repo.FindByID(ctx, id)
 	if err != nil {
 		return user.UserDTO{}, fmt.Errorf("no encontré al usuario %s: %w", id, err)
-		// 💥 Error: No registramos el fallo. Lo aprendimos después.
+		// 💥 Error: No registramos el fallo ni el tipo de error original.
+		// Lección aprendida. Ver Paso 4.
 	}
 
 	return user.UserDTO{
@@ -94,8 +95,8 @@ type PaymentComponentImpl struct {
 	userService user.Service  // <- Depende del CONTRATO, no de users
 }
 
-func (s *PaymentComponentImpl) Charge(userID string, amount float64) error {
-	u, err := s.userService.GetUserByID(userID)
+func (s *PaymentComponentImpl) Charge(ctx context.Context, userID string, amount float64) error {
+	u, err := s.userService.GetUserByID(ctx, userID)
 	if err != nil {
 		return fmt.Errorf("falló el pago para %s: %w", userID, err)
 	}
@@ -111,7 +112,60 @@ func (s *PaymentComponentImpl) Charge(userID string, amount float64) error {
 
 Descubrimos que algunos usuarios tenían `Email == ""` (mala validación inicial).
 
-**Gracias al contrato**: El bug estuvo aislado en `users.payments` solo vio datos inválidos, no campos corruptos.
+**Gracias al contrato**: El bug estuvo aislado en `users`; `payments` solo vio datos inválidos, no campos corruptos.
+
+## 🔥 Paso 4: Límites de Error — ¿Quién Responde 404?
+
+Aquí es donde la mayoría de los tutoriales se quedan en silencio. El contrato desacopla la **forma del dato**, pero queda una pregunta abierta: **cuando algo falla, ¿cómo sabe el handler HTTP si responder 404 o 500?**
+
+La respuesta vive en el contrato. Los errores son parte de la API.
+
+```go
+// contracts/user/errors.go — van junto a la interfaz
+var (
+	ErrNotFound = errors.New("user: not found")
+	ErrInvalid  = errors.New("user: invalid data")
+)
+```
+
+Cada capa envuelve y propaga estos errores centinela usando `%w`:
+
+```go
+// internal/users/adapters/service.go — la versión corregida del Paso 2
+func (s *UserService) GetUserByID(ctx context.Context, id string) (user.UserDTO, error) {
+	u, err := s.repo.FindByID(ctx, id)
+	if err != nil {
+		if errors.Is(err, sql.ErrNoRows) {
+			return user.UserDTO{}, fmt.Errorf("user %s: %w", id, user.ErrNotFound)
+		}
+		// Error inesperado de DB — envolver y propagar, log aquí
+		return user.UserDTO{}, fmt.Errorf("user %s: %w", id, err)
+	}
+	return user.UserDTO{ID: u.ID, Email: u.Email}, nil
+}
+```
+
+Y el handler HTTP usa `errors.Is` para mapear errores de dominio a códigos HTTP:
+
+```go
+// web/user_handler.go
+func (h *UserHandler) GetUser(c *gin.Context) {
+	u, err := h.userService.GetUserByID(c.Request.Context(), c.Param("id"))
+	if err != nil {
+		switch {
+		case errors.Is(err, user.ErrNotFound):
+			c.JSON(http.StatusNotFound, gin.H{"error": "user not found"})
+		default:
+			// Nunca filtres detalles internos al cliente
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "internal error"})
+		}
+		return
+	}
+	c.JSON(http.StatusOK, u)
+}
+```
+
+**La cadena completa es explícita**: el repositorio habla SQL, el servicio traduce a errores de dominio, el handler traduce a códigos HTTP. Cada capa solo conoce su propio lenguaje.
 
 ## ⚡ Wiring en main.go - El "Me Caso" del Código
 Aquí es donde todo se une (o explota, si lo haces mal):
@@ -125,7 +179,8 @@ func main() {
 
 	wg := &sync.WaitGroup{}
 
-	router := gin.Default()
+	router := gin.New()
+	router.Use(gin.Recovery()) // gin.Default() agrega un logger no estructurado a stdout — en prod, usá tu propio logger
 
 	container := app.NewAppContainer() // Crea todos los componente inyectando su respectiva base de datos.
 	routes.Register(router, container) // registra todas las rutas
@@ -204,8 +259,8 @@ Te muestro el before/after de nuestro código real:
 ### 🚫 Antes (Acoplamiento Criminal)
 ```go
 // internal/payments/payment_component_impl.go (OLD)
-func (s *PaymentService) Refund(userID string) error {
-	u, err := s.userRepo.GetUser(userID)  // ¡Acceso directo al repo de users!
+func (s *PaymentService) Refund(ctx context.Context, userID string) error {
+	u, err := s.userRepo.GetUser(ctx, userID)  // ¡Acceso directo al repo de users!
 	if err != nil {
 		return err
 	}
@@ -219,20 +274,39 @@ func (s *PaymentService) Refund(userID string) error {
 ```go
 // contracts/user/service.go (NEW)
 type Service interface {
-	GetUserForPayment(id string) (PaymentUserDTO, error)  // ¡Ahora el contrato es explícito!
+	GetUserForPayment(ctx context.Context, id string) (PaymentUserDTO, error)  // ¡Ahora el contrato es explícito!
 }
 
 // internal/payments/service.go (NEW)
-func (s *PaymentService) Refund(userID string) error {
-	u, err := s.userService.GetUserForPayment(userID)  // Solo lo que NECESITA
-	// ...
+func (s *PaymentService) Refund(ctx context.Context, userID string) error {
+	u, err := s.userService.GetUserForPayment(ctx, userID)  // Solo lo que NECESITA
+	if err != nil {
+		if errors.Is(err, user.ErrNotFound) {
+			return fmt.Errorf("refund: usuario no elegible: %w", err)
+		}
+		return fmt.Errorf("refund: %w", err)
+	}
+	// ... lógica de reembolso
+	return nil
 }
 ```
 **Beneficios concretos**:
 
 1. Cuando `users` cambió su modelo de tarjetas, `payments` ni se enteró.
 
-2. Los tests de `payments` usan un mock de 10 líneas, no una DB falsa.
+2. Los tests de `payments` usan un mock de 10 líneas, no una DB falsa:
+
+```go
+// El mock completo — sin base de datos, sin setup, sin teardown:
+type mockUserService struct {
+	user user.UserDTO
+	err  error
+}
+
+func (m *mockUserService) GetUserForPayment(_ context.Context, _ string) (user.UserDTO, error) {
+	return m.user, m.err
+}
+```
 
 ## 📌 Conclusión: Menos Teoría, Más Superpoderes
 Esta arquitectura nos permitió:

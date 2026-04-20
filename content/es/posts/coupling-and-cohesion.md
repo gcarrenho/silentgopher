@@ -5,7 +5,7 @@ date: 2025-06-15
 author: "@SilentGopher"
 tags: ["Go", "Coupling", "Cohesion"]
 image: "/images/posts/coupling-cohesion/coupling-cohesion.png"
-draft: true
+draft: false
 ---
 
 >Al diseñar sistemas distribuidos o modulares, comprender la relación entre **acoplamiento** y **cohesión** es clave para lograr una arquitectura mantenible, flexible y escalable.
@@ -14,6 +14,18 @@ draft: true
 Muchos equipos caen fácilmente en el error del **acoplamiento estructural**, lo que compromete la evolución independiente de los módulos y genera una arquitectura frágil.
 
 En este artículo exploramos los distintos tipos de acoplamiento, su relación con la cohesión y cómo evitarlos utilizando ejemplos reales en Golang.
+
+---
+
+## La Migración que Debería Haber Tomado Dos Días
+
+Hace un tiempo, me sumé a un equipo donde `PaymentService` importaba directamente `cart/domain` para leer el total del carrito. Cuando el negocio decidió extraer Cart a su propio servicio, descubrimos que Payments tenía 14 archivos importando structs internos de Cart. La migración tomó tres semanas en vez de dos días.
+
+Cada uno de esos 14 archivos era un sabor distinto de acoplamiento — estructural (structs compartidos), funcional (reglas de negocio en el lugar equivocado), temporal (llamadas HTTP síncronas que propagaban fallas en cascada). No teníamos nombres para ellos en ese momento. Los llamábamos simplemente "el desastre".
+
+Este artículo pone nombre a esos patrones, para que los puedas identificar en una code review — no durante una migración.
+
+> **¿Estás leyendo la serie en orden?** Este es el "por qué" detrás de [Parte 1](/posts/clean-architecture) y [Parte 2](/posts/package-by-component). Si ya los leíste, las decisiones tomadas allí empezarán a sentirse inevitables.
 
 ---
 
@@ -119,7 +131,7 @@ type CreateOrderRequest struct {
 }
 
 type OrderClient interface {
-    CreateOrder(req CreateOrderRequest) error
+    CreateOrder(ctx context.Context, req CreateOrderRequest) error
 }
 
 ```
@@ -160,16 +172,42 @@ func Checkout() {
 
 ```
 
-### Solución:
+### Solución: eventos asíncronos
 
-- Usar eventos asíncronos.
+Desacoplar haciendo que Cart publique un evento y Order se suscriba de forma independiente:
 
 ```go
-eventBus.Publish(CartCheckedOut{...})
+// Cart es dueño de este evento — el publicador define la forma
+type CartCheckedOut struct {
+	CartID     string
+	UserID     string
+	TotalCents int64
+	OccurredAt time.Time
+}
 
+// Cart publica sin saber quién escucha
+func (s *CartService) Checkout(ctx context.Context, cartID string) error {
+	cart, err := s.repo.FindByID(ctx, cartID)
+	if err != nil {
+		return fmt.Errorf("checkout: %w", err)
+	}
+	return s.eventBus.Publish(ctx, CartCheckedOut{
+		CartID:     cartID,
+		UserID:     cart.UserID,
+		TotalCents: cart.TotalCents,
+		OccurredAt: time.Now(),
+	})
+}
+
+// Order se suscribe de forma independiente — Cart no sabe que esto existe
+func (s *OrderService) OnCartCheckedOut(ctx context.Context, e CartCheckedOut) error {
+	return s.createOrder(ctx, e.UserID, e.CartID, e.TotalCents)
+}
 ```
 
-Y que `OrderService` escuche ese evento.
+**Por qué funciona:** La respuesta HTTP de Cart ya fue enviada antes de que Order procese el evento. Si Order está caído, el evento queda en la cola — Cart no se ve afectado.
+
+**Trade-off honesto:** Async implica consistencia eventual. Si el flujo del usuario necesita el ID de Order en la misma respuesta HTTP (p.ej., redirigir a `/orders/123`), async es la herramienta equivocada. Funciona mejor para flujos fire-and-forget: notificaciones, analytics, logs de auditoría.
 
 ---
 
@@ -180,21 +218,38 @@ Y que `OrderService` escuche ese evento.
 ```go
 // CartContext haciendo lógica de pago
 func Checkout() {
-    if card.Type == "VISA" {
-        // lógica de autorización
-    }
+	if card.Type == "VISA" {
+		// lógica de autorización específica de VISA
+	}
 }
-
 ```
+
+### Por qué es peligroso:
+
+- Cuando se agrega soporte para Amex o BNPL, Cart es el servicio que cambia — no Payment.
+- Las reglas de autorización se duplican: Payments también necesita validar tarjetas para reembolsos.
+- Los tests de Cart ahora necesitan mocks para cada tipo de tarjeta, aunque Cart no tiene nada que ver con pagos.
+- Un dev nuevo lee `cart/service` y encuentra lógica de autorización VISA. Nadie sabe por qué está ahí.
 
 ### Solución:
 
-Delegar esta responsabilidad: `PaymentContext`:
+Delegar a `PaymentContext`. Cart solo sabe "autorizar esta tarjeta por este monto":
 
 ```go
-s.paymentClient.Authorize(card, amount)
-
+// cart/service — sin conocimiento de tipos de tarjeta
+func (s *CartService) Checkout(ctx context.Context, cartID string, card PaymentCard) error {
+	cart, err := s.repo.FindByID(ctx, cartID)
+	if err != nil {
+		return fmt.Errorf("checkout: %w", err)
+	}
+	if err := s.paymentClient.Authorize(ctx, card, cart.TotalCents); err != nil {
+		return fmt.Errorf("checkout: autorización fallida: %w", err)
+	}
+	return s.completeCheckout(ctx, cart)
+}
 ```
+
+**Resultado:** Cuando se agrega BNPL, solo cambia `payment/service`. Cart, Order y sus test suites permanecen intactos.
 
 ---
 
@@ -234,12 +289,18 @@ s.paymentClient.Authorize(card, amount)
 
 ---
 
-## Niveles de acoplamiento deseables (de peor a mejor)
+## Eligiendo el nivel de acoplamiento correcto
 
-1. ❌ Shared struct / import directo.
-2. ⚠️ Llamada HTTP sin interfaz local.
-3. ✅ Interfaz local + adaptador externo.
-4. ✅✅ Eventos asíncronos (desacoplamiento total).
+No existe una respuesta universalmente "correcta" — la elección depende de tus requisitos de consistencia.
+
+| Nivel | Cuándo usarlo | Trade-off honesto |
+|-------|--------------|------------------|
+| ✅✅ **Eventos asíncronos** | Flujos independientes, fire-and-forget (notificaciones, analytics, auditoría) | Consistencia eventual. Más difícil de rastrear fallas. Incorrecto para flujos que necesitan un resultado inmediato. |
+| ✅ **Interfaz local + adaptador** | La mayoría de las llamadas síncronas entre servicios | Sigue siendo temporalmente acoplado: si la dependencia está caída, fallás. Pero te aísla de cambios estructurales. |
+| ⚠️ **HTTP sin interfaz** | Prototipos rápidos, scripts internos | La URL es parte de tu lógica de negocio. No se puede mockear limpiamente. |
+| ❌ **Struct compartido / import directo** | Nunca en módulos de producción | Renombrar un campo puede romper docenas de archivos en contextos no relacionados. |
+
+**Regla general:** Empezá con una interfaz local + adaptador. Promové a eventos asíncronos solo cuando hayas confirmado que el flujo no tiene dependencia dura de un resultado inmediato.
 
 ---
 

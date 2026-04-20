@@ -1,63 +1,103 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<html lang="es" data-theme="light">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=63865&amp;path=livereload" data-no-instant defer></script>
   <meta charset="UTF-8">
-  <title>Parte 2: Aplicando Component-Based Clean Architecture en Go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parte 2: Aplicando Component-Based Clean Architecture en Go | Silent Gopher</title>
+  <meta name="description" content=" 💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow. Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro …">
   
-  <link rel="stylesheet" href="/scss/main.min.8bad63f3f669f27124dd397e2b4b595878d5bc5886b606b4888699231a016add.css" integrity="sha256-i61j8/Zp8nEk3Tl&#43;K0tZWHjVvFiGtga0iIaZIxoBat0=">
+  <link rel="stylesheet" href="/scss/main.min.67071da49f24c2816ec10b04a1808d527f63f16a4562aa6ec610d0077d0d3462.css" integrity="sha256-ZwcdpJ8kwoFuwQsEoYCNUn9j8WpFYqpuxhDQB30NNGI=">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
-  <body data-post-id="package-by-component" class="post-page">
-  <header class="main-header">
-    <img src="/images/posts/package-by-component.png" 
-       alt="Parte 2: Aplicando Component-Based Clean Architecture en Go" 
-       class="header-gopher">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+<body data-post-id="package-by-component" class="post-page">
+
+  
+  <header class="post-topbar">
+    <div class="topbar-controls">
+      <div class="language-switcher">
+        
+          
+            <a href="/en/posts/package-by-component/">En</a>
+          
+        
+        <span class="active">Es</span>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+    <nav class="post-topbar-nav">
+      <a href="/">Inicio</a>
+      <span class="topbar-sep">|</span>
+      <a href="/posts">Artículos</a>
+      <span class="topbar-sep">|</span>
+      <a href="/about">Sobre mí</a>
+    </nav>
+    <div class="topbar-spacer"></div>
   </header>
 
-  <nav style="text-align:center; margin-top:1rem;">
-    <a href="/">Inicio</a> |
-    <a href="/posts">Artículos</a> |
-    <a href="/about">Sobre mí</a>
-  </nav>
-
-  <main class="medium-article ">
+  <main class="medium-article">
     <article>
-      <h1>Parte 2: Aplicando Component-Based Clean Architecture en Go</h1>
-      
-        <h2 class="subtitle">Package by Components</h2>
-      
 
       
-      <div class="engagement-stats">
-        <span class="stat-item">
-          ⏱️ <span class="minutes">4</span> min
-        </span>
-        •
-        <span class="stat-item">
-          👁️ <span id="view-count">0</span>
-        </span>
-        •
-        <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
-          👏 <span id="clap-count">0</span>
-        </button>
-        •
-        <button id="comment-btn" class="comment-button" aria-label="Comentar este artículo">
-          💬 <span id="comment-count">0</span>
-        </button>
+      
+      <div class="post-hero">
+        <img src="/images/posts/package-by-component.png" alt="Parte 2: Aplicando Component-Based Clean Architecture en Go" class="post-hero-img" loading="eager">
       </div>
+      
 
-  </div> 
-        <p class="meta-info">
-          July 31, 2025 — por @SilentGopher
-        </p>
+      
+      <header class="post-header">
+        
+        <div class="post-tags">
+          
+            <a href="/tags/go" class="post-tag">#Go</a>
+          
+            <a href="/tags/clean-architecture" class="post-tag">#Clean Architecture</a>
+          
+            <a href="/tags/package-by-components" class="post-tag">#Package by Components</a>
+          
+        </div>
+        
+
+        <h1>Parte 2: Aplicando Component-Based Clean Architecture en Go</h1>
+
+        
+          <p class="subtitle">Package by Components</p>
+        
+
+        <div class="post-byline">
+          <time datetime="2025-07-31">July 31, 2025</time>
+          <span class="dot">·</span>
+          <span>6 min</span>
+          
+            <span class="dot">·</span>
+            <span>@SilentGopher</span>
+          
+          <span class="dot">·</span>
+          <span>👁 <span id="view-count">0</span></span>
+        </div>
+
+        
+        <div class="engagement-stats">
+          <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
+            👏 <span id="clap-count">0</span>
+          </button>
+          <span class="stat-sep">·</span>
+          <button id="comment-btn" class="comment-button" aria-label="Ir a comentarios">
+            💬 <span id="comment-count">0</span>
+          </button>
+        </div>
+      </header>
+
       
       <div class="content">
         <blockquote>
 <p>💡 ADVERTENCIA: Si esperas copy-paste perfecto, mejor ve a StackOverflow.
-Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.</p></blockquote>
+Esto es código real con cicatrices, donde el 60% funcionó al primer intento y el otro 40% nos hizo llorar en el refactor.</p>
+</blockquote>
 <h2 id="-el-proyecto-que-casi-me-quema-los-párpados">🚧 El Proyecto que casi me Quema los Párpados</h2>
 <p>Hace varios meses, heredé un monolito en Go donde:</p>
 <ul>
@@ -72,7 +112,7 @@ Esto es código real con cicatrices, donde el 60% funcionó al primer intento y 
 </li>
 </ul>
 <p><strong>Hoy te muestro cómo lo convertimos en esto</strong>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">cmd</span><span style="color:#f92672">/</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">/</span><span style="color:#a6e22e">internal</span><span style="color:#f92672">/</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">users</span><span style="color:#f92672">/</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">payments</span><span style="color:#f92672">/</span>
@@ -81,11 +121,11 @@ Esto es código real con cicatrices, donde el 60% funcionó al primer intento y 
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">web</span><span style="color:#f92672">/</span>
 </span></span></code></pre></div><h2 id="-paso-1-el-contrato---nuestro-tinder-técnico">🔗 Paso 1: El Contrato - Nuestro &ldquo;Tinder&rdquo; Técnico</h2>
 <p>En lugar de que <code>payments</code> stalkee a <code>users</code>, creamos un contrato explícito:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/user_service.go</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/user_service.go</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">user</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Service</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>)  <span style="color:#75715e">// Solo 1 método. ¡Como un buen microservicio!</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>)  <span style="color:#75715e">// Solo 1 método. ¡Como un buen microservicio!</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserDTO</span> <span style="color:#66d9ef">struct</span> {
@@ -106,16 +146,17 @@ Esto es código real con cicatrices, donde el 60% funcionó al primer intento y 
 </ul>
 <h2 id="-paso-2-implementando-users-con-errores-incluidos">👷 Paso 2: Implementando <code>users</code> (con errores incluidos)</h2>
 <p>Aquí está el código real que usamos (con el bug que dejamos pasar a prod):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/users/adapters/service.go</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/users/adapters/service.go</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">UserService</span> <span style="color:#66d9ef">struct</span> {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">repo</span> <span style="color:#a6e22e">UserRepository</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">UserService</span>) <span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>) {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">repo</span>.<span style="color:#a6e22e">FindByID</span>(<span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">UserService</span>) <span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">repo</span>.<span style="color:#a6e22e">FindByID</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">id</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{}, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;no encontré al usuario %s: %w&#34;</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">err</span>)
-</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 💥 Error: No registramos el fallo. Lo aprendimos después.</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// 💥 Error: No registramos el fallo ni el tipo de error original.</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Lección aprendida. Ver Paso 4.</span>
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{
@@ -135,13 +176,13 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 </ol>
 <h2 id="-paso-3-payments---el-cliente-exigente">💸 Paso 3: payments - El Cliente Exigente</h2>
 <p>Así consume el contrato (con un gotcha que no vimos venir):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// components/payments/payment_component_impl/service.go</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// components/payments/payment_component_impl/service.go</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PaymentComponentImpl</span> <span style="color:#66d9ef">struct</span> {
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">userService</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">Service</span>  <span style="color:#75715e">// &lt;- Depende del CONTRATO, no de users</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentComponentImpl</span>) <span style="color:#a6e22e">Charge</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">amount</span> <span style="color:#66d9ef">float64</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">userID</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentComponentImpl</span>) <span style="color:#a6e22e">Charge</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">amount</span> <span style="color:#66d9ef">float64</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">userID</span>)
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;falló el pago para %s: %w&#34;</span>, <span style="color:#a6e22e">userID</span>, <span style="color:#a6e22e">err</span>)
 </span></span><span style="display:flex;"><span>	}
@@ -154,10 +195,48 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>¿Qué pasó en producción?</strong></p>
 <p>Descubrimos que algunos usuarios tenían <code>Email == &quot;&quot;</code> (mala validación inicial).</p>
-<p><strong>Gracias al contrato</strong>: El bug estuvo aislado en <code>users.payments</code> solo vio datos inválidos, no campos corruptos.</p>
+<p><strong>Gracias al contrato</strong>: El bug estuvo aislado en <code>users</code>; <code>payments</code> solo vio datos inválidos, no campos corruptos.</p>
+<h2 id="-paso-4-límites-de-error--quién-responde-404">🔥 Paso 4: Límites de Error — ¿Quién Responde 404?</h2>
+<p>Aquí es donde la mayoría de los tutoriales se quedan en silencio. El contrato desacopla la <strong>forma del dato</strong>, pero queda una pregunta abierta: <strong>cuando algo falla, ¿cómo sabe el handler HTTP si responder 404 o 500?</strong></p>
+<p>La respuesta vive en el contrato. Los errores son parte de la API.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/errors.go — van junto a la interfaz</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ErrNotFound</span> = <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;user: not found&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ErrInvalid</span>  = <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">New</span>(<span style="color:#e6db74">&#34;user: invalid data&#34;</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p>Cada capa envuelve y propaga estos errores centinela usando <code>%w</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/users/adapters/service.go — la versión corregida del Paso 2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">UserService</span>) <span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">repo</span>.<span style="color:#a6e22e">FindByID</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">id</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">Is</span>(<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">sql</span>.<span style="color:#a6e22e">ErrNoRows</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{}, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;user %s: %w&#34;</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">ErrNotFound</span>)
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">// Error inesperado de DB — envolver y propagar, log aquí</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{}, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;user %s: %w&#34;</span>, <span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>{<span style="color:#a6e22e">ID</span>: <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">ID</span>, <span style="color:#a6e22e">Email</span>: <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">Email</span>}, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Y el handler HTTP usa <code>errors.Is</code> para mapear errores de dominio a códigos HTTP:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// web/user_handler.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">h</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">UserHandler</span>) <span style="color:#a6e22e">GetUser</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Context</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">h</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserByID</span>(<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Context</span>(), <span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Param</span>(<span style="color:#e6db74">&#34;id&#34;</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">switch</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">case</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">Is</span>(<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">ErrNotFound</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">JSON</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusNotFound</span>, <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">H</span>{<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;user not found&#34;</span>})
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">default</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// Nunca filtres detalles internos al cliente</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">JSON</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusInternalServerError</span>, <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">H</span>{<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;internal error&#34;</span>})
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">JSON</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusOK</span>, <span style="color:#a6e22e">u</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>La cadena completa es explícita</strong>: el repositorio habla SQL, el servicio traduce a errores de dominio, el handler traduce a códigos HTTP. Cada capa solo conoce su propio lenguaje.</p>
 <h2 id="-wiring-en-maingo---el-me-caso-del-código">⚡ Wiring en main.go - El &ldquo;Me Caso&rdquo; del Código</h2>
 <p>Aquí es donde todo se une (o explota, si lo haces mal):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// cmd/main.go</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// cmd/main.go</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithCancel</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>())
@@ -165,7 +244,8 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">wg</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">WaitGroup</span>{}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">router</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Default</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">router</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">New</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">Use</span>(<span style="color:#a6e22e">gin</span>.<span style="color:#a6e22e">Recovery</span>()) <span style="color:#75715e">// gin.Default() agrega un logger no estructurado a stdout — en prod, usá tu propio logger</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">container</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">NewAppContainer</span>() <span style="color:#75715e">// Crea todos los componente inyectando su respectiva base de datos.</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">routes</span>.<span style="color:#a6e22e">Register</span>(<span style="color:#a6e22e">router</span>, <span style="color:#a6e22e">container</span>) <span style="color:#75715e">// registra todas las rutas</span>
@@ -235,13 +315,14 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Metáfora clave:</p>
 <blockquote>
-<p><code>users/adapters/service.go</code> es como un traductor profesional. <code>payments</code> habla en &ldquo;necesito un usuario&rdquo;, y el traductor convierte eso al dialecto interno de <code>users</code>. Si <code>users</code> cambia su idioma, solo el traductor debe actualizarse.</p></blockquote>
+<p><code>users/adapters/service.go</code> es como un traductor profesional. <code>payments</code> habla en &ldquo;necesito un usuario&rdquo;, y el traductor convierte eso al dialecto interno de <code>users</code>. Si <code>users</code> cambia su idioma, solo el traductor debe actualizarse.</p>
+</blockquote>
 <h2 id="-y-si-no-usamos-contratos-el-caos-que-vivimos">💣 ¿Y si No Usamos Contratos? (El Caos que Vivimos)</h2>
 <p>Te muestro el before/after de nuestro código real:</p>
 <h3 id="-antes-acoplamiento-criminal">🚫 Antes (Acoplamiento Criminal)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/payments/payment_component_impl.go (OLD)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentService</span>) <span style="color:#a6e22e">Refund</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userRepo</span>.<span style="color:#a6e22e">GetUser</span>(<span style="color:#a6e22e">userID</span>)  <span style="color:#75715e">// ¡Acceso directo al repo de users!</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// internal/payments/payment_component_impl.go (OLD)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentService</span>) <span style="color:#a6e22e">Refund</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userRepo</span>.<span style="color:#a6e22e">GetUser</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">userID</span>)  <span style="color:#75715e">// ¡Acceso directo al repo de users!</span>
 </span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
 </span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">err</span>
 </span></span><span style="display:flex;"><span>	}
@@ -251,15 +332,22 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 </span></span><span style="display:flex;"><span>	}
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><h3 id="-después-contratos-al-rescate">✅ Después (Contratos al Rescate)</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/service.go (NEW)</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// contracts/user/service.go (NEW)</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Service</span> <span style="color:#66d9ef">interface</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">PaymentUserDTO</span>, <span style="color:#66d9ef">error</span>)  <span style="color:#75715e">// ¡Ahora el contrato es explícito!</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">id</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">PaymentUserDTO</span>, <span style="color:#66d9ef">error</span>)  <span style="color:#75715e">// ¡Ahora el contrato es explícito!</span>
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">// internal/payments/service.go (NEW)</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentService</span>) <span style="color:#a6e22e">Refund</span>(<span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">userID</span>)  <span style="color:#75715e">// Solo lo que NECESITA</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PaymentService</span>) <span style="color:#a6e22e">Refund</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">userID</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">userService</span>.<span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">userID</span>)  <span style="color:#75715e">// Solo lo que NECESITA</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">errors</span>.<span style="color:#a6e22e">Is</span>(<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">ErrNotFound</span>) {
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;refund: usuario no elegible: %w&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;refund: %w&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// ... lógica de reembolso</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p><strong>Beneficios concretos</strong>:</p>
 <ol>
@@ -267,10 +355,19 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 <p>Cuando <code>users</code> cambió su modelo de tarjetas, <code>payments</code> ni se enteró.</p>
 </li>
 <li>
-<p>Los tests de <code>payments</code> usan un mock de 10 líneas, no una DB falsa.</p>
+<p>Los tests de <code>payments</code> usan un mock de 10 líneas, no una DB falsa:</p>
 </li>
 </ol>
-<h2 id="-conclusión-menos-teoría-más-superpoderes">📌 Conclusión: Menos Teoría, Más Superpoderes</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// El mock completo — sin base de datos, sin setup, sin teardown:</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">mockUserService</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">user</span> <span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">err</span>  <span style="color:#66d9ef">error</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">mockUserService</span>) <span style="color:#a6e22e">GetUserForPayment</span>(<span style="color:#a6e22e">_</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>, <span style="color:#a6e22e">_</span> <span style="color:#66d9ef">string</span>) (<span style="color:#a6e22e">user</span>.<span style="color:#a6e22e">UserDTO</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="-conclusión-menos-teoría-más-superpoderes">📌 Conclusión: Menos Teoría, Más Superpoderes</h2>
 <p>Esta arquitectura nos permitió:</p>
 <ul>
 <li>
@@ -284,37 +381,154 @@ Los contratos no eliminan errores, pero contienen el daño. Aquí, aunque <code>
 </li>
 </ul>
 <blockquote>
-<p>&ldquo;Clean Architecture no se trata de carpetas perfectas, sino de poder dormir sabiendo que el cambio de mañana no te arruinará la semana.&rdquo;</p></blockquote>
+<p>&ldquo;Clean Architecture no se trata de carpetas perfectas, sino de poder dormir sabiendo que el cambio de mañana no te arruinará la semana.&rdquo;</p>
+</blockquote>
 <p>💬 ¿Vos también has lidiado con acoplamientos?
 Déjame saber en los comentarios.</p>
 
       </div>
+
       
       
-     
+      <div class="post-footer-tags">
         
-         
+          <a href="/tags/go" class="post-tag">#Go</a>
+        
+          <a href="/tags/clean-architecture" class="post-tag">#Clean Architecture</a>
+        
+          <a href="/tags/package-by-components" class="post-tag">#Package by Components</a>
+        
       </div>
+      
 
-  
+      
+      
+      <nav class="post-prevnext">
+        <div class="prevnext-item prev">
+          
+            <span class="prevnext-label">← Anterior</span>
+            <a href="/posts/functional-options/">Functional Options en Go: El Patrón Detrás de Constructores Limpios</a>
+          
+        </div>
+        <div class="prevnext-item next">
+          
+            <span class="prevnext-label">Siguiente →</span>
+            <a href="/posts/clean-architecture/">Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</a>
+          
+        </div>
+      </nav>
+      
 
-<section class="all-comments">
-  <div class="comments-header">
-    <h3>Conversación</h3>
-    <div class="comment-count">
-      💬 <span id="comment-count-section">0</span> comentarios
-    </div>
-  </div>
+      
+      <section class="all-comments" id="comments">
+        <div class="comments-header">
+          <h3>Conversación</h3>
+          <div class="comment-count">
+            💬 <span id="comment-count-section">0</span> comentarios
+          </div>
+        </div>
 
-  
-  <div id="login-container" class="login-container" style="display: none;">
-    <p>Debes iniciar sesión con GitHub para comentar</p>
-    <button id="login-github-btn" class="login-github-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
-      </svg>
-      Iniciar sesión con GitHub
-    </button>
+        <div id="login-container" class="login-container" style="display: none;">
+          <p>Inicia sesión con GitHub para comentar</p>
+          <button id="login-github-btn" class="login-github-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+            </svg>
+            Iniciar sesión con GitHub
+          </button>
+        </div>
+
+        <form id="main-comment-form" class="comment-form" style="display: none;">
+          <div class="avatar-placeholder">
+            <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
+          </div>
+          <div class="form-content">
+            <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
+            <div class="form-actions">
+              <button type="submit" class="submit-button">Publicar</button>
+            </div>
+          </div>
+          <input type="hidden" id="reply-to" value="">
+        </form>
+      </section>
+
+    </article>
+  </main>
+
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+    
+    const themeToggles = document.querySelectorAll('.theme-toggle');
+    
+    
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = localStorage.getItem('theme');
+
+    
+    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggles.forEach(btn => btn.textContent = '☀️');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeToggles.forEach(btn => btn.textContent = '🌙');
+    }
+
+    
+    themeToggles.forEach(button => {
+        button.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme');
+            if (current === 'light') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeToggles.forEach(btn => btn.textContent = '☀️');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+                themeToggles.forEach(btn => btn.textContent = '🌙');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+    });
+
+    
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            themeToggles.forEach(btn => btn.textContent = newTheme === 'dark' ? '☀️' : '🌙');
+        }
+    });
+});
+</script>
+
+
+<script>
+  const postId = "posts\\package-by-component.md"; 
+  const countKey = `claps-${postId}`;
+  const countDisplay = document.getElementById("clap-count");
+  const button = document.getElementById("clap-button");
+
+  const saved = localStorage.getItem(countKey);
+  let count = saved ? parseInt(saved) : 0;
+  if (countDisplay) countDisplay.textContent = count;
+
+  if (button) {
+    button.addEventListener("click", () => {
+      count += 1;
+      countDisplay.textContent = count;
+      localStorage.setItem(countKey, count);
+    });
+  }
+</script>
+
+
+  <script>
+    window.PUBLIC_SUPABASE_URL = '';
+    window.PUBLIC_SUPABASE_KEY = '';
+
+</script>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
   </div>
 
   
@@ -382,7 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 <script>
-  const postId = "posts\/package-by-component.md"; 
+  const postId = "posts\\package-by-component.md"; 
   const countKey = `claps-${postId}`;
   const countDisplay = document.getElementById("clap-count");
   const button = document.getElementById("clap-button");

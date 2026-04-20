@@ -5,7 +5,7 @@ date: "2025-06-15"
 author: "@SilentGopher"
 tags: ["Go", "Coupling", "Cohesion"]
 image: "/images/posts/coupling-cohesion/coupling-cohesion.png"
-draft: true
+draft: false
 ---
 
 >When designing distributed or modular systems, understanding the relationship between coupling and cohesion is key to achieving a maintainable, flexible, and scalable architecture.
@@ -14,6 +14,18 @@ draft: true
 Many teams easily fall into the trap of structural coupling, which compromises the independent evolution of modules and leads to fragile architecture.
 
 In this article, we explore different types of coupling, their relationship with cohesion, and how to avoid them using real-world examples in Golang.
+
+---
+
+## The Migration That Should Have Taken Two Days
+
+A while back, I joined a team where `PaymentService` directly imported `cart/domain` to read the cart total. When the business decided to extract Cart into its own service, we found that Payments had 14 files importing Cart's internal structs. The migration took three weeks instead of two days.
+
+Every one of those 14 files was a different flavor of coupling — structural (shared structs), functional (business rules in the wrong place), temporal (sync HTTP calls that cascaded failures across services). We didn't have names for them at the time. We just called it "the mess."
+
+This article gives those patterns names, so you can recognize them in code review — not during a migration.
+
+> **Reading the series in order?** This is the "why" behind [Part 1](/posts/clean-architecture) and [Part 2](/posts/package-by-component). If you've read those, the decisions made there will start to feel inevitable.
 
 ---
 
@@ -119,7 +131,7 @@ type CreateOrderRequest struct {
 }
 
 type OrderClient interface {
-    CreateOrder(req CreateOrderRequest) error
+    CreateOrder(ctx context.Context, req CreateOrderRequest) error
 }
 
 ```
@@ -144,7 +156,7 @@ resp, err := http.Post("http://order-service/orders", "application/json", body)
 
 ### Solution:
 
-- UUse clear local interfaces.
+- Use clear local interfaces.
 - Validate contracts with contract tests or tools like Pact.
 
 ---
@@ -160,16 +172,42 @@ func Checkout() {
 
 ```
 
-### Solution:
+### Solution: async events
 
-- Use async events.
+Decouple by having Cart publish an event and Order subscribe to it independently:
 
 ```go
-eventBus.Publish(CartCheckedOut{...})
+// Cart owns this event — the publisher defines the shape
+type CartCheckedOut struct {
+	CartID     string
+	UserID     string
+	TotalCents int64
+	OccurredAt time.Time
+}
 
+// Cart publishes without knowing who listens
+func (s *CartService) Checkout(ctx context.Context, cartID string) error {
+	cart, err := s.repo.FindByID(ctx, cartID)
+	if err != nil {
+		return fmt.Errorf("checkout: %w", err)
+	}
+	return s.eventBus.Publish(ctx, CartCheckedOut{
+		CartID:     cartID,
+		UserID:     cart.UserID,
+		TotalCents: cart.TotalCents,
+		OccurredAt: time.Now(),
+	})
+}
+
+// Order subscribes independently — Cart doesn't know this exists
+func (s *OrderService) OnCartCheckedOut(ctx context.Context, e CartCheckedOut) error {
+	return s.createOrder(ctx, e.UserID, e.CartID, e.TotalCents)
+}
 ```
 
-Have `OrderService` listen for this event.
+**Why this works:** Cart's HTTP response is sent before Order processes the event. If Order is down, the event stays in the queue — Cart is unaffected.
+
+**Honest trade-off:** Async means eventual consistency. If the user's flow needs an Order ID in the same HTTP response (e.g., redirect to `/orders/123`), async is the wrong tool. It works best for fire-and-forget flows: notifications, analytics, audit logs.
 
 ---
 
@@ -180,21 +218,38 @@ Have `OrderService` listen for this event.
 ```go
 // CartContext handling payment logic
 func Checkout() {
-    if card.Type == "VISA" {
-        // authorization logic
-    }
+	if card.Type == "VISA" {
+		// authorization logic specific to VISA
+	}
 }
-
 ```
+
+### Why this is dangerous:
+
+- When Amex or BNPL support is added, Cart is the service that changes — not Payment.
+- The authorization rules duplicate: Payments also needs to validate cards for refunds.
+- Cart's tests now require mocks for every card type, even though Cart has nothing to do with payments.
+- A new developer reads `cart/service` and finds VISA authorization logic. Nobody knows why it's there.
 
 ### Solution:
 
-Delegate this responsibility to  `PaymentContext`:
+Delegate to `PaymentContext`. Cart only knows "authorize this card for this amount":
 
 ```go
-s.paymentClient.Authorize(card, amount)
-
+// cart/service — no knowledge of card types
+func (s *CartService) Checkout(ctx context.Context, cartID string, card PaymentCard) error {
+	cart, err := s.repo.FindByID(ctx, cartID)
+	if err != nil {
+		return fmt.Errorf("checkout: %w", err)
+	}
+	if err := s.paymentClient.Authorize(ctx, card, cart.TotalCents); err != nil {
+		return fmt.Errorf("checkout: authorization failed: %w", err)
+	}
+	return s.completeCheckout(ctx, cart)
+}
 ```
+
+**Payoff:** When BNPL is added, only `payment/service` changes. Cart, Order, and their test suites are untouched.
 
 ---
 
@@ -233,12 +288,18 @@ s.paymentClient.Authorize(card, amount)
 
 ---
 
-## Desirable coupling levels (from worst to best)
+## Choosing the right coupling level
 
-1. ❌ Shared struct / direct import.
-2. ⚠️ HTTP call without local interface.
-3. ✅ Local interface + external adapter.
-4. ✅✅ Async events (complete decoupling).
+There is no universally "best" answer — the right choice depends on your consistency requirements.
+
+| Level | When to use | Honest trade-off |
+|-------|-------------|------------------|
+| ✅✅ **Async events** | Independent flows, fire-and-forget (notifications, analytics, audit) | Eventual consistency. Harder to trace failures. Wrong for flows that need an immediate result. |
+| ✅ **Local interface + adapter** | Most synchronous service-to-service calls | Still temporally coupled: if the dependency is down, you fail. But isolates you from structural changes. |
+| ⚠️ **HTTP without interface** | Quick prototypes, internal scripts | The URL is part of your business logic. Cannot be mocked cleanly. |
+| ❌ **Shared struct / direct import** | Never in production modules | One field rename can break dozens of files across unrelated contexts. |
+
+**Rule of thumb:** Start with a local interface + adapter. Promote to async events only when you've confirmed the flow has no hard dependency on an immediate result.
 
 ---
 

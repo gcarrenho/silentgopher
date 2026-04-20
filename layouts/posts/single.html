@@ -1,103 +1,172 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="">
+<html lang="{{ .Site.Language.Lang }}" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <title>{{ .Title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} | {{ .Site.Title }}</title>
+  <meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}">
   {{ $sass := resources.Get "scss/main.scss" | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $sass.RelPermalink }}" integrity="{{ $sass.Data.Integrity }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 </head>
-  <body data-post-id="{{ .File.BaseFileName }}" class="post-page">
-  <header class="main-header">
-    <img src="{{ with .Params.image }}{{ . | relURL }}{{ else }}{{ "/images/posts/clean-architecture.jpg" | relURL }}{{ end }}" 
-       alt="{{ .Title }}" 
-       class="header-gopher">
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+<body data-post-id="{{ .File.BaseFileName }}" class="post-page">
+
+  <!-- ── Top bar ── -->
+  <header class="post-topbar">
+    <div class="topbar-controls">
+      <div class="language-switcher">
+        {{ if .Translations }}
+          {{ range .Translations }}
+            <a href="{{ .RelPermalink }}">{{ .Language.LanguageName | truncate 2 }}</a>
+          {{ end }}
+        {{ else }}
+          {{ range .Site.Languages }}
+            {{ if not (eq .Lang $.Site.Language.Lang) }}
+              <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        <span class="active">{{ .Site.Language.LanguageName | truncate 2 }}</span>
+      </div>
+      <button class="theme-toggle" aria-label="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+    <nav class="post-topbar-nav">
+      <a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a>
+      <span class="topbar-sep">|</span>
+      <a href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
+      <span class="topbar-sep">|</span>
+      <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
+    </nav>
+    <div class="topbar-spacer"></div>
   </header>
 
-  <nav style="text-align:center; margin-top:1rem;">
-    <a href="/">{{ i18n "home" }}</a> |
-    <a href="/posts">{{ i18n "articles" }}</a> |
-    <a href="/about">{{ i18n "about_me" }}</a>
-  </nav>
-
-  <main class="medium-article {{ if not .Params.image }}no-article-image{{ end }}">
+  <main class="medium-article">
     <article>
-      <h1>{{ .Title }}</h1>
-      {{ with .Params.subtitle }}
-        <h2 class="subtitle">{{ . }}</h2>
+
+      <!-- ── Hero image ── -->
+      {{ with .Params.image }}
+      <div class="post-hero">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="post-hero-img" loading="eager">
+      </div>
       {{ end }}
 
-      <!-- Nuevo bloque de engagement centrado -->
-      <div class="engagement-stats">
-        <span class="stat-item">
-          ⏱️ <span class="minutes">{{ .ReadingTime }}</span> min
-        </span>
-        •
-        <span class="stat-item">
-          👁️ <span id="view-count">0</span>
-        </span>
-        •
-        <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
-          👏 <span id="clap-count">0</span>
-        </button>
-        •
-        <button id="comment-btn" class="comment-button" aria-label="Comentar este artículo">
-          💬 <span id="comment-count">0</span>
-        </button>
-      </div>
+      <!-- ── Article header ── -->
+      <header class="post-header">
+        {{ with .Params.tags }}
+        <div class="post-tags">
+          {{ range . }}
+            <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="post-tag">#{{ . }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
 
-  </div> 
-        <p class="meta-info">
-          {{ .Date.Format "January 2, 2006" }} — {{ i18n "by" }} {{ .Params.author }}
-        </p>
-      
+        <h1>{{ .Title }}</h1>
+
+        {{ with .Params.subtitle }}
+          <p class="subtitle">{{ . }}</p>
+        {{ end }}
+
+        <div class="post-byline">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          <span class="dot">·</span>
+          <span>{{ .ReadingTime }} min</span>
+          {{ with .Params.author }}
+            <span class="dot">·</span>
+            <span>{{ . }}</span>
+          {{ end }}
+          <span class="dot">·</span>
+          <span>👁 <span id="view-count">0</span></span>
+        </div>
+
+        <!-- Engagement bar -->
+        <div class="engagement-stats">
+          <button id="clap-btn" class="clap-button" aria-label="Aplaudir este artículo">
+            👏 <span id="clap-count">0</span>
+          </button>
+          <span class="stat-sep">·</span>
+          <button id="comment-btn" class="comment-button" aria-label="Ir a comentarios">
+            💬 <span id="comment-count">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Content ── -->
       <div class="content">
         {{ .Content }}
       </div>
-      
-      <!-- Sección de comentarios -->
-     <!--  <div class="comments-section">
-        <div class="popular-comments">
-          <h3>Comentarios destacados</h3>
-          <div class="comment-list">
-            <!-- Comentarios populares irían aquí 
-          </div>
-        </div> -->
-        
-         <!--  <div class="all-comments">
-          <h3>Únete a la conversación</h3>
-          <form class="comment-form">
-            <textarea placeholder="Escribe tu comentario..." required></textarea>
-            <button type="submit">Publicar comentario</button>
-          </form>
-          <div class="comment-list">
-            <!-- Todos los comentarios irían aquí 
-          </div>
-        </div>-->
+
+      <!-- ── Post footer: tags ── -->
+      {{ with .Params.tags }}
+      <div class="post-footer-tags">
+        {{ range . }}
+          <a href="{{ "tags/" | relURL }}{{ . | urlize }}" class="post-tag">#{{ . }}</a>
+        {{ end }}
       </div>
+      {{ end }}
 
-  <!-- Sección de comentarios mejorada -->
-<!-- Sección de comentarios mejorada -->
-<section class="all-comments">
-  <div class="comments-header">
-    <h3>Conversación</h3>
-    <div class="comment-count">
-      💬 <span id="comment-count-section">0</span> comentarios
-    </div>
-  </div>
+      <!-- ── Prev / Next ── -->
+      {{ if or .PrevInSection .NextInSection }}
+      <nav class="post-prevnext">
+        <div class="prevnext-item prev">
+          {{ with .NextInSection }}
+            <span class="prevnext-label">← Anterior</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ end }}
+        </div>
+        <div class="prevnext-item next">
+          {{ with .PrevInSection }}
+            <span class="prevnext-label">Siguiente →</span>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ end }}
+        </div>
+      </nav>
+      {{ end }}
 
-  <!-- Contenedor de login (visible cuando no autenticado) -->
-  <div id="login-container" class="login-container" style="display: none;">
-    <p>Debes iniciar sesión con GitHub para comentar</p>
-    <button id="login-github-btn" class="login-github-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
-        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
-      </svg>
-      Iniciar sesión con GitHub
-    </button>
+      <!-- ── Comments ── -->
+      <section class="all-comments" id="comments">
+        <div class="comments-header">
+          <h3>Conversación</h3>
+          <div class="comment-count">
+            💬 <span id="comment-count-section">0</span> comentarios
+          </div>
+        </div>
+
+        <div id="login-container" class="login-container" style="display: none;">
+          <p>Inicia sesión con GitHub para comentar</p>
+          <button id="login-github-btn" class="login-github-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.09.682-.218.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"></path>
+            </svg>
+            Iniciar sesión con GitHub
+          </button>
+        </div>
+
+        <form id="main-comment-form" class="comment-form" style="display: none;">
+          <div class="avatar-placeholder">
+            <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
+          </div>
+          <div class="form-content">
+            <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
+            <div class="form-actions">
+              <button type="submit" class="submit-button">Publicar</button>
+            </div>
+          </div>
+          <input type="hidden" id="reply-to" value="">
+        </form>
+      </section>
+
+    </article>
+  </main>
+
+  {{ partial "theme-script.html" . }}
+  {{ partial "scripts.html" . }}
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>
   </div>
 
   <!-- Formulario de comentarios (visible cuando autenticado) -->

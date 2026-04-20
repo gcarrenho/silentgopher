@@ -3,11 +3,15 @@
     .content-grid {
         grid-template-columns: 1fr;
     }
+
+    .sidebar {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
     .main-header {
-        height: 150px;
+        height: 180px;
     }
 
     .profile-container {
@@ -15,12 +19,93 @@
     }
 
     .profile-pic {
-        width: 120px;
-        height: 120px;
+        width: 90px;
+        height: 90px;
     }
 
     .content-grid {
         padding: 0 1rem;
-        margin-top: 2rem;
+        margin-top: 1.5rem;
+        gap: 1rem;
+    }
+
+    /* Profile nav stacks vertically on mobile */
+    .profile-nav-container {
+        flex-direction: column;
+        margin-top: -50px;
+        gap: 1rem;
+    }
+
+    .profile-nav {
+        margin-top: 0;
+        justify-content: center;
+    }
+
+    /* Comment sidebar goes full-width on mobile */
+    #comment-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #333;
+    }
+
+    /* Engagement bar wraps gracefully */
+    .engagement-stats {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 0.7rem 1rem;
+        border-radius: 12px;
+        justify-content: center;
+    }
+
+    /* Nav links on post pages */
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin: 1rem 0 1.5rem;
+    }
+
+    /* Card title smaller on mobile */
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    /* All-comments section full width */
+    .all-comments {
+        padding: 0 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header {
+        height: 140px;
+    }
+
+    .content-grid {
+        padding: 0 0.75rem;
+        margin-top: 1rem;
+    }
+
+    .profile-nav-container {
+        margin-top: -40px;
+    }
+
+    .profile-pic {
+        width: 75px;
+        height: 75px;
+    }
+
+    /* Header controls fit on small screen */
+    .header-controls-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    /* Theme toggle smaller on xs */
+    .theme-toggle {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
     }
 }
