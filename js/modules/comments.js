@@ -30,14 +30,26 @@ export async function setupComments() {
             Iniciar sesión con GitHub
         </button>
     </div>
-                <form id="comment-form" class="comment-form">
-                    <div class="comment-input-row">
-                        <img id="user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
-                        <textarea id="comment-input" placeholder="Escribe tu comentario..." rows="2" required></textarea>
+                <form id="comment-form" class="terminal-form">
+                    <div class="terminal-titlebar">
+                        <span class="terminal-dot dot-red"></span>
+                        <span class="terminal-dot dot-yellow"></span>
+                        <span class="terminal-dot dot-green"></span>
+                        <span class="terminal-title">bash — comment</span>
                     </div>
-                    <div class="comment-form-actions">
-                        <button type="submit" class="comment-submit-btn">Publicar</button>
-                        <button type="button" id="close-sidebar" class="comment-cancel-btn">Cerrar</button>
+                    <div class="terminal-body">
+                        <div class="terminal-prompt-line">
+                            <img id="user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar terminal-avatar">
+                            <span class="terminal-prompt-user">guest@silentgopher:~$</span>
+                        </div>
+                        <div class="terminal-input-line">
+                            <span class="terminal-cursor-prompt">&gt;</span>
+                            <textarea id="comment-input" class="terminal-input" placeholder="escribe tu comentario..." rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="terminal-form-actions">
+                        <button type="submit" class="comment-submit-btn">$ publicar</button>
+                        <button type="button" id="close-sidebar" class="comment-cancel-btn">$ cerrar</button>
                     </div>
                 </form>`;
             document.body.appendChild(sidebar);
@@ -131,6 +143,12 @@ export async function setupComments() {
                 // Actualizar avatares
                 document.querySelectorAll('#user-avatar-img, #main-user-avatar-img').forEach(img => {
                     img.src = currentUser?.user_metadata?.avatar_url || 'https://www.gravatar.com/avatar/?d=mp&s=40';
+                });
+
+                // Actualizar prompt de terminal con nombre de usuario
+                const username = currentUser?.user_metadata?.user_name || 'user';
+                document.querySelectorAll('.terminal-prompt-user').forEach(el => {
+                    el.textContent = `${username}@silentgopher:~$`;
                 });
             }
         },
