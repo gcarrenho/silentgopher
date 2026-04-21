@@ -9,6 +9,13 @@
     <lastBuildDate>Mon, 20 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/en/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>API Design</title>
+      <link>http://localhost:1313/en/tags/api-design/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/tags/api-design/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Clean Code</title>
       <link>http://localhost:1313/en/tags/clean-code/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
@@ -16,10 +23,10 @@
       <description></description>
     </item>
     <item>
-      <title>Functional Options</title>
-      <link>http://localhost:1313/en/tags/functional-options/</link>
+      <title>Design Patterns</title>
+      <link>http://localhost:1313/en/tags/design-patterns/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/functional-options/</guid>
+      <guid>http://localhost:1313/en/tags/design-patterns/</guid>
       <description></description>
     </item>
     <item>
@@ -30,10 +37,10 @@
       <description></description>
     </item>
     <item>
-      <title>Patterns</title>
-      <link>http://localhost:1313/en/tags/patterns/</link>
+      <title>Software Architecture</title>
+      <link>http://localhost:1313/en/tags/software-architecture/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/en/tags/patterns/</guid>
+      <guid>http://localhost:1313/en/tags/software-architecture/</guid>
       <description></description>
     </item>
     <item>
@@ -48,6 +55,13 @@
       <link>http://localhost:1313/en/tags/coupling/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/en/tags/coupling/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Microservices</title>
+      <link>http://localhost:1313/en/tags/microservices/</link>
+      <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/tags/microservices/</guid>
       <description></description>
     </item>
     <item>

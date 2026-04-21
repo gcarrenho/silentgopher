@@ -2,15 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/en/tags/api-design/</loc>
+    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/api-design/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/api-design/"
+                />
+  </url><url>
     <loc>http://localhost:1313/en/tags/clean-code/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/clean-code/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/clean-code/"
+                />
   </url><url>
-    <loc>http://localhost:1313/en/tags/functional-options/</loc>
+    <loc>http://localhost:1313/en/tags/design-patterns/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/design-patterns/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/design-patterns/"
+                />
   </url><url>
     <loc>http://localhost:1313/en/posts/functional-options/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
@@ -57,11 +92,6 @@
                 href="http://localhost:1313/en/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/patterns/</loc>
-    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>http://localhost:1313/en/posts/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -75,6 +105,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/en/posts/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/en/tags/software-architecture/</loc>
+    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/software-architecture/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/software-architecture/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/tags/</loc>
@@ -96,11 +141,31 @@
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/cohesion/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/cohesion/"
+                />
   </url><url>
     <loc>http://localhost:1313/en/tags/coupling/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/coupling/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/coupling/"
+                />
   </url><url>
     <loc>http://localhost:1313/en/posts/coupling-and-cohesion/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
@@ -115,6 +180,21 @@
                 rel="alternate"
                 hreflang="en"
                 href="http://localhost:1313/en/posts/coupling-and-cohesion/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/en/tags/microservices/</loc>
+    <lastmod>2026-02-12T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/tags/microservices/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1313/en/tags/microservices/"
                 />
   </url><url>
     <loc>http://localhost:1313/en/about/</loc>

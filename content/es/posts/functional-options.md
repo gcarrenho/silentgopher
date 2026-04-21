@@ -5,6 +5,7 @@ date: 2026-04-20
 author: "@SilentGopher"
 image: "/images/posts/functional-options/functional-options.png"
 description: "Cómo dejar de pasar booleanos y strings vacíos a tus constructores en Go. Un análisis profundo del patrón Functional Options — cuándo usarlo a nivel constructor vs método, y cuándo no usarlo."
+tags: ["Go", "Design Patterns", "Clean Code", "API Design", "Software Architecture"]
 draft: false
 ---
 

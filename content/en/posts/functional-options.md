@@ -5,7 +5,7 @@ date: 2026-04-20
 author: "@SilentGopher"
 description: "How to stop passing boolean flags and empty strings to your Go constructors. A deep dive into the Functional Options pattern — when to use it at constructor level vs method level, and when not to use it at all."
 image: "/images/posts/functional-options/functional-options.png"
-tags: ["Go", "Clean Code", "Patterns", "Functional Options"]
+tags: ["Go", "Design Patterns", "Clean Code", "API Design", "Software Architecture"]
 draft: false
 ---
 

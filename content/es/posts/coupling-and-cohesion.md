@@ -4,6 +4,7 @@ subtitle: "Coupling and Cohesion"
 date: 2026-02-12
 author: "@SilentGopher"
 description: "Acoplamiento estructural, contractual, temporal, funcional y de despliegue explicados con Go real. Incluye una guerra de migración, el patrón de eventos asíncronos y una tabla de decisión para elegir el nivel correcto."
+tags: ["Go", "Software Architecture", "Coupling", "Cohesion", "Microservices", "Clean Code"]
 image: "/images/posts/coupling-cohesion/coupling-cohesion.png"
 draft: false
 ---
