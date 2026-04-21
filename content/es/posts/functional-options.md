@@ -1,7 +1,7 @@
 ---
 title: "Functional Options en Go: El Patrón Detrás de Constructores Limpios"
 subtitle: "Functional Options Pattern"
-date: 2025-08-01
+date: 2026-04-20
 author: "@SilentGopher"
 image: "/images/posts/functional-options/functional-options.png"
 description: "Cómo dejar de pasar booleanos y strings vacíos a tus constructores en Go. Un análisis profundo del patrón Functional Options — cuándo usarlo a nivel constructor vs método, y cuándo no usarlo."

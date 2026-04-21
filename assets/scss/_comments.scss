@@ -566,3 +566,109 @@
 .login-github-btn:active {
     background-color: #1b1f23;
 }
+
+/* ── Terminal comment form ── */
+.terminal-form {
+    background: #0d0d0d;
+    border: 1px solid #2e2e2e;
+    border-radius: 6px;
+    overflow: hidden;
+    font-family: 'Fira Code', monospace;
+    margin-top: 1.2rem;
+    gap: 0;
+}
+
+.terminal-titlebar {
+    background: #1c1c1c;
+    padding: 0.4rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-bottom: 1px solid #2e2e2e;
+}
+
+.terminal-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.dot-red    { background: #ff5f56; }
+.dot-yellow { background: #ffbd2e; }
+.dot-green  { background: #27c93f; }
+
+.terminal-title {
+    color: #666;
+    font-size: 0.72rem;
+    flex: 1;
+    text-align: center;
+    letter-spacing: 0.03em;
+}
+
+.terminal-body {
+    padding: 0.75rem 1rem;
+    background: #000;
+}
+
+.terminal-prompt-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+.terminal-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.terminal-prompt-user {
+    color: #00ff00;
+    font-size: 0.85rem;
+    font-family: 'Fira Code', monospace;
+    font-weight: bold;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.terminal-cursor-prompt {
+    color: #00ff00;
+    font-size: 0.9rem;
+    padding-top: 0.3rem;
+    flex-shrink: 0;
+    user-select: none;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #d4d4d4;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.9rem;
+    resize: none;
+    line-height: 1.5;
+    padding: 0;
+    caret-color: #00ff00;
+}
+
+.terminal-input::placeholder {
+    color: #444;
+}
+
+.terminal-form-actions {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #0d0d0d;
+    border-top: 1px solid #1e1e1e;
+}

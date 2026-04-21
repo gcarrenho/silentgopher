@@ -70,7 +70,7 @@
   </script>
 
   
-  <link rel="stylesheet" href="/scss/main.min.67071da49f24c2816ec10b04a1808d527f63f16a4562aa6ec610d0077d0d3462.css" integrity="sha256-ZwcdpJ8kwoFuwQsEoYCNUn9j8WpFYqpuxhDQB30NNGI=">
+  <link rel="stylesheet" href="/scss/main.min.706ec607ab7d3b5d5c81072dbe9e334721d3fdc51f60f6697a035de2afea8797.css" integrity="sha256-cG7GB6t9O11cgQctvp4zRyHT/cUfYPZpegNd4q/qh5c=">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
@@ -502,15 +502,25 @@ Tell me in the comments.</p>
           </button>
         </div>
 
-        <form id="main-comment-form" class="comment-form" style="display: none;">
-          <div class="avatar-placeholder">
-            <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
+        <form id="main-comment-form" class="comment-form terminal-form" style="display: none;">
+          <div class="terminal-titlebar">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+            <span class="terminal-title">bash — comment</span>
           </div>
-          <div class="form-content">
-            <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
-            <div class="form-actions">
-              <button type="submit" class="submit-button">Publicar</button>
+          <div class="terminal-body">
+            <div class="terminal-prompt-line">
+              <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar terminal-avatar">
+              <span class="terminal-prompt-user">guest@silentgopher:~$</span>
             </div>
+            <div class="terminal-input-line">
+              <span class="terminal-cursor-prompt">&gt;</span>
+              <textarea placeholder="escribe tu comentario..." rows="3" required></textarea>
+            </div>
+          </div>
+          <div class="terminal-form-actions">
+            <button type="submit" class="comment-submit-btn">$ publicar</button>
           </div>
           <input type="hidden" id="reply-to" value="">
         </form>

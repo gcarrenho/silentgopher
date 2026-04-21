@@ -209,15 +209,25 @@
           </button>
         </div>
 
-        <form id="main-comment-form" class="comment-form" style="display: none;">
-          <div class="avatar-placeholder">
-            <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar-img">
+        <form id="main-comment-form" class="comment-form terminal-form" style="display: none;">
+          <div class="terminal-titlebar">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+            <span class="terminal-title">bash — comment</span>
           </div>
-          <div class="form-content">
-            <textarea placeholder="Escribe tu comentario..." rows="3" required></textarea>
-            <div class="form-actions">
-              <button type="submit" class="submit-button">Publicar</button>
+          <div class="terminal-body">
+            <div class="terminal-prompt-line">
+              <img id="main-user-avatar-img" src="https://www.gravatar.com/avatar/?d=mp&s=40" class="avatar terminal-avatar">
+              <span class="terminal-prompt-user">guest@silentgopher:~$</span>
             </div>
+            <div class="terminal-input-line">
+              <span class="terminal-cursor-prompt">&gt;</span>
+              <textarea placeholder="escribe tu comentario..." rows="3" required></textarea>
+            </div>
+          </div>
+          <div class="terminal-form-actions">
+            <button type="submit" class="comment-submit-btn">$ publicar</button>
           </div>
           <input type="hidden" id="reply-to" value="">
         </form>
