@@ -1,0 +1,26 @@
+name: Keep Supabase Alive
+
+on:
+  schedule:
+    - cron: "0 12 */3 * *"  # Cada 3 días a las 12:00 UTC
+  workflow_dispatch:         # Permite ejecución manual desde el dashboard
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            "${{ secrets.PUBLIC_SUPABASE_URL }}/rest/v1/comments?select=id&limit=1" \
+            -H "apikey: ${{ secrets.PUBLIC_SUPABASE_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.PUBLIC_SUPABASE_KEY }}")
+
+          echo "HTTP status: $STATUS"
+
+          if [ "$STATUS" -lt 200 ] || [ "$STATUS" -ge 300 ]; then
+            echo "Error: respuesta inesperada de Supabase ($STATUS)"
+            exit 1
+          fi
+
+          echo "Supabase sigue activo."
