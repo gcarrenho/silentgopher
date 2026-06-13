@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Posts | Silent Gopher</title>
@@ -21,7 +21,7 @@
     <div class="language-switcher">
       
         
-          <a href="http://localhost:1313/es">Es</a>
+          <a href="https://www.silentgopher.dev/es">Es</a>
         
       
         
@@ -41,7 +41,7 @@
 <main class="articles-page">
   <div class="articles-page-header">
     <h1 class="articles-page-title">Articles</h1>
-    <p class="articles-page-count">4 artículos</p>
+    <p class="articles-page-count">6 artículos</p>
   </div>
 
   <div class="search-bar">
@@ -55,6 +55,132 @@
 
   <div class="blog-wrapper" id="articlesList">
     
+    
+      <div class="blog-card-wrapper" data-title="concurrency in go: the internal anatomy of the gmp scheduler" data-tags="go go runtime concurrency scheduler performance gmp ">
+        <article class="post-card">
+  <a href="/en/posts/go-scheduler-gmp/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/en/posts/go-scheduler-gmp/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/go-scheduler-gmp/cover.svg" alt="Concurrency in Go: The Internal Anatomy of the GMP Scheduler" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2026-06-13">Jun 13, 2026</time>
+    <span class="dot">·</span>
+    <span>18 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/en/posts/go-scheduler-gmp/">Concurrency in Go: The Internal Anatomy of the GMP Scheduler</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">G, M, P, Work Stealing, Syscalls, Preemption</p>
+  
+
+  <p class="post-card-description">
+    
+      A deep dive into Go&#39;s scheduler internals: the G, M, and P structures, work stealing, syscall handoff, netpolling, and the evolution from cooperative to asynchronous preemption.
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/go-runtime">#Go Runtime</a></li>
+        
+          <li><a href="/tags/concurrency">#Concurrency</a></li>
+        
+          <li><a href="/tags/scheduler">#Scheduler</a></li>
+        
+          <li><a href="/tags/performance">#Performance</a></li>
+        
+          <li><a href="/tags/gmp">#GMP</a></li>
+        
+      </ul>
+      <a href="/en/posts/go-scheduler-gmp/" class="post-card-readmore">
+        read more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+      </div>
+    
+      <div class="blog-card-wrapper" data-title="memory management in go: the trip to assembly and escape analysis" data-tags="go go runtime compiler performance escape analysis assembly ">
+        <article class="post-card">
+  <a href="/en/posts/go-memory-escape-analysis/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
+
+  
+    <a href="/en/posts/go-memory-escape-analysis/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
+      <img src="/images/posts/go-memory-escape-analysis/cover.svg" alt="Memory Management in Go: The Trip to Assembly and Escape Analysis" loading="lazy">
+    </a>
+  
+
+  <div class="post-card-body">
+  <div class="post-card-meta">
+    <time datetime="2026-06-13">Jun 13, 2026</time>
+    <span class="dot">·</span>
+    <span>18 min</span>
+    
+      <span class="dot">·</span>
+      <span>@SilentGopher</span>
+    
+  </div>
+
+  <h2 class="post-card-title">
+    <a href="/en/posts/go-memory-escape-analysis/">Memory Management in Go: The Trip to Assembly and Escape Analysis</a>
+  </h2>
+
+  
+    <p class="post-card-subtitle">Stack, Heap, Escape Analysis</p>
+  
+
+  <p class="post-card-description">
+    
+      A practical tour of stack vs heap in Go, how escape analysis works, how to inspect compiler decisions with -gcflags=&#39;-m&#39;, and how to connect them to generated assembly.
+    
+  </p>
+
+  
+    <div class="post-card-footer">
+      <ul class="post-card-tags">
+        
+          <li><a href="/tags/go">#Go</a></li>
+        
+          <li><a href="/tags/go-runtime">#Go Runtime</a></li>
+        
+          <li><a href="/tags/compiler">#Compiler</a></li>
+        
+          <li><a href="/tags/performance">#Performance</a></li>
+        
+          <li><a href="/tags/escape-analysis">#Escape Analysis</a></li>
+        
+          <li><a href="/tags/assembly">#Assembly</a></li>
+        
+      </ul>
+      <a href="/en/posts/go-memory-escape-analysis/" class="post-card-readmore">
+        read more
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  
+  </div>
+</article>
+
+      </div>
     
       <div class="blog-card-wrapper" data-title="functional options in go: the pattern behind clean service constructors" data-tags="go design patterns clean code api design software architecture ">
         <article class="post-card">

@@ -2,80 +2,136 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Silent Gopher</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://www.silentgopher.dev/tags/</link>
     <description>Recent content in Tags on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <lastBuildDate>Mon, 20 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://www.silentgopher.dev/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>API Design</title>
-      <link>http://localhost:1313/tags/api-design/</link>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/api-design/</guid>
+      <title>Assembly</title>
+      <link>https://www.silentgopher.dev/tags/assembly/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/assembly/</guid>
       <description></description>
     </item>
     <item>
-      <title>Clean Code</title>
-      <link>http://localhost:1313/tags/clean-code/</link>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/clean-code/</guid>
+      <title>Compiler</title>
+      <link>https://www.silentgopher.dev/tags/compiler/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/compiler/</guid>
       <description></description>
     </item>
     <item>
-      <title>Design Patterns</title>
-      <link>http://localhost:1313/tags/design-patterns/</link>
-      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/design-patterns/</guid>
+      <title>Concurrency</title>
+      <link>https://www.silentgopher.dev/tags/concurrency/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/concurrency/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Escape Analysis</title>
+      <link>https://www.silentgopher.dev/tags/escape-analysis/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/escape-analysis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GMP</title>
+      <link>https://www.silentgopher.dev/tags/gmp/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/gmp/</guid>
       <description></description>
     </item>
     <item>
       <title>Go</title>
-      <link>http://localhost:1313/tags/go/</link>
+      <link>https://www.silentgopher.dev/tags/go/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go Runtime</title>
+      <link>https://www.silentgopher.dev/tags/go-runtime/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/go-runtime/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Performance</title>
+      <link>https://www.silentgopher.dev/tags/performance/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/performance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Scheduler</title>
+      <link>https://www.silentgopher.dev/tags/scheduler/</link>
+      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/scheduler/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>API Design</title>
+      <link>https://www.silentgopher.dev/tags/api-design/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/go/</guid>
+      <guid>https://www.silentgopher.dev/tags/api-design/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Clean Code</title>
+      <link>https://www.silentgopher.dev/tags/clean-code/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/clean-code/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Design Patterns</title>
+      <link>https://www.silentgopher.dev/tags/design-patterns/</link>
+      <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/design-patterns/</guid>
       <description></description>
     </item>
     <item>
       <title>Software Architecture</title>
-      <link>http://localhost:1313/tags/software-architecture/</link>
+      <link>https://www.silentgopher.dev/tags/software-architecture/</link>
       <pubDate>Mon, 20 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/software-architecture/</guid>
+      <guid>https://www.silentgopher.dev/tags/software-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Cohesion</title>
-      <link>http://localhost:1313/tags/cohesion/</link>
+      <link>https://www.silentgopher.dev/tags/cohesion/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/cohesion/</guid>
+      <guid>https://www.silentgopher.dev/tags/cohesion/</guid>
       <description></description>
     </item>
     <item>
       <title>Coupling</title>
-      <link>http://localhost:1313/tags/coupling/</link>
+      <link>https://www.silentgopher.dev/tags/coupling/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/coupling/</guid>
+      <guid>https://www.silentgopher.dev/tags/coupling/</guid>
       <description></description>
     </item>
     <item>
       <title>Microservices</title>
-      <link>http://localhost:1313/tags/microservices/</link>
+      <link>https://www.silentgopher.dev/tags/microservices/</link>
       <pubDate>Thu, 12 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/microservices/</guid>
+      <guid>https://www.silentgopher.dev/tags/microservices/</guid>
       <description></description>
     </item>
     <item>
       <title>Clean Architecture</title>
-      <link>http://localhost:1313/tags/clean-architecture/</link>
+      <link>https://www.silentgopher.dev/tags/clean-architecture/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/clean-architecture/</guid>
+      <guid>https://www.silentgopher.dev/tags/clean-architecture/</guid>
       <description></description>
     </item>
     <item>
       <title>Package by Components</title>
-      <link>http://localhost:1313/tags/package-by-components/</link>
+      <link>https://www.silentgopher.dev/tags/package-by-components/</link>
       <pubDate>Thu, 31 Jul 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/package-by-components/</guid>
+      <guid>https://www.silentgopher.dev/tags/package-by-components/</guid>
       <description></description>
     </item>
   </channel>
