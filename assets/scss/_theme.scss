@@ -1,78 +1,80 @@
-/* --- VARIABLES Y TEMA OSCURO --- */
+/* --- Design Tokens --- */
 
-/* ====== Base Light ====== */
 :root {
-    --bg:        #fafafa;
-    --bg-color:  #fafafa;
-    --fg:        #18181b;
-    --font-color: #18181b;
-    --meta:      #71717a;
-    --subtitle:  #52525b;
-    --link:      #2563eb;
-    --accent:    #3b82f6;
-    --code-bg:   #f4f4f5;
-    --border:    #e4e4e7;
-    --border-color: #e4e4e7;
-    --card-bg:   #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.06);
-    --primary-color: #2563eb;
-    --quote-bg:  rgba(59, 130, 246, 0.05);
+    --font-sans: "Sora", "Segoe UI", sans-serif;
+    --font-serif: "Source Serif 4", Georgia, serif;
+    --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+    --bg: #f2f4f8;
+    --bg-color: #f2f4f8;
+    --bg-secondary: #e9edf4;
+    --fg: #111827;
+    --font-color: #111827;
+    --text-color: #111827;
+    --meta: #5b6475;
+    --text-muted: #5b6475;
+    --subtitle: #394154;
+
+    --link: #0f4fcf;
+    --accent: #1f6feb;
+    --accent-color: #1f6feb;
+    --primary-color: #1f6feb;
+
+    --code-bg: #eef2f9;
+    --quote-bg: #e8f1ff;
+
+    --border: #d7dfeb;
+    --border-color: #d7dfeb;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(16, 24, 40, 0.08);
 }
 
-/* ====== Dark (manual toggle) ====== */
 [data-theme="dark"] {
-    --bg:        #18181b;
-    --bg-color:  #18181b;
-    --fg:        #f4f4f5;
-    --font-color: #f4f4f5;
-    --meta:      #a1a1aa;
-    --subtitle:  #d4d4d8;
-    --link:      #60a5fa;
-    --accent:    #3b82f6;
-    --code-bg:   #27272a;
-    --border:    #3f3f46;
-    --border-color: #3f3f46;
-    --card-bg:   #1c1c1f;
-    --shadow-color: rgba(0, 0, 0, 0.35);
-    --primary-color: #60a5fa;
-    --quote-bg:  rgba(59, 130, 246, 0.08);
-}
+    --bg: #0b1220;
+    --bg-color: #0b1220;
+    --bg-secondary: #111c33;
+    --fg: #e8edf7;
+    --font-color: #e8edf7;
+    --text-color: #e8edf7;
+    --meta: #95a3bf;
+    --text-muted: #95a3bf;
+    --subtitle: #c7d2e8;
 
-/* ====== Dark (system preference) ====== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg:        #18181b;
-        --bg-color:  #18181b;
-        --fg:        #f4f4f5;
-        --font-color: #f4f4f5;
-        --meta:      #a1a1aa;
-        --subtitle:  #d4d4d8;
-        --link:      #60a5fa;
-        --accent:    #3b82f6;
-        --code-bg:   #27272a;
-        --border:    #3f3f46;
-        --border-color: #3f3f46;
-        --card-bg:   #1c1c1f;
-        --shadow-color: rgba(0, 0, 0, 0.35);
-        --primary-color: #60a5fa;
-        --quote-bg:  rgba(59, 130, 246, 0.08);
-    }
+    --link: #7cb6ff;
+    --accent: #56a3ff;
+    --accent-color: #56a3ff;
+    --primary-color: #56a3ff;
+
+    --code-bg: #0f1b31;
+    --quote-bg: #142847;
+
+    --border: #22314e;
+    --border-color: #22314e;
+    --card-bg: #101b31;
+    --shadow-color: rgba(2, 8, 20, 0.5);
 }
 
 [data-theme="light"] {
-    --bg:        #fafafa;
-    --bg-color:  #fafafa;
-    --fg:        #18181b;
-    --font-color: #18181b;
-    --meta:      #71717a;
-    --subtitle:  #52525b;
-    --link:      #2563eb;
-    --accent:    #3b82f6;
-    --code-bg:   #f4f4f5;
-    --border:    #e4e4e7;
-    --border-color: #e4e4e7;
-    --card-bg:   #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.06);
-    --primary-color: #2563eb;
-    --quote-bg:  rgba(59, 130, 246, 0.05);
+    --bg: #f2f4f8;
+    --bg-color: #f2f4f8;
+    --bg-secondary: #e9edf4;
+    --fg: #111827;
+    --font-color: #111827;
+    --text-color: #111827;
+    --meta: #5b6475;
+    --text-muted: #5b6475;
+    --subtitle: #394154;
+
+    --link: #0f4fcf;
+    --accent: #1f6feb;
+    --accent-color: #1f6feb;
+    --primary-color: #1f6feb;
+
+    --code-bg: #eef2f9;
+    --quote-bg: #e8f1ff;
+
+    --border: #d7dfeb;
+    --border-color: #d7dfeb;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(16, 24, 40, 0.08);
 }

@@ -1,17 +1,19 @@
 /* --- RESPONSIVE DESIGN --- */
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
     .content-grid {
         grid-template-columns: 1fr;
+        max-width: 860px;
     }
 
     .sidebar {
-        display: none;
+        order: 2;
+        max-width: 580px;
     }
 }
 
 @media (max-width: 768px) {
     .main-header {
-        height: 180px;
+        height: 170px;
     }
 
     .profile-container {
@@ -19,21 +21,20 @@
     }
 
     .profile-pic {
-        width: 90px;
-        height: 90px;
+        width: 92px;
+        height: 92px;
     }
 
     .content-grid {
-        padding: 0 1rem;
-        margin-top: 1.5rem;
+        padding: 0 0.95rem;
+        margin-top: 1.2rem;
         gap: 1rem;
     }
 
-    /* Profile nav stacks vertically on mobile */
     .profile-nav-container {
         flex-direction: column;
-        margin-top: -50px;
-        gap: 1rem;
+        margin-top: -48px;
+        gap: 0.8rem;
     }
 
     .profile-nav {
@@ -41,14 +42,12 @@
         justify-content: center;
     }
 
-    /* Comment sidebar goes full-width on mobile */
     #comment-sidebar {
         width: 100%;
         border-left: none;
         border-top: 1px solid #333;
     }
 
-    /* Engagement bar wraps gracefully */
     .engagement-stats {
         flex-wrap: wrap;
         gap: 0.75rem;
@@ -57,7 +56,6 @@
         justify-content: center;
     }
 
-    /* Nav links on post pages */
     nav {
         display: flex;
         flex-wrap: wrap;
@@ -66,12 +64,10 @@
         margin: 1rem 0 1.5rem;
     }
 
-    /* Card title smaller on mobile */
     .card-title {
         font-size: 1.2rem;
     }
 
-    /* All-comments section full width */
     .all-comments {
         padding: 0 0.5rem;
     }
@@ -79,11 +75,11 @@
 
 @media (max-width: 480px) {
     .main-header {
-        height: 140px;
+        height: 138px;
     }
 
     .content-grid {
-        padding: 0 0.75rem;
+        padding: 0 0.7rem;
         margin-top: 1rem;
     }
 
@@ -96,13 +92,11 @@
         height: 75px;
     }
 
-    /* Header controls fit on small screen */
     .header-controls-container {
         top: 10px;
         right: 10px;
     }
 
-    /* Theme toggle smaller on xs */
     .theme-toggle {
         width: 32px;
         height: 32px;

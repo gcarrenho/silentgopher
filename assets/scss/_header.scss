@@ -1,80 +1,96 @@
-/* --- HEADER Y PERFIL --- */
+/* --- Header --- */
 .main-header {
     background-color: var(--card-bg);
-    height: 350px;
+    height: clamp(190px, 34vw, 300px);
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     width: 100%;
+    border-bottom: 1px solid var(--border);
+}
+
+.main-header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 14, 28, 0.08) 20%, rgba(8, 14, 28, 0.5) 100%);
+    pointer-events: none;
 }
 
 .articles-header {
-    // background-color: var(--card-bg);
-    height: 80px;
+    min-height: 76px;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     width: 100%;
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--card-bg) 94%, transparent);
 }
 
 .header-gopher {
     width: 100%;
-    height: auto;
+    height: 100%;
     max-width: 100%;
-    opacity: 0.5;
-    display: block; // 👌 Elimina espacio extra (img es inline por defecto)
-    object-fit: cover; // Opcional: recorta para cubrir todo si hay altura fija
+    opacity: 0.58;
+    display: block;
+    object-fit: cover;
+}
 
+.header-controls-container {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    z-index: 2;
 }
 
 .theme-toggle {
-    position: absolute;
-    top: 24px;
-    right: 20px;
-    background: var(--bg-color);
+    background: color-mix(in srgb, var(--card-bg) 88%, transparent);
     border: 1px solid var(--border-color);
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    color: var(--fg);
+    box-shadow: 0 10px 24px var(--shadow-color);
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+}
 
-.header-right {
+.header-right,
+.header-controls {
     display: flex;
     align-items: center;
 }
 
 .header-controls {
-    display: flex;
-    align-items: center;
     gap: 1rem;
 }
 
 @media (max-width: 768px) {
     .header-controls-container {
-        top: 15px;
-        right: 15px;
-        gap: 0.8rem;
-    }
-
-    .language-switcher a,
-    .language-switcher span {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.75rem;
+        top: 10px;
+        right: 10px;
+        gap: 0.45rem;
     }
 
     .theme-toggle {
-        width: 35px;
-        height: 35px;
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
     }
 }
