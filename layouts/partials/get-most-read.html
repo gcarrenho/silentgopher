@@ -1,5 +1,6 @@
 <!-- layouts/partials/get-most-read.html -->
-{{ $allPosts := where .Site.Pages "Type" "posts" }}
+{{ $allPosts := where .Site.RegularPages "Type" "posts" }}
+{{ $allPosts = where $allPosts "Params.series_index" "!=" true }}
 {{ $views := dict }}
 <script>
   // Pasamos datos de localStorage a Hugo
