@@ -6,8 +6,22 @@
     <description>Recent content in Go on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.silentgopher.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Serie Internals de Go: Guia de Lectura Practica</title>
+      <link>https://www.silentgopher.dev/posts/go-runtime-series-index/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/posts/go-runtime-series-index/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Esta pagina es el punto de entrada para leer la serie completa de internals de Go.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Interfaces en Go: iTable, Layout Interno y De-virtualización</title>
+      <link>https://www.silentgopher.dev/posts/go-interfaces-itables-devirtualization/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/posts/go-interfaces-itables-devirtualization/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Las interfaces hacen que el diseño sea flexible. El runtime y el compilador pagan ese costo, salvo cuando pueden demostrar que no hace falta.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
     <item>
       <title>Concurrencia en Go: La Anatomía Interna del Scheduler GMP</title>
       <link>https://www.silentgopher.dev/posts/go-scheduler-gmp/</link>

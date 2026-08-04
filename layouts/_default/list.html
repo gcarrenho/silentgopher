@@ -53,6 +53,7 @@
 
   <div class="blog-wrapper" id="articlesList">
     {{ $pages := where .Pages "Lang" .Site.Language.Lang }}
+    {{ $pages = where $pages "Params.series_index" "!=" true }}
     {{ range $index, $page := $pages }}
       <div class="blog-card-wrapper" data-title="{{ $page.Title | lower }}" data-tags="{{ range $page.Params.tags }}{{ . | lower }} {{ end }}">
         {{ partial "card.html" (dict "page" $page "index" $index) }}

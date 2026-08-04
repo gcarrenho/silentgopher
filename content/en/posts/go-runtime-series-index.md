@@ -5,6 +5,7 @@ date: 2026-06-16
 author: "@SilentGopher"
 description: "Index for the 3-part Go runtime internals series: memory and escape analysis, GMP scheduler, and interface internals with devirtualization."
 tags: ["Go", "Series", "Go Runtime", "Compiler", "Performance"]
+series_index: true
 draft: false
 ---
 

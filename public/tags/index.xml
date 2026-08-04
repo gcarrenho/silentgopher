@@ -6,20 +6,55 @@
     <description>Recent content in Tags on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.silentgopher.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Compiler</title>
+      <link>https://www.silentgopher.dev/tags/compiler/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/compiler/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go</title>
+      <link>https://www.silentgopher.dev/tags/go/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go Runtime</title>
+      <link>https://www.silentgopher.dev/tags/go-runtime/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/go-runtime/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Performance</title>
+      <link>https://www.silentgopher.dev/tags/performance/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/performance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Series</title>
+      <link>https://www.silentgopher.dev/tags/series/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/series/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Assembly</title>
       <link>https://www.silentgopher.dev/tags/assembly/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/tags/assembly/</guid>
       <description></description>
     </item>
     <item>
-      <title>Compiler</title>
-      <link>https://www.silentgopher.dev/tags/compiler/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/tags/compiler/</guid>
+      <title>Interfaces</title>
+      <link>https://www.silentgopher.dev/tags/interfaces/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/tags/interfaces/</guid>
       <description></description>
     </item>
     <item>
@@ -41,27 +76,6 @@
       <link>https://www.silentgopher.dev/tags/gmp/</link>
       <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/tags/gmp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Go</title>
-      <link>https://www.silentgopher.dev/tags/go/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/tags/go/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Go Runtime</title>
-      <link>https://www.silentgopher.dev/tags/go-runtime/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/tags/go-runtime/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Performance</title>
-      <link>https://www.silentgopher.dev/tags/performance/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/tags/performance/</guid>
       <description></description>
     </item>
     <item>

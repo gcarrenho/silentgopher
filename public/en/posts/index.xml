@@ -6,8 +6,22 @@
     <description>Recent content in Posts on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 13 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.silentgopher.dev/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go Runtime Internals Series: A Practical Reading Guide</title>
+      <link>https://www.silentgopher.dev/en/posts/go-runtime-series-index/</link>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/en/posts/go-runtime-series-index/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;This page is the reading hub for the Go runtime internals series.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Go Interfaces Under the Hood: iTables, iface, eface, and Devirtualization</title>
+      <link>https://www.silentgopher.dev/en/posts/go-interfaces-itables-devirtualization/</link>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/en/posts/go-interfaces-itables-devirtualization/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Interfaces make code flexible. The runtime and compiler pay the bill unless they can prove they do not have to.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
     <item>
       <title>Concurrency in Go: The Internal Anatomy of the GMP Scheduler</title>
       <link>https://www.silentgopher.dev/en/posts/go-scheduler-gmp/</link>
