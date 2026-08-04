@@ -4,7 +4,7 @@ subtitle: "Stack, Heap, Escape Analysis"
 date: 2026-08-04
 author: "@SilentGopher"
 description: "A practical tour of stack vs heap in Go, how escape analysis works, how to inspect compiler decisions with -gcflags='-m', and how to connect them to generated assembly."
-image: "/images/posts/go-memory-escape-analysis/cover.svg"
+image: "/images/posts/go-memory-escape-analysis/memoryManagement.jpg"
 tags: ["Go", "Go Runtime", "Compiler", "Performance", "Escape Analysis", "Assembly"]
 draft: false
 ---
