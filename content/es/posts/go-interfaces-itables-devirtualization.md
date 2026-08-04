@@ -6,7 +6,7 @@ author: "@SilentGopher"
 description: "Un análisis práctico de internals de interfaces en Go: representación iface y eface, resolución de métodos en runtime, costos ocultos y optimizaciones del compilador mediante de-virtualización."
 image: "/images/posts/go-interfaces-itables-devirtualization/cover.svg"
 tags: ["Go", "Go Runtime", "Interfaces", "Compiler", "Performance", "Assembly"]
-draft: false
+draft: true
 ---
 
 > Las interfaces hacen que el diseño sea flexible. El runtime y el compilador pagan ese costo, salvo cuando pueden demostrar que no hace falta.

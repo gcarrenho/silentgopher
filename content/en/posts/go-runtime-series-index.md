@@ -1,7 +1,7 @@
 ---
 title: "Go Runtime Internals Series: A Practical Reading Guide"
 subtitle: "Series Index"
-date: 2026-06-16
+date: 2026-08-04
 author: "@SilentGopher"
 description: "Index for the 3-part Go runtime internals series: memory and escape analysis, GMP scheduler, and interface internals with devirtualization."
 tags: ["Go", "Series", "Go Runtime", "Compiler", "Performance"]

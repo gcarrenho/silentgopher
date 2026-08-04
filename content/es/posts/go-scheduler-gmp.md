@@ -6,7 +6,7 @@ author: "@SilentGopher"
 description: "Un deep dive sobre el scheduler de Go: estructuras G, M y P, work stealing, handoff en syscalls bloqueantes, netpolling y la evolución de preemption cooperativa a asíncrona."
 image: "/images/posts/go-scheduler-gmp/cover.svg"
 tags: ["Go", "Go Runtime", "Concurrency", "Scheduler", "Performance", "GMP"]
-draft: false
+draft: true
 ---
 
 > Las goroutines son baratas, pero no son magia. Son el resultado de un scheduler que trabaja duro para que la concurrencia se sienta simple.

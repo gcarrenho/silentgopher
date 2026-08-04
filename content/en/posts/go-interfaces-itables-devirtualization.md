@@ -6,7 +6,7 @@ author: "@SilentGopher"
 description: "An internal look at Go interfaces, including iface, eface, method tables, dynamic dispatch, and the compiler optimizations behind devirtualization."
 image: "/images/posts/go-interfaces-itables-devirtualization/cover.svg"
 tags: ["Go", "Go Runtime", "Interfaces", "Compiler", "Performance", "Assembly"]
-draft: false
+draft: true
 ---
 
 > Interfaces make code flexible. The runtime and compiler pay the bill unless they can prove they do not have to.
