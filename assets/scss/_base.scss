@@ -1,14 +1,73 @@
-/* --- ESTILOS GENERALES --- */
+/* --- Base / Reset --- */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg);
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, calc(0.92rem + 0.2vw), 1.08rem);
+    line-height: 1.65;
+    letter-spacing: 0.01em;
     color: var(--fg);
-    line-height: 1.6;
-    transition: background-color 0.25s, color 0.25s;
+    background-color: var(--bg);
+    background-image:
+        radial-gradient(circle at 12% 0%, rgba(31, 111, 235, 0.08), transparent 42%),
+        radial-gradient(circle at 88% 10%, rgba(23, 98, 186, 0.07), transparent 38%);
+    transition: background-color 0.25s ease, color 0.25s ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+main {
+    display: block;
+}
+
+img,
+svg,
+video {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--link);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent);
+}
+
+p {
+    margin: 0;
+}
+
+::selection {
+    background: color-mix(in srgb, var(--accent) 24%, transparent);
+    color: var(--fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
