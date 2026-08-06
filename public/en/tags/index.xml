@@ -6,83 +6,55 @@
     <description>Recent content in Tags on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.silentgopher.dev/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Assembly</title>
+      <link>https://www.silentgopher.dev/en/tags/assembly/</link>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/en/tags/assembly/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Compiler</title>
       <link>https://www.silentgopher.dev/en/tags/compiler/</link>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/en/tags/compiler/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Escape Analysis</title>
+      <link>https://www.silentgopher.dev/en/tags/escape-analysis/</link>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/en/tags/escape-analysis/</guid>
       <description></description>
     </item>
     <item>
       <title>Go</title>
       <link>https://www.silentgopher.dev/en/tags/go/</link>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/en/tags/go/</guid>
       <description></description>
     </item>
     <item>
       <title>Go Runtime</title>
       <link>https://www.silentgopher.dev/en/tags/go-runtime/</link>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/en/tags/go-runtime/</guid>
       <description></description>
     </item>
     <item>
       <title>Performance</title>
       <link>https://www.silentgopher.dev/en/tags/performance/</link>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/en/tags/performance/</guid>
       <description></description>
     </item>
     <item>
       <title>Series</title>
       <link>https://www.silentgopher.dev/en/tags/series/</link>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/en/tags/series/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Assembly</title>
-      <link>https://www.silentgopher.dev/en/tags/assembly/</link>
-      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/en/tags/assembly/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Interfaces</title>
-      <link>https://www.silentgopher.dev/en/tags/interfaces/</link>
-      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/en/tags/interfaces/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Concurrency</title>
-      <link>https://www.silentgopher.dev/en/tags/concurrency/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/en/tags/concurrency/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Escape Analysis</title>
-      <link>https://www.silentgopher.dev/en/tags/escape-analysis/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/en/tags/escape-analysis/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>GMP</title>
-      <link>https://www.silentgopher.dev/en/tags/gmp/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/en/tags/gmp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Scheduler</title>
-      <link>https://www.silentgopher.dev/en/tags/scheduler/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/en/tags/scheduler/</guid>
       <description></description>
     </item>
     <item>

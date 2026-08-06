@@ -2,8 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://www.silentgopher.dev/en/tags/assembly/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/assembly/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/assembly/"
+                />
+  </url><url>
     <loc>https://www.silentgopher.dev/en/tags/compiler/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -17,8 +32,23 @@
                 href="https://www.silentgopher.dev/en/tags/compiler/"
                 />
   </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/escape-analysis/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/escape-analysis/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/escape-analysis/"
+                />
+  </url><url>
     <loc>https://www.silentgopher.dev/en/tags/go/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -33,7 +63,7 @@
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/tags/go-runtime/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -48,7 +78,7 @@
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/posts/go-runtime-series-index/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -63,7 +93,7 @@
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -77,8 +107,23 @@
                 href="https://www.silentgopher.dev/en/"
                 />
   </url><url>
+    <loc>https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/posts/go-memory-escape-analysis/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/"
+                />
+  </url><url>
     <loc>https://www.silentgopher.dev/en/tags/performance/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -93,7 +138,7 @@
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/posts/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -108,7 +153,7 @@
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/tags/series/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -123,7 +168,7 @@
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/tags/</loc>
-    <lastmod>2026-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
@@ -135,141 +180,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://www.silentgopher.dev/en/tags/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/tags/assembly/</loc>
-    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/tags/assembly/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/tags/assembly/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/posts/go-interfaces-itables-devirtualization/</loc>
-    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/posts/go-interfaces-itables-devirtualization/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/posts/go-interfaces-itables-devirtualization/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/tags/interfaces/</loc>
-    <lastmod>2026-06-15T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/tags/interfaces/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/tags/interfaces/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/tags/concurrency/</loc>
-    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/tags/concurrency/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/tags/concurrency/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/posts/go-scheduler-gmp/</loc>
-    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/posts/go-scheduler-gmp/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/posts/go-scheduler-gmp/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/tags/escape-analysis/</loc>
-    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/tags/escape-analysis/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/tags/escape-analysis/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/tags/gmp/</loc>
-    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/tags/gmp/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/tags/gmp/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/</loc>
-    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/posts/go-memory-escape-analysis/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/"
-                />
-  </url><url>
-    <loc>https://www.silentgopher.dev/en/tags/scheduler/</loc>
-    <lastmod>2026-06-13T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="https://www.silentgopher.dev/tags/scheduler/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://www.silentgopher.dev/en/tags/scheduler/"
                 />
   </url><url>
     <loc>https://www.silentgopher.dev/en/tags/api-design/</loc>

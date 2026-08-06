@@ -6,35 +6,21 @@
     <description>Recent content in Go on Silent Gopher</description>
     <generator>Hugo</generator>
     <language>es</language>
-    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 04 Aug 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://www.silentgopher.dev/tags/go/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Serie Internals de Go: Guia de Lectura Practica</title>
-      <link>https://www.silentgopher.dev/posts/go-runtime-series-index/</link>
-      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/posts/go-runtime-series-index/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Esta pagina es el punto de entrada para leer la serie completa de internals de Go.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
-    </item>
-    <item>
-      <title>Interfaces en Go: iTable, Layout Interno y De-virtualización</title>
-      <link>https://www.silentgopher.dev/posts/go-interfaces-itables-devirtualization/</link>
-      <pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/posts/go-interfaces-itables-devirtualization/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Las interfaces hacen que el diseño sea flexible. El runtime y el compilador pagan ese costo, salvo cuando pueden demostrar que no hace falta.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
-    </item>
-    <item>
-      <title>Concurrencia en Go: La Anatomía Interna del Scheduler GMP</title>
-      <link>https://www.silentgopher.dev/posts/go-scheduler-gmp/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
-      <guid>https://www.silentgopher.dev/posts/go-scheduler-gmp/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Las goroutines son baratas, pero no son magia. Son el resultado de un scheduler que trabaja duro para que la concurrencia se sienta simple.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
-    </item>
     <item>
       <title>Gestión de Memoria en Go: El Viaje al Ensamblador y el Escape Analysis</title>
       <link>https://www.silentgopher.dev/posts/go-memory-escape-analysis/</link>
-      <pubDate>Sat, 13 Jun 2026 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
       <guid>https://www.silentgopher.dev/posts/go-memory-escape-analysis/</guid>
-      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Dos funciones casi idénticas pueden producir comportamientos de memoria muy distintos en Go. La diferencia, muchas veces, no está en lo que escribiste, sino en lo que el compilador puede probar.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Dos funciones que se ven casi iguales pueden producir comportamientos de memoria muy distintos en Go. La diferencia muchas veces no está en lo que escribiste, sino en lo que el compilador puede demostrar.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
+    </item>
+    <item>
+      <title>Serie Internals de Go: Guia de Lectura Practica</title>
+      <link>https://www.silentgopher.dev/posts/go-runtime-series-index/</link>
+      <pubDate>Tue, 04 Aug 2026 00:00:00 +0000</pubDate>
+      <guid>https://www.silentgopher.dev/posts/go-runtime-series-index/</guid>
+      <description>&lt;blockquote&gt;&#xA;&lt;p&gt;Esta pagina es el punto de entrada para leer la serie completa de internals de Go.&lt;/p&gt;&#xA;&lt;/blockquote&gt;</description>
     </item>
     <item>
       <title>Functional Options en Go: El Patrón Detrás de Constructores Limpios</title>

@@ -55,6 +55,10 @@ Pero hay una trampa importante: que algo vaya al heap no significa automáticame
 
 La pregunta correcta no es "¿cómo evito todos los escapes?". La pregunta correcta es: **¿qué escapes son materialmente relevantes en esta carga de trabajo?**
 
+![Comparación entre stack frame y heap object, mostrando una variable local en el frame actual y un puntero que escapa hacia heap](/images/posts/go-memory-escape-analysis/stackFrameVsHeap.png)
+
+_Figura: un valor puede vivir en stack mientras su lifetime quede acotado al frame actual. Cuando ese lifetime se extiende o deja de ser demostrable, el compilador necesita materializarlo fuera del frame._
+
 ---
 
 ## Qué Está Haciendo Realmente Escape Analysis
@@ -72,6 +76,12 @@ Una regla mental útil es esta:
 3. Si al compilador le falta evidencia, elige corrección antes que optimismo.
 
 Por eso escape analysis está profundamente relacionado con inlining, conversiones a interfaces, closures y límites entre goroutines. Todos esos features amplían o dificultan la visibilidad del compilador sobre el lifetime.
+
+### Mapa Mental del Pipeline de Lifetime
+
+![Pipeline de lifetime de una variable en el compilador de Go, desde código fuente hasta ensamblador, con decisión de escape analysis hacia stack o heap](/images/posts/go-memory-escape-analysis/memory-scape.png)
+
+_Figura: pipeline conceptual de escape analysis. Si el compilador puede demostrar que el valor muere dentro del frame actual, queda en stack; si no puede demostrarlo, el valor se promueve a heap._
 
 ---
 
@@ -122,6 +132,10 @@ Qué deberías esperar conceptualmente:
 - así que el compilador reportará que `u` se mueve al heap.
 
 La primera lección importante es esta: en Go, retornar `*T` no es solo una decisión de API. Muchas veces también es una declaración sobre lifetime.
+
+![Comparación entre retornar un struct por valor y retornar un puntero, mostrando el caso sin escape y el caso promovido a heap con runtime.newobject](/images/posts/go-memory-escape-analysis/returnValueVsPointer.png)
+
+_Figura: retornar por valor mantiene el dato acotado al frame o lo copia al caller; retornar un puntero obliga a preservar el objeto más allá del retorno y vuelve mucho más probable la promoción a heap._
 
 ---
 
@@ -245,6 +259,10 @@ Desde la perspectiva del compilador, una vez que `&n` se entrega a una goroutine
 
 Esto no significa que todos los escapes relacionados con concurrencia sean evitables. Significa que la concurrencia cambia ownership y lifetime, y el compilador responde en consecuencia.
 
+![Mapa radial de triggers comunes de escape: puntero retornado, captura por closure, boxing de interfaz, handoff a goroutine y lifetime incierto en el callee](/images/posts/go-memory-escape-analysis/triggersCommonScape.png)
+
+_Figura: los escapes más comunes no son casos aislados. Suelen aparecer cuando el compilador pierde visibilidad completa del lifetime o cuando el valor realmente necesita sobrevivir al frame actual._
+
 ---
 
 ## La Vista del Ensamblador: Buscar `runtime.newobject`
@@ -319,6 +337,10 @@ Eso no siempre cambia una decisión de stack vs heap, pero cuando lo hace, ense�
 
 Por eso helpers diminutos en paths calientes pueden benchmarkear distinto según si se inlinean o no.
 
+![Comparación del análisis con y sin inlining, mostrando cómo más contexto permite una prueba más fuerte y evita escapes innecesarios](/images/posts/go-memory-escape-analysis/inliningAnalisis.png)
+
+_Figura: inlining no es solo una optimización de velocidad. También puede cambiar la calidad de la prueba que el compilador hace sobre el lifetime de un valor._
+
 ---
 
 ## Medí, No Adivines
@@ -379,59 +401,6 @@ Hay tres errores comunes que vale la pena nombrar explícitamente:
 1. Tratar toda asignación en heap como si fuera un bug.
 2. Ignorar conversiones a interfaces y closures dentro de benchmarks.
 3. Leer el output del compilador sin considerar el inlining.
-
----
-
-## Brief de Ilustraciones para Diseño
-
-### 1. Pipeline de Lifetime de una Variable
-
-Dibujar un flujo de izquierda a derecha con estas etapas:
-
-- código fuente Go,
-- frontend del compilador,
-- SSA / representación intermedia,
-- decisión de escape analysis,
-- ubicación en stack o heap,
-- ensamblador generado.
-
-El nodo central debe ser un rombo con la pregunta: "¿el compilador puede demostrar que el valor muere con el frame actual?"
-
-Si la respuesta es sí, va a stack. Si no, va a heap.
-
-### 2. Stack Frame vs Heap Object
-
-Mostrar el stack de una goroutine con tres frames apilados. Resaltar el frame actual y una variable local dentro de él. Después, dibujar un puntero escapando hacia un objeto en heap a la derecha. Etiquetar el stack como lifetime acotado al frame y el heap como lifetime extendido.
-
-### 3. Return by Value vs Return by Pointer
-
-Hacer una comparación de dos columnas:
-
-- izquierda: struct local retornado por valor, sin promoción a heap,
-- derecha: struct local cuya dirección se retorna, promovido a heap.
-
-Debajo de cada lado, agregar una tira corta de pseudo-assembly. En el lado derecho debe aparecer claramente `runtime.newobject`.
-
-### 4. Mapa de Triggers Comunes de Escape
-
-Crear un mapa radial con cinco nodos:
-
-- puntero retornado,
-- captura por closure,
-- boxing de interfaz,
-- handoff a goroutine,
-- lifetime incierto en el callee.
-
-Cada nodo debe incluir una línea que explique por qué extiende o vuelve opaco el lifetime.
-
-### 5. Inlining Cambia el Análisis
-
-Mostrar la misma helper function analizada en dos caminos:
-
-- sin inlining: menos contexto, prueba más conservadora,
-- con inlining: contexto del call site completo, prueba más fuerte.
-
-El énfasis visual debe estar en la visibilidad del compilador, no en la velocidad.
 
 ---
 

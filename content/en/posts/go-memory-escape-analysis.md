@@ -73,6 +73,12 @@ You can use this rule of thumb:
 
 This is why escape analysis is deeply related to inlining, interface conversions, closures, and goroutine boundaries. Those language features expand or obscure the compiler's visibility into lifetime.
 
+### Lifetime Pipeline Mental Map
+
+![Lifetime pipeline of a variable in the Go compiler, from source code to assembly, with escape analysis decision toward stack or heap](/images/posts/go-memory-escape-analysis/memory-scape.png)
+
+_Figure: conceptual pipeline for escape analysis. If the compiler can prove that the value dies within the current frame, it stays on stack; if it cannot prove that, the value is promoted to heap._
+
 ---
 
 ## First Experiment: Return by Value vs Return by Pointer

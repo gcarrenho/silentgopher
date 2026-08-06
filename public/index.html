@@ -95,141 +95,19 @@
             
             
             <article class="post-card">
-  <a href="/posts/go-interfaces-itables-devirtualization/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
-
-  
-    <a href="/posts/go-interfaces-itables-devirtualization/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
-      <img src="/images/posts/go-interfaces-itables-devirtualization/cover.svg" alt="Interfaces en Go: iTable, Layout Interno y De-virtualización" loading="lazy">
-    </a>
-  
-
-  <div class="post-card-body">
-  <div class="post-card-meta">
-    <time datetime="2026-06-15">Jun 15, 2026</time>
-    <span class="dot">·</span>
-    <span>15 min</span>
-    
-      <span class="dot">·</span>
-      <span>@SilentGopher</span>
-    
-  </div>
-
-  <h2 class="post-card-title">
-    <a href="/posts/go-interfaces-itables-devirtualization/">Interfaces en Go: iTable, Layout Interno y De-virtualización</a>
-  </h2>
-
-  
-    <p class="post-card-subtitle">iface, eface, Dispatch y De-virtualización</p>
-  
-
-  <p class="post-card-description">
-    
-      Un análisis práctico de internals de interfaces en Go: representación iface y eface, resolución de métodos en runtime, costos ocultos y optimizaciones del compilador mediante de-virtualización.
-    
-  </p>
-
-  
-    <div class="post-card-footer">
-      <ul class="post-card-tags">
-        
-          <li><a href="/tags/go">#Go</a></li>
-        
-          <li><a href="/tags/go-runtime">#Go Runtime</a></li>
-        
-          <li><a href="/tags/interfaces">#Interfaces</a></li>
-        
-          <li><a href="/tags/compiler">#Compiler</a></li>
-        
-          <li><a href="/tags/performance">#Performance</a></li>
-        
-          <li><a href="/tags/assembly">#Assembly</a></li>
-        
-      </ul>
-      <a href="/posts/go-interfaces-itables-devirtualization/" class="post-card-readmore">
-        Leer más
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  
-  </div>
-</article>
-
-            
-            <article class="post-card">
-  <a href="/posts/go-scheduler-gmp/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
-
-  
-    <a href="/posts/go-scheduler-gmp/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
-      <img src="/images/posts/go-scheduler-gmp/cover.svg" alt="Concurrencia en Go: La Anatomía Interna del Scheduler GMP" loading="lazy">
-    </a>
-  
-
-  <div class="post-card-body">
-  <div class="post-card-meta">
-    <time datetime="2026-06-13">Jun 13, 2026</time>
-    <span class="dot">·</span>
-    <span>19 min</span>
-    
-      <span class="dot">·</span>
-      <span>@SilentGopher</span>
-    
-  </div>
-
-  <h2 class="post-card-title">
-    <a href="/posts/go-scheduler-gmp/">Concurrencia en Go: La Anatomía Interna del Scheduler GMP</a>
-  </h2>
-
-  
-    <p class="post-card-subtitle">G, M, P, Work Stealing, Syscalls, Preemption</p>
-  
-
-  <p class="post-card-description">
-    
-      Un deep dive sobre el scheduler de Go: estructuras G, M y P, work stealing, handoff en syscalls bloqueantes, netpolling y la evolución de preemption cooperativa a asíncrona.
-    
-  </p>
-
-  
-    <div class="post-card-footer">
-      <ul class="post-card-tags">
-        
-          <li><a href="/tags/go">#Go</a></li>
-        
-          <li><a href="/tags/go-runtime">#Go Runtime</a></li>
-        
-          <li><a href="/tags/concurrency">#Concurrency</a></li>
-        
-          <li><a href="/tags/scheduler">#Scheduler</a></li>
-        
-          <li><a href="/tags/performance">#Performance</a></li>
-        
-          <li><a href="/tags/gmp">#GMP</a></li>
-        
-      </ul>
-      <a href="/posts/go-scheduler-gmp/" class="post-card-readmore">
-        Leer más
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  
-  </div>
-</article>
-
-            
-            <article class="post-card">
   <a href="/posts/go-memory-escape-analysis/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
 
   
     <a href="/posts/go-memory-escape-analysis/" class="post-card-thumbnail" tabindex="-1" aria-hidden="true">
-      <img src="/images/posts/go-memory-escape-analysis/cover.svg" alt="Gestión de Memoria en Go: El Viaje al Ensamblador y el Escape Analysis" loading="lazy">
+      <img src="/images/posts/go-memory-escape-analysis/memoryManagement.jpg" alt="Gestión de Memoria en Go: El Viaje al Ensamblador y el Escape Analysis" loading="lazy">
     </a>
   
 
   <div class="post-card-body">
   <div class="post-card-meta">
-    <time datetime="2026-06-13">Jun 13, 2026</time>
+    <time datetime="2026-08-04">Aug 4, 2026</time>
     <span class="dot">·</span>
-    <span>18 min</span>
+    <span>10 min</span>
     
       <span class="dot">·</span>
       <span>@SilentGopher</span>
@@ -246,7 +124,7 @@
 
   <p class="post-card-description">
     
-      Un recorrido práctico por Stack vs Heap en Go, cómo funciona Escape Analysis, cómo inspeccionar decisiones del compilador con -gcflags=&#39;-m&#39; y cómo conectarlas con el ensamblador generado.
+      Un recorrido práctico por stack vs heap en Go, cómo funciona escape analysis, cómo inspeccionar decisiones del compilador con -gcflags=&#39;-m&#39; y cómo conectarlas con el ensamblador generado.
     
   </p>
 
@@ -517,21 +395,6 @@
         
         
         <li>
-            <a href="https://www.silentgopher.dev/posts/go-interfaces-itables-devirtualization/">Interfaces en Go: iTable, Layout Interno y De-virtualización</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    15/06/2026
-                </span>
-                
-                
-            </span>
-        </li>
-        
-        <li>
             <a href="https://www.silentgopher.dev/posts/go-memory-escape-analysis/">Gestión de Memoria en Go: El Viaje al Ensamblador y el Escape Analysis</a>
             <span class="post-meta">
                 
@@ -539,22 +402,7 @@
                     <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
-                    13/06/2026
-                </span>
-                
-                
-            </span>
-        </li>
-        
-        <li>
-            <a href="https://www.silentgopher.dev/posts/go-scheduler-gmp/">Concurrencia en Go: La Anatomía Interna del Scheduler GMP</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    13/06/2026
+                    04/08/2026
                 </span>
                 
                 
@@ -585,6 +433,36 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                     12/02/2026
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="https://www.silentgopher.dev/posts/package-by-component/">Parte 2: Aplicando Component-Based Clean Architecture en Go</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    31/07/2025
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="https://www.silentgopher.dev/posts/clean-architecture/">Parte 1: Entendiendo Clean Architecture Más Allá del Diagrama</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    30/07/2025
                 </span>
                 
                 
