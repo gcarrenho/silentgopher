@@ -27,7 +27,7 @@ enableRobotsTXT = true
       homeInfoParams = { Title = "Hi, I'm Silent Gopher", Content = "Backend development blog." }
 
 [params]
-  defaultTheme = "auto"
+  defaultTheme = "dark"
   ShowReadingTime = true
   ShowShareButtons = true
   ShowPostNavLinks = true

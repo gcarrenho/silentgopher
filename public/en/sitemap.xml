@@ -2,288 +2,408 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/en/tags/api-design/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/assembly/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/assembly/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/assembly/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/compiler/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/compiler/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/compiler/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/escape-analysis/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/escape-analysis/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/escape-analysis/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/go/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/go/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/go/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/go-runtime/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/go-runtime/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/go-runtime/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/posts/go-runtime-series-index/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/posts/go-runtime-series-index/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/posts/go-runtime-series-index/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/posts/go-memory-escape-analysis/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/performance/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/performance/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/performance/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/posts/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/posts/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/series/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/series/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/series/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/</loc>
+    <lastmod>2026-08-04T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="https://www.silentgopher.dev/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://www.silentgopher.dev/en/tags/"
+                />
+  </url><url>
+    <loc>https://www.silentgopher.dev/en/tags/api-design/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/api-design/"
+                href="https://www.silentgopher.dev/tags/api-design/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/api-design/"
+                href="https://www.silentgopher.dev/en/tags/api-design/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/clean-code/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/clean-code/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/clean-code/"
+                href="https://www.silentgopher.dev/tags/clean-code/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/clean-code/"
+                href="https://www.silentgopher.dev/en/tags/clean-code/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/design-patterns/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/design-patterns/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/design-patterns/"
+                href="https://www.silentgopher.dev/tags/design-patterns/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/design-patterns/"
+                href="https://www.silentgopher.dev/en/tags/design-patterns/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/functional-options/</loc>
+    <loc>https://www.silentgopher.dev/en/posts/functional-options/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/posts/functional-options/"
+                href="https://www.silentgopher.dev/posts/functional-options/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/posts/functional-options/"
+                href="https://www.silentgopher.dev/en/posts/functional-options/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/go/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/software-architecture/</loc>
     <lastmod>2026-04-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/go/"
+                href="https://www.silentgopher.dev/tags/software-architecture/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/go/"
+                href="https://www.silentgopher.dev/en/tags/software-architecture/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/</loc>
-    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:1313/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/en/posts/</loc>
-    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:1313/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/posts/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/en/tags/software-architecture/</loc>
-    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:1313/tags/software-architecture/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/tags/software-architecture/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/en/tags/</loc>
-    <lastmod>2026-04-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="es"
-                href="http://localhost:1313/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="http://localhost:1313/en/tags/"
-                />
-  </url><url>
-    <loc>http://localhost:1313/en/tags/cohesion/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/cohesion/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/cohesion/"
+                href="https://www.silentgopher.dev/tags/cohesion/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/cohesion/"
+                href="https://www.silentgopher.dev/en/tags/cohesion/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/coupling/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/coupling/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/coupling/"
+                href="https://www.silentgopher.dev/tags/coupling/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/coupling/"
+                href="https://www.silentgopher.dev/en/tags/coupling/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/coupling-and-cohesion/</loc>
+    <loc>https://www.silentgopher.dev/en/posts/coupling-and-cohesion/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/posts/coupling-and-cohesion/"
+                href="https://www.silentgopher.dev/posts/coupling-and-cohesion/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/posts/coupling-and-cohesion/"
+                href="https://www.silentgopher.dev/en/posts/coupling-and-cohesion/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/microservices/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/microservices/</loc>
     <lastmod>2026-02-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/microservices/"
+                href="https://www.silentgopher.dev/tags/microservices/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/microservices/"
+                href="https://www.silentgopher.dev/en/tags/microservices/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/about/</loc>
+    <loc>https://www.silentgopher.dev/en/about/</loc>
     <lastmod>2025-07-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/about/"
+                href="https://www.silentgopher.dev/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/about/"
+                href="https://www.silentgopher.dev/en/about/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/clean-architecture/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/clean-architecture/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/clean-architecture/"
+                href="https://www.silentgopher.dev/tags/clean-architecture/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/clean-architecture/"
+                href="https://www.silentgopher.dev/en/tags/clean-architecture/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/tags/package-by-components/</loc>
+    <loc>https://www.silentgopher.dev/en/tags/package-by-components/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/tags/package-by-components/"
+                href="https://www.silentgopher.dev/tags/package-by-components/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/package-by-components/"
+                href="https://www.silentgopher.dev/en/tags/package-by-components/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/package-by-component/</loc>
+    <loc>https://www.silentgopher.dev/en/posts/package-by-component/</loc>
     <lastmod>2025-06-14T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/posts/package-by-component/"
+                href="https://www.silentgopher.dev/posts/package-by-component/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/posts/package-by-component/"
+                href="https://www.silentgopher.dev/en/posts/package-by-component/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/posts/clean-architecture/</loc>
+    <loc>https://www.silentgopher.dev/en/posts/clean-architecture/</loc>
     <lastmod>2025-06-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/posts/clean-architecture/"
+                href="https://www.silentgopher.dev/posts/clean-architecture/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/posts/clean-architecture/"
+                href="https://www.silentgopher.dev/en/posts/clean-architecture/"
                 />
   </url><url>
-    <loc>http://localhost:1313/en/categories/</loc>
+    <loc>https://www.silentgopher.dev/en/categories/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/categories/"
+                href="https://www.silentgopher.dev/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/categories/"
+                href="https://www.silentgopher.dev/en/categories/"
                 />
   </url>
 </urlset>

@@ -1,78 +1,80 @@
-/* --- VARIABLES Y TEMA OSCURO --- */
+/* --- Design Tokens --- */
 
-/* ====== Base Light ====== */
 :root {
-    --bg:        #fafafa;
-    --bg-color:  #fafafa;
-    --fg:        #18181b;
-    --font-color: #18181b;
-    --meta:      #71717a;
-    --subtitle:  #52525b;
-    --link:      #2563eb;
-    --accent:    #3b82f6;
-    --code-bg:   #f4f4f5;
-    --border:    #e4e4e7;
-    --border-color: #e4e4e7;
-    --card-bg:   #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.06);
-    --primary-color: #2563eb;
-    --quote-bg:  rgba(59, 130, 246, 0.05);
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+    --font-serif: "Source Serif 4", Georgia, serif;
+    --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+    --bg: #ffffff;
+    --bg-color: #ffffff;
+    --bg-secondary: #f6f8fa;
+    --fg: #1f2328;
+    --font-color: #1f2328;
+    --text-color: #1f2328;
+    --meta: #59636e;
+    --text-muted: #59636e;
+    --subtitle: #3d444d;
+
+    --link: #0969da;
+    --accent: #0969da;
+    --accent-color: #0969da;
+    --primary-color: #0969da;
+
+    --code-bg: #f6f8fa;
+    --quote-bg: #ddf4ff;
+
+    --border: #d1d9e0;
+    --border-color: #d1d9e0;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(31, 35, 40, 0.08);
 }
 
-/* ====== Dark (manual toggle) ====== */
 [data-theme="dark"] {
-    --bg:        #18181b;
-    --bg-color:  #18181b;
-    --fg:        #f4f4f5;
-    --font-color: #f4f4f5;
-    --meta:      #a1a1aa;
-    --subtitle:  #d4d4d8;
-    --link:      #60a5fa;
-    --accent:    #3b82f6;
-    --code-bg:   #27272a;
-    --border:    #3f3f46;
-    --border-color: #3f3f46;
-    --card-bg:   #1c1c1f;
-    --shadow-color: rgba(0, 0, 0, 0.35);
-    --primary-color: #60a5fa;
-    --quote-bg:  rgba(59, 130, 246, 0.08);
-}
+    --bg: #0d1117;
+    --bg-color: #0d1117;
+    --bg-secondary: #151b23;
+    --fg: #e6edf3;
+    --font-color: #e6edf3;
+    --text-color: #e6edf3;
+    --meta: #9198a1;
+    --text-muted: #9198a1;
+    --subtitle: #cdd9e5;
 
-/* ====== Dark (system preference) ====== */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg:        #18181b;
-        --bg-color:  #18181b;
-        --fg:        #f4f4f5;
-        --font-color: #f4f4f5;
-        --meta:      #a1a1aa;
-        --subtitle:  #d4d4d8;
-        --link:      #60a5fa;
-        --accent:    #3b82f6;
-        --code-bg:   #27272a;
-        --border:    #3f3f46;
-        --border-color: #3f3f46;
-        --card-bg:   #1c1c1f;
-        --shadow-color: rgba(0, 0, 0, 0.35);
-        --primary-color: #60a5fa;
-        --quote-bg:  rgba(59, 130, 246, 0.08);
-    }
+    --link: #4493f8;
+    --accent: #4493f8;
+    --accent-color: #4493f8;
+    --primary-color: #4493f8;
+
+    --code-bg: #151b23;
+    --quote-bg: #121d2f;
+
+    --border: #3d444d;
+    --border-color: #3d444d;
+    --card-bg: #151b23;
+    --shadow-color: rgba(1, 4, 9, 0.3);
 }
 
 [data-theme="light"] {
-    --bg:        #fafafa;
-    --bg-color:  #fafafa;
-    --fg:        #18181b;
-    --font-color: #18181b;
-    --meta:      #71717a;
-    --subtitle:  #52525b;
-    --link:      #2563eb;
-    --accent:    #3b82f6;
-    --code-bg:   #f4f4f5;
-    --border:    #e4e4e7;
-    --border-color: #e4e4e7;
-    --card-bg:   #ffffff;
-    --shadow-color: rgba(0, 0, 0, 0.06);
-    --primary-color: #2563eb;
-    --quote-bg:  rgba(59, 130, 246, 0.05);
+    --bg: #ffffff;
+    --bg-color: #ffffff;
+    --bg-secondary: #f6f8fa;
+    --fg: #1f2328;
+    --font-color: #1f2328;
+    --text-color: #1f2328;
+    --meta: #59636e;
+    --text-muted: #59636e;
+    --subtitle: #3d444d;
+
+    --link: #0969da;
+    --accent: #0969da;
+    --accent-color: #0969da;
+    --primary-color: #0969da;
+
+    --code-bg: #f6f8fa;
+    --quote-bg: #ddf4ff;
+
+    --border: #d1d9e0;
+    --border-color: #d1d9e0;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(31, 35, 40, 0.08);
 }

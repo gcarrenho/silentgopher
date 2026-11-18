@@ -1,80 +1,87 @@
-/* --- HEADER Y PERFIL --- */
+/* --- Header --- */
 .main-header {
-    background-color: var(--card-bg);
-    height: 350px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    background-color: #24292f;
+    min-height: 64px;
     width: 100%;
+    color: #ffffff;
+}
+
+.main-header-inner {
+    max-width: 1280px;
+    min-height: 64px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.site-brand {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 650;
+}
+
+.site-brand:hover {
+    color: #ffffff;
 }
 
 .articles-header {
-    // background-color: var(--card-bg);
-    height: 80px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+    min-height: 64px;
     width: 100%;
+    background: #24292f;
+    color: #ffffff;
 }
 
 .header-gopher {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    opacity: 0.5;
-    display: block; // 👌 Elimina espacio extra (img es inline por defecto)
-    object-fit: cover; // Opcional: recorta para cubrir todo si hay altura fija
+    display: none;
+}
 
+.header-controls-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
 }
 
 .theme-toggle {
-    position: absolute;
-    top: 24px;
-    right: 20px;
-    background: var(--bg-color);
-    border: 1px solid var(--border-color);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    color: #ffffff;
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
+.theme-toggle:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.65);
+}
 
-.header-right {
+.header-right,
+.header-controls {
     display: flex;
     align-items: center;
 }
 
 .header-controls {
-    display: flex;
-    align-items: center;
     gap: 1rem;
 }
 
 @media (max-width: 768px) {
-    .header-controls-container {
-        top: 15px;
-        right: 15px;
-        gap: 0.8rem;
-    }
-
-    .language-switcher a,
-    .language-switcher span {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.75rem;
-    }
-
     .theme-toggle {
-        width: 35px;
-        height: 35px;
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .main-header-inner {
+        padding: 0 1rem;
     }
 }
