@@ -70,47 +70,42 @@
   </script>
 
   
-  <link rel="stylesheet" href="/scss/main.min.2690e8d5c694ad16df4e0b91c3e6595f85cd9151ac25f3603b409777c9494e5e.css" integrity="sha256-JpDo1caUrRbfTguRw&#43;ZZX4XNkVGsJfNgO0CXd8lJTl4=">
+  <link rel="stylesheet" href="/scss/main.min.4b3e99dbb270e97c3984d4d8265d76cf15612e8abddfe5a0248aba8e2bffaefe.css" integrity="sha256-Sz6Z27Jw6Xw5hNTYJl12zxVhLoq93&#43;WgJIq6jiv/rv4=">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body data-post-id="package-by-component" class="post-page">
 
-  
-  <header class="post-topbar">
-    <div class="topbar-controls">
-      <div class="language-switcher">
-        
+  <header class="main-header">
+    <div class="main-header-inner">
+      <a class="site-brand" href="/en/">Silent Gopher</a>
+      <div class="header-controls-container">
+        <div class="language-switcher">
           
-            <a href="/posts/package-by-component/">Es</a>
+            
+              <a href="/posts/package-by-component/">Es</a>
+            
           
-        
-        <span class="active">En</span>
+          <span class="active">En</span>
+        </div>
+        <button class="theme-toggle" aria-label="Cambiar tema">
+          <span class="theme-icon">🌙</span>
+        </button>
       </div>
-      <button class="theme-toggle" aria-label="Cambiar tema">
-        <span class="theme-icon">🌙</span>
-      </button>
     </div>
-    <nav class="post-topbar-nav">
+  </header>
+
+  <div class="profile-nav-container">
+    <nav class="profile-nav" aria-label="Articles">
       <a href="/en/">Home</a>
-      <span class="topbar-sep">|</span>
-      <a href="/en/posts">Articles</a>
-      <span class="topbar-sep">|</span>
+      <a class="active" href="/en/posts">Articles</a>
       <a href="/en/about">About me</a>
     </nav>
-    <div class="topbar-spacer"></div>
-  </header>
+  </div>
 
   <main class="medium-article">
     <article>
-
-      
-      
-      <div class="post-hero">
-        <img src="/images/posts/package-by-component.png" alt="Part 2: Applying Component-Based Clean Architecture in Go" class="post-hero-img" loading="eager">
-      </div>
-      
 
       
       <header class="post-header">
@@ -155,6 +150,12 @@
           </button>
         </div>
       </header>
+
+      
+      <div class="post-hero">
+        <img src="/images/posts/package-by-component.png" alt="Part 2: Applying Component-Based Clean Architecture in Go" class="post-hero-img" loading="eager">
+      </div>
+      
 
       
       <div class="content">
@@ -537,15 +538,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const currentTheme = localStorage.getItem('theme');
+    const defaultTheme = "dark";
 
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
+    const initialTheme = currentTheme || (defaultTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : defaultTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    themeToggles.forEach(btn => btn.textContent = initialTheme === 'dark' ? '☀️' : '🌙');
 
     
     themeToggles.forEach(button => {
@@ -631,15 +628,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const currentTheme = localStorage.getItem('theme');
+    const defaultTheme = "dark";
 
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
+    const initialTheme = currentTheme || (defaultTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : defaultTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    themeToggles.forEach(btn => btn.textContent = initialTheme === 'dark' ? '☀️' : '🌙');
 
     
     themeToggles.forEach(button => {

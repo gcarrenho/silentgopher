@@ -12,17 +12,13 @@
 }
 
 @media (max-width: 768px) {
-    .main-header {
-        height: 170px;
-    }
-
     .profile-container {
-        margin-top: -60px;
+        margin-top: 1rem;
     }
 
     .profile-pic {
-        width: 92px;
-        height: 92px;
+        width: 76px;
+        height: 76px;
     }
 
     .content-grid {
@@ -32,14 +28,13 @@
     }
 
     .profile-nav-container {
-        flex-direction: column;
-        margin-top: -48px;
-        gap: 0.8rem;
+        margin-top: 0;
     }
 
     .profile-nav {
-        margin-top: 0;
-        justify-content: center;
+        min-height: 54px;
+        padding: 0 1rem;
+        gap: 1.1rem;
     }
 
     #comment-sidebar {
@@ -74,32 +69,43 @@
 }
 
 @media (max-width: 480px) {
-    .main-header {
-        height: 138px;
-    }
-
     .content-grid {
         padding: 0 0.7rem;
         margin-top: 1rem;
     }
 
-    .profile-nav-container {
-        margin-top: -40px;
+    .profile-overview {
+        padding: 1.5rem 1rem 1rem;
+        align-items: flex-start;
+        gap: 0.85rem;
     }
 
     .profile-pic {
-        width: 75px;
-        height: 75px;
+        width: 64px;
+        height: 64px;
+        flex: 0 0 auto;
     }
 
-    .header-controls-container {
-        top: 10px;
-        right: 10px;
+    .profile-overview-copy h1 {
+        font-size: 1.25rem;
+    }
+
+    .profile-handle {
+        font-size: 0.95rem;
+    }
+
+    .profile-bio {
+        font-size: 0.88rem;
+    }
+
+    .profile-nav {
+        gap: 0.85rem;
+        padding: 0 0.7rem;
     }
 
     .theme-toggle {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         font-size: 0.85rem;
     }
 }

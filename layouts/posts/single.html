@@ -77,46 +77,41 @@
 </head>
 <body data-post-id="{{ .File.BaseFileName }}" class="post-page">
 
-  <!-- ── Top bar ── -->
-  <header class="post-topbar">
-    <div class="topbar-controls">
-      <div class="language-switcher">
-        {{ if .Translations }}
-          {{ range .Translations }}
-            <a href="{{ .RelPermalink }}">{{ .Language.LanguageName | truncate 2 }}</a>
-          {{ end }}
-        {{ else }}
-          {{ range .Site.Languages }}
-            {{ if not (eq .Lang $.Site.Language.Lang) }}
-              <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+  <header class="main-header">
+    <div class="main-header-inner">
+      <a class="site-brand" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+      <div class="header-controls-container">
+        <div class="language-switcher">
+          {{ if .Translations }}
+            {{ range .Translations }}
+              <a href="{{ .RelPermalink }}">{{ .Language.LanguageName | truncate 2 }}</a>
+            {{ end }}
+          {{ else }}
+            {{ range .Site.Languages }}
+              {{ if not (eq .Lang $.Site.Language.Lang) }}
+                <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+              {{ end }}
             {{ end }}
           {{ end }}
-        {{ end }}
-        <span class="active">{{ .Site.Language.LanguageName | truncate 2 }}</span>
+          <span class="active">{{ .Site.Language.LanguageName | truncate 2 }}</span>
+        </div>
+        <button class="theme-toggle" aria-label="Cambiar tema">
+          <span class="theme-icon">🌙</span>
+        </button>
       </div>
-      <button class="theme-toggle" aria-label="Cambiar tema">
-        <span class="theme-icon">🌙</span>
-      </button>
     </div>
-    <nav class="post-topbar-nav">
+  </header>
+
+  <div class="profile-nav-container">
+    <nav class="profile-nav" aria-label="{{ i18n "articles" }}">
       <a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a>
-      <span class="topbar-sep">|</span>
-      <a href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
-      <span class="topbar-sep">|</span>
+      <a class="active" href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
       <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
     </nav>
-    <div class="topbar-spacer"></div>
-  </header>
+  </div>
 
   <main class="medium-article">
     <article>
-
-      <!-- ── Hero image ── -->
-      {{ with .Params.image }}
-      <div class="post-hero">
-        <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="post-hero-img" loading="eager">
-      </div>
-      {{ end }}
 
       <!-- ── Article header ── -->
       <header class="post-header">
@@ -157,6 +152,12 @@
           </button>
         </div>
       </header>
+
+      {{ with .Params.image }}
+      <div class="post-hero">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="post-hero-img" loading="eager">
+      </div>
+      {{ end }}
 
       <!-- ── Content ── -->
       <div class="content">

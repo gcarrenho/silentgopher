@@ -8,7 +8,7 @@
 }
 
 .blog-card-wrapper {
-    border-bottom: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+    border-bottom: 1px solid var(--border);
     animation: cardReveal 0.45s ease both;
 
     &:first-child .post-card {
@@ -30,10 +30,10 @@
 /* ── Card ── */
 .post-card {
     position: relative;
-    padding: 1.9rem 0;
+    padding: 1.35rem 0;
     overflow: hidden;
     transition: background 0.2s ease;
-    border-radius: 10px;
+    border-radius: 0;
 
     .post-card-link {
         position: absolute;
@@ -42,7 +42,7 @@
     }
 
     &:hover {
-        background: color-mix(in srgb, var(--card-bg) 92%, transparent);
+        background: var(--bg-secondary);
 
         .post-card-title a {
             color: var(--accent);
@@ -84,7 +84,7 @@
 .post-card-title {
     margin: 0 0 0.25rem;
     font-size: clamp(1.34rem, calc(1.2rem + 0.28vw), 1.52rem);
-    font-weight: 700;
+    font-weight: 600;
     line-height: 1.22;
 
     a {
@@ -149,7 +149,7 @@
         transition: color 0.15s ease, background-color 0.15s ease;
         position: relative;
         z-index: 1;
-        border: 1px solid color-mix(in srgb, var(--border) 85%, transparent);
+        border: 1px solid var(--border);
         border-radius: 999px;
         padding: 0.2rem 0.45rem;
 
@@ -212,9 +212,7 @@
     }
 
     .post-card-thumbnail {
-        width: 72px;
-        height: 72px;
-        margin-right: 0.85rem;
+        display: none;
     }
 
     .post-card-title {

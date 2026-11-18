@@ -1,63 +1,102 @@
 {{ define "main" }}
 <header class="main-header">
-      <!-- Imagen de fondo -->
-    <img src="{{ "/images/gophers.png" | relURL }}" alt="Gopher Silent" class="header-gopher">
-    
-    <!-- Controles flotantes -->
-    <div class="header-controls-container">
-        <button class="theme-toggle" aria-label="Cambiar tema">
-            <span class="theme-icon">🌙</span>
-        </button>
-        
-          <div class="language-switcher">
-            {{ range .Site.Languages }}
-                {{ if eq .Lang $.Site.Language.Lang }}
-                    <span class="active">{{ .LanguageName | truncate 2 }}</span>
-                {{ else }}
-                    <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+    <div class="main-header-inner">
+        <a class="site-brand" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+        <div class="header-controls-container">
+            <button class="theme-toggle" aria-label="Cambiar tema">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <div class="language-switcher">
+                {{ range .Site.Languages }}
+                    {{ if eq .Lang $.Site.Language.Lang }}
+                        <span class="active">{{ .LanguageName | truncate 2 }}</span>
+                    {{ else }}
+                        <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+                    {{ end }}
                 {{ end }}
-            {{ end }}
-        </div> 
-    </div>
-
-    <!-- Contenido central -->
-    <div class="header-content">
-        <div class="author-signature">@SilentGopher</div>
+            </div>
+        </div>
     </div>
 </header>
-<!-- 
-<div class="profile-container">
-    <img src="{{ "/images/gopherProfile.png" | relURL }}" alt="{{ i18n " profilePhotoAlt" }}" class="profile-pic">
-</div> -->
+
+<section class="profile-overview">
+    <img src="{{ "/images/gopher-profile.png" | relURL }}" alt="{{ i18n "profilePhotoAlt" }}" class="profile-pic">
+    <div class="profile-overview-copy">
+        <h1>Silent Gopher</h1>
+        <p class="profile-handle">@SilentGopher</p>
+        <p class="profile-bio">{{ .Site.Params.homeInfoParams.Content }}</p>
+    </div>
+    <a class="profile-action" href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
+</section>
 
 <div class="profile-nav-container">
-      <nav class="profile-nav">
-    <a href="/">{{ i18n "home" }}</a>
-    <a href="/posts">{{ i18n "articles" }}</a>
-    <a href="/about">{{ i18n "about_me" }}</a>
-  </nav>
-  <img src="{{ "/images/gopher-profile.png" | relURL }}" alt="{{ i18n "profilePhotoAlt" }}" class="profile-pic">
+    <nav class="profile-nav" aria-label="{{ i18n "home" }}">
+        <a class="active" href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a>
+        <a href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
+        <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
+    </nav>
 </div>
 
-<main class="content-grid">
-    <section class="articles-section">
+{{ $posts := where .Site.RegularPages.ByDate.Reverse "Section" "posts" }}
+{{ $posts = where $posts "Params.series_index" "!=" true }}
+{{ $paginator := .Paginate $posts }}
+<main class="home-grid">
+    <section class="featured-section">
+        <div class="section-heading">
+            <h2>{{ i18n "featured_articles" }}</h2>
+            <a href="{{ "/posts" | relLangURL }}">{{ i18n "view_all" }}</a>
+        </div>
+        {{ if gt (len $posts) 0 }}
+        <div class="repo-grid">
+            {{ range first 6 $paginator.Pages }}
+            <article class="repo-card">
+                <div class="repo-card-heading">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                    <span class="repo-visibility">{{ i18n "public_label" }}</span>
+                </div>
+                <p class="repo-card-description">
+                    {{ if .Description }}{{ .Description }}{{ else }}{{ .Summary | plainify | truncate 150 }}{{ end }}
+                </p>
+                <div class="repo-card-meta">
+                    {{ with .Params.tags }}<span class="repo-language"><span class="language-dot"></span>{{ index . 0 }}</span>{{ end }}
+                    <span>{{ .ReadingTime }} min</span>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+        {{ else }}
+        <p>{{ i18n "noPostsMessage" }}</p>
+        {{ end }}
+    </section>
+
+    <aside class="profile-sidebar">
+        <section class="profile-readme">
+            <h2>{{ i18n "about_me" }}</h2>
+            <p>{{ .Site.Params.homeInfoParams.Content }}</p>
+            <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }} <span aria-hidden="true">&rarr;</span></a>
+        </section>
+        {{ partial "sidebar.html" . }}
+        <section class="topics-widget">
+            <h2>{{ i18n "topics" }}</h2>
+            <ul>
+                {{ range first 8 .Site.Taxonomies.tags.ByCount }}
+                <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a></li>
+                {{ end }}
+            </ul>
+        </section>
+    </aside>
+
+    <section class="repository-section">
+        <div class="section-heading">
+            <h2>{{ i18n "all_articles" }}</h2>
+            <a href="{{ "/posts" | relLangURL }}">{{ i18n "view_all" }}</a>
+        </div>
         <div class="blog-wrapper">
-            {{ $posts := where .Site.RegularPages "Section" "posts" }}
-            {{ $posts = where $posts "Params.series_index" "!=" true }}
-            {{ if gt (len $posts) 0 }}
-            {{ $paginator := .Paginate $posts }}
             {{ range $i, $page := $paginator.Pages }}
             {{ partial "card.html" (dict "page" $page "index" $i) }}
             {{ end }}
-            {{ else }}
-            <p>{{ i18n "noPostsMessage" }}</p>
-            {{ end }}
         </div>
     </section>
-
-    <aside class="sidebar">
-        {{ partial "sidebar.html" . }}
-    </aside>
 </main>
 
 {{ partial "theme-script.html" . }}

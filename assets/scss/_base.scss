@@ -18,14 +18,11 @@ html {
 body {
     min-height: 100vh;
     font-family: var(--font-sans);
-    font-size: clamp(1rem, calc(0.92rem + 0.2vw), 1.08rem);
+    font-size: 1rem;
     line-height: 1.65;
-    letter-spacing: 0.01em;
+    letter-spacing: 0;
     color: var(--fg);
     background-color: var(--bg);
-    background-image:
-        radial-gradient(circle at 12% 0%, rgba(31, 111, 235, 0.08), transparent 42%),
-        radial-gradient(circle at 88% 10%, rgba(23, 98, 186, 0.07), transparent 38%);
     transition: background-color 0.25s ease, color 0.25s ease;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -50,6 +47,13 @@ a {
 
 a:hover {
     color: var(--accent);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
 p {

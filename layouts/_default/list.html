@@ -14,27 +14,32 @@
 <body>
 
 <header class="articles-header">
-  <div class="header-controls-container">
-    <button class="theme-toggle" aria-label="Cambiar tema">
-      <span class="theme-icon">🌙</span>
-    </button>
-    <div class="language-switcher">
-      {{ range .Site.Languages }}
-        {{ if eq .Lang $.Site.Language.Lang }}
-          <span class="active">{{ .LanguageName | truncate 2 }}</span>
-        {{ else }}
-          <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+  <div class="main-header-inner">
+    <a class="site-brand" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+    <div class="header-controls-container">
+      <button class="theme-toggle" aria-label="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+      <div class="language-switcher">
+        {{ range .Site.Languages }}
+          {{ if eq .Lang $.Site.Language.Lang }}
+            <span class="active">{{ .LanguageName | truncate 2 }}</span>
+          {{ else }}
+            <a href="{{ .Lang | absURL }}">{{ .LanguageName | truncate 2 }}</a>
+          {{ end }}
         {{ end }}
-      {{ end }}
+      </div>
     </div>
   </div>
 </header>
 
-<nav>
-  <a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a> |
-  <a href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a> |
-  <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
-</nav>
+<div class="profile-nav-container">
+  <nav class="profile-nav" aria-label="{{ i18n "articles" }}">
+    <a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a>
+    <a class="active" href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
+    <a href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
+  </nav>
+</div>
 
 <main class="articles-page">
   <div class="articles-page-header">

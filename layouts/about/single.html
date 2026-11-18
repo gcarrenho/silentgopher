@@ -12,21 +12,21 @@
 
 <body class="about-page">
   <header class="main-header">
-     <!-- 
-    <img src="{{ with .Params.image }}{{ . | relURL }}{{ else }}{{ "/images/posts/about.jpg" | relURL }}{{ end }}" 
-         alt="{{ .Title }}" 
-         class="header-gopher"> -->
-    <button class="theme-toggle" aria-label="Cambiar tema">🌙</button>
+    <div class="main-header-inner">
+      <a class="site-brand" href="{{ "/" | relLangURL }}">{{ .Site.Title }}</a>
+      <button class="theme-toggle" aria-label="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
   </header>
 
-   <div class="profile-nav-container">
-    <nav class="profile-nav">
-        <a href="/">{{ i18n "home" }}</a>
-        <a href="/posts">{{ i18n "articles" }}</a>
-        <a href="/about">{{ i18n "about_me" }}</a>
+  <div class="profile-nav-container">
+    <nav class="profile-nav" aria-label="{{ i18n "about_me" }}">
+      <a href="{{ "/" | relLangURL }}">{{ i18n "home" }}</a>
+      <a href="{{ "/posts" | relLangURL }}">{{ i18n "articles" }}</a>
+      <a class="active" href="{{ "/about" | relLangURL }}">{{ i18n "about_me" }}</a>
     </nav>
-        <img src="{{ "/images/gopher-profile.png" | relURL }}" alt="{{ i18n "profilePhotoAlt" }}" class="profile-pic">
-    </div>
+  </div>
 
   <main class="medium-article no-article-image">
     <article>

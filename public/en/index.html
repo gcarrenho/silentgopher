@@ -30,7 +30,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio | Silent Gopher</title>
     
-    <link rel="stylesheet" href="/scss/main.min.2690e8d5c694ad16df4e0b91c3e6595f85cd9151ac25f3603b409777c9494e5e.css">
+    <link rel="stylesheet" href="/scss/main.min.4b3e99dbb270e97c3984d4d8265d76cf15612e8abddfe5a0248aba8e2bffaefe.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -48,51 +48,258 @@
 
     
 <header class="main-header">
-      
-    <img src="/images/gophers.png" alt="Gopher Silent" class="header-gopher">
-    
-    
-    <div class="header-controls-container">
-        <button class="theme-toggle" aria-label="Cambiar tema">
-            <span class="theme-icon">🌙</span>
-        </button>
-        
-          <div class="language-switcher">
-            
+    <div class="main-header-inner">
+        <a class="site-brand" href="/en/">Silent Gopher</a>
+        <div class="header-controls-container">
+            <button class="theme-toggle" aria-label="Cambiar tema">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <div class="language-switcher">
                 
-                    <a href="https://www.silentgopher.dev/es">Es</a>
+                    
+                        <a href="https://www.silentgopher.dev/es">Es</a>
+                    
                 
-            
+                    
+                        <span class="active">En</span>
+                    
                 
-                    <span class="active">En</span>
-                
-            
-        </div> 
-    </div>
-
-    
-    <div class="header-content">
-        <div class="author-signature">@SilentGopher</div>
+            </div>
+        </div>
     </div>
 </header>
 
+<section class="profile-overview">
+    <img src="/images/gopher-profile.png" alt="" class="profile-pic">
+    <div class="profile-overview-copy">
+        <h1>Silent Gopher</h1>
+        <p class="profile-handle">@SilentGopher</p>
+        <p class="profile-bio">Backend development blog.</p>
+    </div>
+    <a class="profile-action" href="/en/posts">Articles</a>
+</section>
 
 <div class="profile-nav-container">
-      <nav class="profile-nav">
-    <a href="/">Home</a>
-    <a href="/posts">Articles</a>
-    <a href="/about">About me</a>
-  </nav>
-  <img src="/images/gopher-profile.png" alt="" class="profile-pic">
+    <nav class="profile-nav" aria-label="Home">
+        <a class="active" href="/en/">Home</a>
+        <a href="/en/posts">Articles</a>
+        <a href="/en/about">About me</a>
+    </nav>
 </div>
 
-<main class="content-grid">
-    <section class="articles-section">
+
+
+
+<main class="home-grid">
+    <section class="featured-section">
+        <div class="section-heading">
+            <h2>Popular articles</h2>
+            <a href="/en/posts">View all</a>
+        </div>
+        
+        <div class="repo-grid">
+            
+            <article class="repo-card">
+                <div class="repo-card-heading">
+                    <a href="/en/posts/go-memory-escape-analysis/">Memory Management in Go: The Trip to Assembly and Escape Analysis</a>
+                    <span class="repo-visibility">Public</span>
+                </div>
+                <p class="repo-card-description">
+                    A practical tour of stack vs heap in Go, how escape analysis works, how to inspect compiler decisions with -gcflags=&#39;-m&#39;, and how to connect them to generated assembly.
+                </p>
+                <div class="repo-card-meta">
+                    <span class="repo-language"><span class="language-dot"></span>Go</span>
+                    <span>18 min</span>
+                </div>
+            </article>
+            
+            <article class="repo-card">
+                <div class="repo-card-heading">
+                    <a href="/en/posts/functional-options/">Functional Options in Go: The Pattern Behind Clean Service Constructors</a>
+                    <span class="repo-visibility">Public</span>
+                </div>
+                <p class="repo-card-description">
+                    How to stop passing boolean flags and empty strings to your Go constructors. A deep dive into the Functional Options pattern — when to use it at constructor level vs method level, and when not to use it at all.
+                </p>
+                <div class="repo-card-meta">
+                    <span class="repo-language"><span class="language-dot"></span>Go</span>
+                    <span>9 min</span>
+                </div>
+            </article>
+            
+            <article class="repo-card">
+                <div class="repo-card-heading">
+                    <a href="/en/posts/coupling-and-cohesion/">Coupling and Cohesion in Software Architecture (with Go Examples)</a>
+                    <span class="repo-visibility">Public</span>
+                </div>
+                <p class="repo-card-description">
+                    Structural, contractual, temporal, functional and deployment coupling explained with real Go code. Includes a migration war story, async events pattern, and a decision table for choosing the right coupling level.
+                </p>
+                <div class="repo-card-meta">
+                    <span class="repo-language"><span class="language-dot"></span>Go</span>
+                    <span>6 min</span>
+                </div>
+            </article>
+            
+            <article class="repo-card">
+                <div class="repo-card-heading">
+                    <a href="/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
+                    <span class="repo-visibility">Public</span>
+                </div>
+                <p class="repo-card-description">
+                    Real production Go code organized by component, not layer. Contracts, dependency injection, error boundaries, and the AppContainer pattern — with the actual bugs we shipped and the lessons they taught us.
+                </p>
+                <div class="repo-card-meta">
+                    <span class="repo-language"><span class="language-dot"></span>Go</span>
+                    <span>6 min</span>
+                </div>
+            </article>
+            
+            <article class="repo-card">
+                <div class="repo-card-heading">
+                    <a href="/en/posts/clean-architecture/">Part 1: Understanding Clean Architecture Beyond the Diagram</a>
+                    <span class="repo-visibility">Public</span>
+                </div>
+                <p class="repo-card-description">
+                    Stop copy-pasting Clean Architecture diagrams. This is how it actually works in production Go projects — with real failures, component boundaries, and contracts that let your team move fast without breaking things.
+                </p>
+                <div class="repo-card-meta">
+                    <span class="repo-language"><span class="language-dot"></span>Go</span>
+                    <span>7 min</span>
+                </div>
+            </article>
+            
+        </div>
+        
+    </section>
+
+    <aside class="profile-sidebar">
+        <section class="profile-readme">
+            <h2>About me</h2>
+            <p>Backend development blog.</p>
+            <a href="/en/about">About me <span aria-hidden="true">&rarr;</span></a>
+        </section>
+        <div class="sidebar-widget">
+    <h4 class="widget-title">Latest</h4>
+    <ul class="widget-list">
+        
+        
+        
+        <li>
+            <a href="https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/">Memory Management in Go: The Trip to Assembly and Escape Analysis</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    04/08/2026
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="https://www.silentgopher.dev/en/posts/functional-options/">Functional Options in Go: The Pattern Behind Clean Service Constructors</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    20/04/2026
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="https://www.silentgopher.dev/en/posts/coupling-and-cohesion/">Coupling and Cohesion in Software Architecture (with Go Examples)</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    12/02/2026
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="https://www.silentgopher.dev/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    14/06/2025
+                </span>
+                
+                
+            </span>
+        </li>
+        
+        <li>
+            <a href="https://www.silentgopher.dev/en/posts/clean-architecture/">Part 1: Understanding Clean Architecture Beyond the Diagram</a>
+            <span class="post-meta">
+                
+                <span class="post-date">
+                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                    </svg>
+                    13/06/2025
+                </span>
+                
+                
+            </span>
+        </li>
+        
+    </ul>
+</div>
+
+<div class="sidebar-widget">
+    <h4 class="widget-title">Most Read</h4>
+    <ul class="widget-list" id="most-read-posts">
+        
+        <li class="loading">Cargando posts más leídos...</li>
+    </ul>
+</div>
+        <section class="topics-widget">
+            <h2>Topics</h2>
+            <ul>
+                
+                <li><a href="/en/tags/go/">Go</a></li>
+                
+                <li><a href="/en/tags/clean-architecture/">Clean Architecture</a></li>
+                
+                <li><a href="/en/tags/clean-code/">Clean Code</a></li>
+                
+                <li><a href="/en/tags/compiler/">Compiler</a></li>
+                
+                <li><a href="/en/tags/go-runtime/">Go Runtime</a></li>
+                
+                <li><a href="/en/tags/performance/">Performance</a></li>
+                
+                <li><a href="/en/tags/software-architecture/">Software Architecture</a></li>
+                
+                <li><a href="/en/tags/api-design/">API Design</a></li>
+                
+            </ul>
+        </section>
+    </aside>
+
+    <section class="repository-section">
+        <div class="section-heading">
+            <h2>All articles</h2>
+            <a href="/en/posts">View all</a>
+        </div>
         <div class="blog-wrapper">
-            
-            
-            
-            
             
             <article class="post-card">
   <a href="/en/posts/go-memory-escape-analysis/" class="post-card-link" tabindex="-1" aria-hidden="true"></a>
@@ -383,103 +590,8 @@
 </article>
 
             
-            
         </div>
     </section>
-
-    <aside class="sidebar">
-        <div class="sidebar-widget">
-    <h4 class="widget-title">Latest</h4>
-    <ul class="widget-list">
-        
-        
-        
-        <li>
-            <a href="https://www.silentgopher.dev/en/posts/go-memory-escape-analysis/">Memory Management in Go: The Trip to Assembly and Escape Analysis</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    04/08/2026
-                </span>
-                
-                
-            </span>
-        </li>
-        
-        <li>
-            <a href="https://www.silentgopher.dev/en/posts/functional-options/">Functional Options in Go: The Pattern Behind Clean Service Constructors</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    20/04/2026
-                </span>
-                
-                
-            </span>
-        </li>
-        
-        <li>
-            <a href="https://www.silentgopher.dev/en/posts/coupling-and-cohesion/">Coupling and Cohesion in Software Architecture (with Go Examples)</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    12/02/2026
-                </span>
-                
-                
-            </span>
-        </li>
-        
-        <li>
-            <a href="https://www.silentgopher.dev/en/posts/package-by-component/">Part 2: Applying Component-Based Clean Architecture in Go</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    14/06/2025
-                </span>
-                
-                
-            </span>
-        </li>
-        
-        <li>
-            <a href="https://www.silentgopher.dev/en/posts/clean-architecture/">Part 1: Understanding Clean Architecture Beyond the Diagram</a>
-            <span class="post-meta">
-                
-                <span class="post-date">
-                    <svg class="icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
-                    13/06/2025
-                </span>
-                
-                
-            </span>
-        </li>
-        
-    </ul>
-</div>
-
-<div class="sidebar-widget">
-    <h4 class="widget-title">Most Read</h4>
-    <ul class="widget-list" id="most-read-posts">
-        
-        <li class="loading">Cargando posts más leídos...</li>
-    </ul>
-</div>
-    </aside>
 </main>
 
 <script>
@@ -490,15 +602,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const currentTheme = localStorage.getItem('theme');
+    const defaultTheme = "dark";
 
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
+    const initialTheme = currentTheme || (defaultTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : defaultTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    themeToggles.forEach(btn => btn.textContent = initialTheme === 'dark' ? '☀️' : '🌙');
 
     
     themeToggles.forEach(button => {

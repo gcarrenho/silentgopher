@@ -3,18 +3,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Selecciona TODOS los botones de tema (para funcionar en cualquier página)
     const themeToggles = document.querySelectorAll('.theme-toggle');
     
-    // Detectar preferencia del sistema
+    // Respetar preferencia guardada y usar la configuración del sitio como predeterminada.
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const currentTheme = localStorage.getItem('theme');
+    const defaultTheme = {{ .Site.Params.defaultTheme }};
 
-    // Aplicar tema inicial
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
+    const initialTheme = currentTheme || (defaultTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : defaultTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    themeToggles.forEach(btn => btn.textContent = initialTheme === 'dark' ? '☀️' : '🌙');
 
     // Configurar event listeners para todos los botones
     themeToggles.forEach(button => {

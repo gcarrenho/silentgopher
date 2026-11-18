@@ -1,10 +1,9 @@
 .sidebar-widget {
     margin-bottom: 1.2rem;
-    background: color-mix(in srgb, var(--card-bg) 90%, transparent);
-    padding: 1rem 1rem 0.9rem;
-    border-radius: 10px;
+    background: var(--card-bg);
+    padding: 0 0 1rem;
+    border-radius: 6px;
     border: 1px solid var(--border);
-    box-shadow: 0 8px 20px var(--shadow-color);
 }
 
 .widget-title {
@@ -12,13 +11,14 @@
     font-weight: 700;
     color: var(--accent);
     margin-bottom: 0.8rem;
-    padding-bottom: 0.5rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.35rem;
     border-bottom: 1px solid var(--border);
 }
 
 .widget-list {
     list-style: none;
-    padding: 0;
+    padding: 0 1rem;
     margin: 0;
 }
 
@@ -115,4 +115,35 @@ post-meta {
 
 .post-comments::after {
     content: none;
+}
+
+.profile-sidebar .sidebar-widget {
+    margin-bottom: 0;
+    padding: 0.75rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    background: transparent;
+}
+
+.profile-sidebar .widget-title {
+    padding: 0;
+    margin-bottom: 0.45rem;
+    border: 0;
+    color: var(--fg);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.profile-sidebar .widget-list {
+    padding: 0;
+}
+
+.profile-sidebar .widget-list li {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.profile-sidebar .widget-list a {
+    font-size: 0.78rem;
 }

@@ -21,3 +21,18 @@
 
 - id: home
   translation: "Inicio"
+
+- id: featured_articles
+  translation: "Artículos destacados"
+
+- id: all_articles
+  translation: "Todos los artículos"
+
+- id: view_all
+  translation: "Ver todos"
+
+- id: public_label
+  translation: "Público"
+
+- id: topics
+  translation: "Temas"

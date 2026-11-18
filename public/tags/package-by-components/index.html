@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Package by Components | Silent Gopher</title>
   
-  <link rel="stylesheet" href="/scss/main.min.2690e8d5c694ad16df4e0b91c3e6595f85cd9151ac25f3603b409777c9494e5e.css" integrity="sha256-JpDo1caUrRbfTguRw&#43;ZZX4XNkVGsJfNgO0CXd8lJTl4=">
+  <link rel="stylesheet" href="/scss/main.min.4b3e99dbb270e97c3984d4d8265d76cf15612e8abddfe5a0248aba8e2bffaefe.css" integrity="sha256-Sz6Z27Jw6Xw5hNTYJl12zxVhLoq93&#43;WgJIq6jiv/rv4=">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sora:wght@400;500;600;700;800&family=Source+Serif+4:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,29 +14,34 @@
 <body>
 
 <header class="articles-header">
-  <div class="header-controls-container">
-    <button class="theme-toggle" aria-label="Cambiar tema">
-      <span class="theme-icon">🌙</span>
-    </button>
-    <div class="language-switcher">
-      
+  <div class="main-header-inner">
+    <a class="site-brand" href="/">Silent Gopher</a>
+    <div class="header-controls-container">
+      <button class="theme-toggle" aria-label="Cambiar tema">
+        <span class="theme-icon">🌙</span>
+      </button>
+      <div class="language-switcher">
         
-          <span class="active">Es</span>
+          
+            <span class="active">Es</span>
+          
         
-      
+          
+            <a href="https://www.silentgopher.dev/en">En</a>
+          
         
-          <a href="https://www.silentgopher.dev/en">En</a>
-        
-      
+      </div>
     </div>
   </div>
 </header>
 
-<nav>
-  <a href="/">Inicio</a> |
-  <a href="/posts">Artículos</a> |
-  <a href="/about">Sobre mí</a>
-</nav>
+<div class="profile-nav-container">
+  <nav class="profile-nav" aria-label="Artículos">
+    <a href="/">Inicio</a>
+    <a class="active" href="/posts">Artículos</a>
+    <a href="/about">Sobre mí</a>
+  </nav>
+</div>
 
 <main class="articles-page">
   <div class="articles-page-header">
@@ -133,15 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const currentTheme = localStorage.getItem('theme');
+    const defaultTheme = "dark";
 
-    
-    if (currentTheme === 'dark' || (!currentTheme && prefersDark)) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        themeToggles.forEach(btn => btn.textContent = '☀️');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        themeToggles.forEach(btn => btn.textContent = '🌙');
-    }
+    const initialTheme = currentTheme || (defaultTheme === 'auto' ? (prefersDark ? 'dark' : 'light') : defaultTheme);
+    document.documentElement.setAttribute('data-theme', initialTheme);
+    themeToggles.forEach(btn => btn.textContent = initialTheme === 'dark' ? '☀️' : '🌙');
 
     
     themeToggles.forEach(button => {

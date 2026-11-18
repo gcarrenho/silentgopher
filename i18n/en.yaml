@@ -16,6 +16,21 @@
 - id: home
   translation: "Home"
 
+- id: featured_articles
+  translation: "Popular articles"
+
+- id: all_articles
+  translation: "All articles"
+
+- id: view_all
+  translation: "View all"
+
+- id: public_label
+  translation: "Public"
+
+- id: topics
+  translation: "Topics"
+
 - id: about_me
   translation: "About me"
 

@@ -279,6 +279,113 @@
     margin: 15px 0;
 }
 
+.post-page .all-comments {
+    margin: 2rem 0;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    color: var(--fg);
+}
+
+.post-page .comments-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.post-page .comments-header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.post-page .comments-header .comment-count {
+    color: var(--meta);
+    font-size: 0.8rem;
+}
+
+.post-page .comments-list {
+    border-color: var(--border);
+}
+
+.post-page .comment,
+.post-page .comment-header,
+.post-page .comment-actions,
+.post-page #comment-sidebar {
+    background: var(--card-bg);
+    color: var(--fg);
+    border-color: var(--border);
+    font-family: var(--font-sans);
+}
+
+.post-page .comment-header {
+    color: var(--fg);
+}
+
+.post-page .comment-date,
+.post-page .user-name-display {
+    color: var(--meta);
+}
+
+.post-page .react-btn,
+.post-page .reply-btn {
+    color: var(--meta);
+}
+
+.post-page .react-btn:hover,
+.post-page .reply-btn:hover,
+.post-page .close-button:hover {
+    color: var(--accent);
+}
+
+.post-page .comment-actions {
+    border-top-color: var(--border);
+}
+
+.post-page .terminal-titlebar {
+    display: none;
+}
+
+.post-page .terminal-body {
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--card-bg);
+}
+
+.post-page .terminal-prompt-user,
+.post-page .terminal-cursor-prompt {
+    color: var(--meta);
+}
+
+.post-page .terminal-body textarea {
+    width: 100%;
+    border-color: var(--border);
+    border-radius: 6px;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+}
+
+.post-page .terminal-form-actions {
+    margin-top: 0.5rem;
+}
+
+.post-page .comment-submit-btn,
+.post-page .login-github-btn {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-secondary);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    font-weight: 600;
+}
+
+.post-page .comment-submit-btn:hover,
+.post-page .login-github-btn:hover {
+    background: color-mix(in srgb, var(--bg-secondary) 70%, var(--border));
+}
+
 /**/
 #comment-sidebar {
     background-color: #161616;

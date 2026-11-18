@@ -4,6 +4,12 @@ table {
     margin: 1.5em 0;
 }
 
+.content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 th,
 td {
     border: 1px solid #ccc;
